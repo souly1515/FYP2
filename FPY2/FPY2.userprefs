@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\C_Input.cs">
+    <Files>
+      <File FileName="Assets\Scripts\E_Base.cs" Line="26" Column="33" />
+      <File FileName="Assets\Scripts\C_Input.cs" Line="42" Column="18" />
+      <File FileName="Assets\Scripts\C_Base.cs" Line="65" Column="34" />
+      <File FileName="Assets\Scripts\S_Attack.cs" Line="21" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Assets\Scripts\C_Base.cs" line="37" offsetX="730" offsetY="612" expression="transform" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+</Properties>
