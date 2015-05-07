@@ -24,7 +24,7 @@ public class S_Attack : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionStay(Collider col)
+	void OnCollisionStay(Collision col)
 	{
 		if(timeLeft<=0)
 		{
