@@ -2,10 +2,11 @@
 using System.Collections;
 
 public class C_Input: MonoBehaviour {
-
+	
+	C_Base baseScript;
 	// Use this for initialization
 	void Start () {
-	
+		baseScript = GetComponent<C_Base> ();
 	}
 	
 	// Update is called once per frame
@@ -27,7 +28,6 @@ public class C_Input: MonoBehaviour {
 			//check if mouse pos is not on top of obstacle or enemy
 			{
 				Vector2 moveTo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				C_Base baseScript=GetComponent<C_Base>();
 				baseScript.SetNextPos(moveTo);
 				baseScript.moving=true;
 			}
@@ -47,5 +47,9 @@ public class C_Input: MonoBehaviour {
 		}
 
 		//keyboard stuff
+		if(Input.GetKeyDown(KeyCode.Space))
+		{
+			baseScript.Attack(0);
+		}
 	}
 }

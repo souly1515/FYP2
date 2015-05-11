@@ -16,10 +16,18 @@ public class C_Base: MonoBehaviour {
 	public C_Stats stats;
 	public float moveSpd;
 	public bool moving;
+	public GameObject skillPrefab;
 	Rigidbody2D rb;
+	Animator anim;
+	float atkDurationLeft;
+	bool inAttackAnimation;
+	bool left;
+	Vector3 direction;
+
+	public int weaponType;
+	int attackType;
+
 	//debug
-	public float cameraSpd;
-	public Vector2 CurrentPos;
 	//end of debug
 
 	//inventory
@@ -34,26 +42,41 @@ public class C_Base: MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		cameraSpd = 0.5f;
 		moveSpd = 4;
 		moving = false;
 		rb = GetComponent<Rigidbody2D> ();
+		anim = GetComponent<Animator> ();
+		left = false;
+		direction = new Vector3 ();
 	}
 
 	void OnCollisionEnter(Collision col)
 	{
-		if (col.gameObject.tag == "inpassable") {
-			moving = false;
-		}
+			//moving = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//basic mechanics: movement with mouse
-		if (moving) {
-			float step = moveSpd * Time.deltaTime;
+		if (inAttackAnimation) {
+			rb.velocity=new Vector2(0,0);
+			if(atkDurationLeft<=0)
+			{
+			
 
-			Vector3 direction=(Vector3)(nextPos)-transform.position;
+
+				nextPos=transform.position;
+				inAttackAnimation=false;
+			}
+			else{
+				atkDurationLeft-=Time.deltaTime;
+			}
+		}
+		else if (moving) {
+
+
+
+			direction=(Vector3)(nextPos)-transform.position;
 			direction.Normalize();
 
 			rb.velocity=direction*moveSpd;
@@ -92,8 +115,69 @@ public class C_Base: MonoBehaviour {
 			Camera.main.transform.position += new Vector3 (xDif, yDif, 0);
 			//end of basic mechanics: camera movement with character
 
-			CurrentPos = transform.position;
 			//end of basic mechanics: movement with mouse
+			anim.SetFloat("y_Velocity",direction.y);
+			if(direction.x>0&&left)
+			{
+				left=false;
+				Vector3 tempScale=transform.localScale;
+				tempScale.x*=-1;
+				transform.localScale=tempScale;
+			}
+			else if(direction.x<0&&!left)
+			{
+				left=true;
+				Vector3 tempScale=transform.localScale;
+				tempScale.x*=-1;
+				transform.localScale=tempScale;
+			}
 		}
 	}
+
+	public void Attack(int type)
+	{
+		switch(weaponType)
+		{
+		case 1:
+			SwordAttack(type);
+			break;
+		}
+		//remove once proper skills are implemented
+		inAttackAnimation = true;
+		atkDurationLeft = 1;
+
+		//find a way to change the sprite at run time;
+		Vector2 Dir = ( Vector2 )(direction);
+
+		//direct.z = direction.y/ direction.x * 180 / 3.142f;
+		GameObject skillObj=Instantiate (skillPrefab, transform.position+direction,Quaternion.Euler(new Vector3(0,0,Mathf.Atan2(direction.y,direction.x)*180f/3.142f))) as GameObject;
+		
+		Skills skill=skillObj.GetComponent<Skills>();
+
+		skillsInfo temp=new skillsInfo();
+		temp.damage=1;
+		temp.castTime=1.0F;
+		temp.rangeY=10;
+		temp.rangeX=3;
+		skill.SetInfo(temp);
+	}
+
+	void SwordAttack(int type)
+	{
+		switch (type) {
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		}
+	}
+
 }
