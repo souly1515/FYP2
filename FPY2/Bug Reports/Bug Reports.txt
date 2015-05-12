@@ -1,0 +1,7 @@
+Wall transparency bug
+Description: when you are near the wrong side of the wall the see through code will proc
+Potential Area: wall direction vector could be wrong
+
+Wall transparency bug
+Description: when you move around a line of walls the z axis will jump up
+Potential area:maybe change to moving the character z instead of wall's z

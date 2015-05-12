@@ -54,6 +54,7 @@ public class Skills : MonoBehaviour {
 		{
 			info.castTime-=Time.deltaTime;
 		}
+
 	}
 	void OnCollision(Collider col)
 	{
