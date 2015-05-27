@@ -7,6 +7,7 @@ public enum WeaponTypes
 	OH_MACE
 }
 
+[System.Serializable]
 public struct weaponInfo
 {
 	public float damage;
@@ -14,10 +15,12 @@ public struct weaponInfo
 	public Sprite sprite;
 	public int inventorySizeX;
 	public int inventorySizeY;
+	public int inventoryX;//xpos in inventory
+	public int inventoryY;//ypos in inventory
 }
 
 public class Weapon : MonoBehaviour {
-	weaponInfo info;
+	public weaponInfo info;
 	// Use this for initialization
 	void Start () {
 		info.sprite = GetComponent<SpriteRenderer> ().sprite;

@@ -63,6 +63,10 @@ public class C_Input: MonoBehaviour {
 			else
 				baseScript.weaponType=1;
 		}
+		if(Input.GetKeyDown(KeyCode.I))
+		{
+
+		}
 	}
 	void MoveMe()
 	{
