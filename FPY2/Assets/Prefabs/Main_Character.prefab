@@ -121,7 +121,11 @@ MonoBehaviour:
   moveSpd: 0
   moving: 0
   skillPrefab: {fileID: 114044, guid: ba49213ac0cf93441bd4f6416a81c504, type: 2}
-  weaponType: 0
+  inAttackAnimation: 0
+  direction: {x: 0, y: 0, z: 0}
+  lastDir: {x: 0, y: 0, z: 0}
+  myWeap: {fileID: 0}
+  weaponType: 1
 --- !u!114 &11492924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,6 +137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbb71f7bc183fe14184440e3d363b83a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Interactables:
+    serializedVersion: 2
+    m_Bits: 0
+  clickRadius: 0
 --- !u!212 &21206816
 SpriteRenderer:
   m_ObjectHideFlags: 1

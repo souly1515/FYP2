@@ -10,8 +10,7 @@ GameObject:
   - 4: {fileID: 419792}
   - 212: {fileID: 21202958}
   - 114: {fileID: 11455254}
-  - 60: {fileID: 6064598}
-  - 50: {fileID: 5038616}
+  - 61: {fileID: 6178540}
   m_Layer: 8
   m_Name: Skill
   m_TagString: Untagged
@@ -31,23 +30,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &5038616
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 114044}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 0
-  m_FixedAngle: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
---- !u!60 &6064598
-PolygonCollider2D:
+--- !u!61 &6178540
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -57,14 +41,8 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  m_Points:
-    m_Paths:
-    - - {x: -.0799999982, y: .0799999982}
-      - {x: -.0799999982, y: -.0799999982}
-      - {x: .075000003, y: -.0799999982}
-      - {x: .0799999982, y: -.0599999987}
-      - {x: .0799999982, y: .0700000003}
-      - {x: .0549999997, y: .0799999982}
+  serializedVersion: 2
+  m_Size: {x: .159999996, y: .159999996}
 --- !u!114 &11455254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -76,9 +54,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74b6cd4e196cda54499d748c012c6cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ApplyDamage: 0
   enemy:
     serializedVersion: 2
     m_Bits: 256
+  temp: 0
+  Dir: {x: 0, y: 0}
 --- !u!212 &21202958
 SpriteRenderer:
   m_ObjectHideFlags: 1

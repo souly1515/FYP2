@@ -20,9 +20,11 @@ public class C_Base: MonoBehaviour {
 	Rigidbody2D rb;
 	Animator anim;
 	float atkDurationLeft;
-	bool inAttackAnimation;
+	public bool inAttackAnimation;
 	bool left;
-	Vector3 direction;
+	public Vector3 direction;
+	public Vector3 lastDir;
+	public Weapon myWeap;
 
 	public int weaponType;
 	int attackType;
@@ -79,6 +81,11 @@ public class C_Base: MonoBehaviour {
 			direction=(Vector3)(nextPos)-transform.position;
 			direction.Normalize();
 
+			if(direction.sqrMagnitude>0.5)
+			{
+				lastDir=direction;
+			}
+
 			rb.velocity=direction*moveSpd;
 
 			Vector2 temp2=(Vector2)(transform.position)-nextPos;
@@ -116,57 +123,64 @@ public class C_Base: MonoBehaviour {
 			//end of basic mechanics: camera movement with character
 
 			//end of basic mechanics: movement with mouse
-			anim.SetFloat("y_Velocity",direction.y);
-			if(direction.x>0&&left)
-			{
-				left=false;
-				Vector3 tempScale=transform.localScale;
-				tempScale.x*=-1;
-				transform.localScale=tempScale;
-			}
-			else if(direction.x<0&&!left)
-			{
-				left=true;
-				Vector3 tempScale=transform.localScale;
-				tempScale.x*=-1;
-				transform.localScale=tempScale;
-			}
+		}
+		
+		anim.SetFloat("y_Velocity",direction.y);
+		if(direction.x>0&&left)
+		{
+			left=false;
+			Vector3 tempScale=transform.localScale;
+			tempScale.x*=-1;
+			transform.localScale=tempScale;
+		}
+		else if(direction.x<0&&!left)
+		{
+			left=true;
+			Vector3 tempScale=transform.localScale;
+			tempScale.x*=-1;
+			transform.localScale=tempScale;
 		}
 	}
-
-	public void Attack(int type)
+	public void Attack(int type,Vector2 mousePos)
 	{
+		direction=-Camera.main.WorldToScreenPoint(transform.position)+(Vector3)mousePos;
+		direction.Normalize ();
 		switch(weaponType)
 		{
 		case 1:
 			SwordAttack(type);
 			break;
+		case 2:
+			RangedAttack(type);
+			break;
 		}
 		//remove once proper skills are implemented
 		inAttackAnimation = true;
-		atkDurationLeft = 1;
+		atkDurationLeft = 0.5f;
 
 		//find a way to change the sprite at run time;
 		Vector2 Dir = ( Vector2 )(direction);
 
-		//direct.z = direction.y/ direction.x * 180 / 3.142f;
-		GameObject skillObj=Instantiate (skillPrefab, transform.position+direction,Quaternion.Euler(new Vector3(0,0,Mathf.Atan2(direction.y,direction.x)*180f/3.142f))) as GameObject;
-		
-		Skills skill=skillObj.GetComponent<Skills>();
-
-		skillsInfo temp=new skillsInfo();
-		temp.damage=1;
-		temp.castTime=1.0F;
-		temp.rangeY=10;
-		temp.rangeX=3;
-		skill.SetInfo(temp);
 	}
 
 	void SwordAttack(int type)
 	{
 		switch (type) {
 		case 1:
-
+			//direct.z = direction.y/ direction.x * 180 / 3.142f;
+			GameObject skillObj=Instantiate (skillPrefab, transform.position+direction,Quaternion.Euler(new Vector3(0,0,Mathf.Atan2(direction.y,direction.x)*180f/3.142f))) as GameObject;
+			
+			Skills skill=skillObj.GetComponent<Skills>();
+			
+			skillsInfo temp=new skillsInfo();
+			temp.damage=2;
+			temp.castTime=0.4f;
+			temp.rangeY=10;
+			temp.rangeX=3;
+			temp.isProjectile=false;
+			temp.knockback=10;
+			skill.SetInfo(temp);
+			skill.Dir = direction;
 			break;
 		case 2:
 
@@ -180,4 +194,26 @@ public class C_Base: MonoBehaviour {
 		}
 	}
 
+	void RangedAttack(int type)
+	{
+		switch (type) {
+		case 1:
+			//direct.z = direction.y/ direction.x * 180 / 3.142f;
+			GameObject skillObj=Instantiate (skillPrefab, transform.position+direction,Quaternion.Euler(new Vector3(0,0,Mathf.Atan2(direction.y,direction.x)*180f/3.142f))) as GameObject;
+			
+			Skills skill=skillObj.GetComponent<Skills>();
+			
+			skillsInfo temp=new skillsInfo();
+			temp.damage=1;
+			temp.castTime=2.0f;
+			temp.rangeY=3;
+			temp.rangeX=3;
+			temp.knockback=1;
+			temp.velocity=direction*5;
+			temp.isProjectile=true;
+			skill.SetInfo(temp);
+			skill.Dir = direction;
+			break;
+		}
+	}
 }

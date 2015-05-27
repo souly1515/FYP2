@@ -56,7 +56,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   others:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
   zpos: 0
 --- !u!212 &21223276
 SpriteRenderer:

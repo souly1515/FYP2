@@ -8,6 +8,7 @@ public struct buff
 	string name;
 }
 
+[System.Serializable]
 public struct skillsInfo
 {
 	public float damage;
@@ -23,10 +24,10 @@ public struct skillsInfo
 }
 
 public class Skills : MonoBehaviour {
-
 	public skillsInfo info;
-	bool ApplyDamage=false;
+	public bool ApplyDamage=false;
 	public LayerMask enemy;
+	public Vector2 Dir;
 	// Use this for initialization
 	void Start () {
 	}
@@ -39,30 +40,51 @@ public class Skills : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (info.castTime <= 0) {
-			if(ApplyDamage)
+		if (info.isProjectile) {
+			if(info.castTime>0)
 			{
-				//collision testing and attack enemies
+				transform.position=transform.position+(Vector3)(info.velocity*Time.deltaTime);
+				info.castTime-=Time.deltaTime;
+
+			}
+			else{
 				gameObject.SetActive(false);
-				//DestroyObject(gameObject);
 			}
-			else
-			{
-				ApplyDamage=true;
+		} else {
+			if (info.castTime <= 0) {
+				if (ApplyDamage) {
+					//collision testing and attack enemies
+					gameObject.SetActive (false);
+					//DestroyObject(gameObject);
+				} else {
+					ApplyDamage = true;
+				}
+			} else {
+				info.castTime -= Time.deltaTime;
 			}
-		} else 
-		{
-			info.castTime-=Time.deltaTime;
 		}
 
 	}
-	void OnCollision(Collider col)
+	void OnTriggerStay2D(Collider2D col)
 	{
-		Debug.Log ("skills tracked an object\n");
-		if (col.gameObject.layer == enemy) {
-			Debug.Log ("skills is damaging an enemy\n");
-			E_Base E=col.gameObject.GetComponent<E_Base>();
-			E.ApplyDamage(info.damage);
+		if (info.isProjectile) {
+			
+			if ((enemy.value & (1 << col.gameObject.layer)) > 0) {
+				E_Base E = col.gameObject.GetComponent<E_Base> ();
+				E.ApplyDamage (info.damage);
+				E.KnockBack (info.knockback, Dir);
+				gameObject.SetActive(false);
+			}
+		}
+		else{
+
+			if (ApplyDamage) {
+				if ((enemy.value & (1 << col.gameObject.layer)) > 0) {
+					E_Base E = col.gameObject.GetComponent<E_Base> ();
+					E.ApplyDamage (info.damage);
+					E.KnockBack (info.knockback, Dir);
+				}
+			}
 		}
 	}
 }

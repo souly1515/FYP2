@@ -4,9 +4,12 @@ using System.Collections;
 public class C_Input: MonoBehaviour {
 	
 	C_Base baseScript;
+	public LayerMask Interactables;
+	public float clickRadius;
 	// Use this for initialization
 	void Start () {
 		baseScript = GetComponent<C_Base> ();
+		clickRadius = 0.5f;
 	}
 	
 	// Update is called once per frame
@@ -27,9 +30,18 @@ public class C_Input: MonoBehaviour {
 
 			//check if mouse pos is not on top of obstacle or enemy
 			{
-				Vector2 moveTo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				baseScript.SetNextPos(moveTo);
-				baseScript.moving=true;
+				Collider2D target=Physics2D.OverlapCircle(Input.mousePosition,clickRadius,Interactables);
+				if(target)
+				{
+					if(target.gameObject.layer==LayerMask.NameToLayer("Pickable"))
+					{
+						Weapon temp=target.GetComponent<Weapon>();
+						//target.GetComponent<Weapon>()=gameObject.GetComponent<C_Base>().myWeap;
+					}
+				}
+				else
+					MoveMe ();
+
 			}
 			//end
 
@@ -38,18 +50,24 @@ public class C_Input: MonoBehaviour {
 			//end
 		}
 		if(Input.GetMouseButtonDown(1))
-	   {
-			//basic skills
-			//some math stuff here to cal direction and stuff
-			//create attack obj?
-			//give attack obj current stats and weapon stats
-			//get weapon stats from C_Base
+		{
+			if(!baseScript.inAttackAnimation)
+				baseScript.Attack(1,Input.mousePosition);
 		}
 
 		//keyboard stuff
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
-			baseScript.Attack(0);
+			if(baseScript.weaponType==1)
+				baseScript.weaponType=2;
+			else
+				baseScript.weaponType=1;
 		}
+	}
+	void MoveMe()
+	{
+		Vector2 moveTo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		baseScript.SetNextPos(moveTo);
+		baseScript.moving=true;
 	}
 }

@@ -49,9 +49,11 @@
      <Compile Include="Assets\Scripts\C_Base.cs" />
      <Compile Include="Assets\Scripts\C_Input.cs" />
      <Compile Include="Assets\Scripts\E_Base.cs" />
+     <Compile Include="Assets\Scripts\Inventory.cs" />
      <Compile Include="Assets\Scripts\MapSetup.cs" />
      <Compile Include="Assets\Scripts\Skills.cs" />
      <Compile Include="Assets\Scripts\WallBehavior.cs" />
+     <Compile Include="Assets\Scripts\Weapon.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
