@@ -19,16 +19,7 @@ public struct weaponInfo
 	public int inventoryY;//ypos in inventory
 }
 
-public class Weapon : MonoBehaviour {
+[System.Serializable]
+public class Weapon{
 	public weaponInfo info;
-	// Use this for initialization
-	void Start () {
-		info.sprite = GetComponent<SpriteRenderer> ().sprite;
-	}
-	// Update is called once per frame
-	void Update () {
-		if (GetComponent<SpriteRenderer> ().sprite != info.sprite) {
-			GetComponent<SpriteRenderer>().sprite=info.sprite;
-		}
-	}
 }

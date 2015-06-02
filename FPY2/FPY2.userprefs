@@ -1,14 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Inventory.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\C_Input.cs">
     <Files>
-      <File FileName="Assets\Scripts\Inventory.cs" Line="17" Column="38" />
-      <File FileName="Assets\Scripts\C_Base.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\C_Input.cs" Line="68" Column="4" />
-      <File FileName="Assets\Scripts\Weapon.cs" Line="23" Column="9" />
-      <File FileName="Assets\Scripts\Slot.cs" Line="4" Column="16" />
-      <File FileName="Assets\Scripts\MapSetup.cs" Line="14" Column="142" />
+      <File FileName="Assets\Scripts\Inventory.cs" Line="31" Column="25" />
+      <File FileName="Assets\Scripts\Slot.cs" Line="19" Column="4" />
+      <File FileName="Assets\Scripts\C_Input.cs" Line="16" Column="20" />
+      <File FileName="Assets\Scripts\Weapon.cs" Line="22" Column="22" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>target</Value>
+          <Value>point</Value>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

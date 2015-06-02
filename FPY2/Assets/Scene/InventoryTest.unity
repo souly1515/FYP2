@@ -139,7 +139,7 @@ GameObject:
   - 4: {fileID: 1435893526}
   - 212: {fileID: 1435893525}
   - 114: {fileID: 1435893524}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,6 +236,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11492924, guid: 472c4e5a9cd7a1045a50bbcd54986a7a, type: 2}
+      propertyPath: Interactables.m_Bits
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 11492924, guid: 472c4e5a9cd7a1045a50bbcd54986a7a, type: 2}
+      propertyPath: inventoryGO
+      value: 
+      objectReference: {fileID: 1435893523}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 472c4e5a9cd7a1045a50bbcd54986a7a, type: 2}
   m_IsPrefabParent: 0

@@ -6,10 +6,15 @@ public class C_Input: MonoBehaviour {
 	C_Base baseScript;
 	public LayerMask Interactables;
 	public float clickRadius;
+	public GameObject inventoryGO;
+	public Inventory inventory;
+	public bool holdingItem;
+	public Weapon holdingWeapon;
 	// Use this for initialization
 	void Start () {
 		baseScript = GetComponent<C_Base> ();
-		clickRadius = 0.5f;
+		clickRadius = 0.1f;
+		inventory = inventoryGO.GetComponent<Inventory> ();
 	}
 	
 	// Update is called once per frame
@@ -27,16 +32,36 @@ public class C_Input: MonoBehaviour {
 			//else
 
 			//basic mechanics: movement with mouse
-
 			//check if mouse pos is not on top of obstacle or enemy
 			{
-				Collider2D target=Physics2D.OverlapCircle(Input.mousePosition,clickRadius,Interactables);
+				Vector2 point=Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				Collider2D target=Physics2D.OverlapCircle(point,clickRadius,Interactables);
 				if(target)
 				{
 					if(target.gameObject.layer==LayerMask.NameToLayer("Pickable"))
 					{
 						Weapon temp=target.GetComponent<Weapon>();
 						//target.GetComponent<Weapon>()=gameObject.GetComponent<C_Base>().myWeap;
+					}
+					else if(target.gameObject.layer==LayerMask.NameToLayer("UI"))
+					{
+						Slot temp=target.gameObject.GetComponent<Slot>();
+						if(temp)
+						{
+							int x,y;
+							x=temp.x;
+							y=temp.y;
+							Debug.Log(x);
+							Debug.Log(y);
+							if(temp.occupied)
+							{
+								holdingWeapon=temp.weapon;
+								holdingItem=true;
+								inventory.ItemRemoved(temp.weapon);
+
+							}
+							inventory.slots[x,y].sprite.color=new Color(0.0f,0.0f,1.0f);
+						}
 					}
 				}
 				else
@@ -48,6 +73,35 @@ public class C_Input: MonoBehaviour {
 			//basic mechanics: attacks with mouse
 
 			//end
+		}
+		if (Input.GetMouseButtonUp (0)) {
+			if(holdingItem==true)
+			{
+				Collider2D target=Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(Input.mousePosition),clickRadius,Interactables);
+				bool failed=false;
+				if(target)
+				{
+					if(target.gameObject.layer==LayerMask.NameToLayer("UI"))
+					{
+						Slot temp=target.gameObject.GetComponent<Slot>();
+						if(temp)
+						{
+							inventory.ItemAdded(holdingWeapon,temp.x,temp.y);
+						}
+						else
+							failed=true;
+					}
+					else
+						failed=true;
+				}
+				else 
+					failed=true;
+				if(failed)
+				{
+					inventory.ItemAdded(holdingWeapon,-1,-1);
+				}
+				holdingWeapon=null;
+			}
 		}
 		if(Input.GetMouseButtonDown(1))
 		{
