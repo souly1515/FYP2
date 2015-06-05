@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour {
 	int maxY=8;
 	public bool showInventory;
 	public GameObject slotPrefab;
+	public GameObject weaponTemp;
 	float inventoryTrans;//transition between not active and active
 	// Use this for initialization
 	void Start () {
@@ -22,13 +23,15 @@ public class Inventory : MonoBehaviour {
 				slots[i,j]=thing.GetComponent<Slot>();
 			}
 		}
-		Weapon temp =new Weapon();
+		GameObject tempGo=Instantiate(weaponTemp,new Vector3(0,0),Quaternion.identity)as GameObject;
+		Weapon temp = tempGo.GetComponent<Weapon> ();
 		temp.info.wtype = WeaponTypes.OH_MACE;
 		temp.info.inventorySizeX = 2;
 		temp.info.inventorySizeY = 2;
-		ItemAdded (temp,0,0);
+		ItemAdded (temp,0,0,0,0);
 		showInventory = true;
 		inventoryTrans = 0.0f;
+
 	}
 	
 	// Update is called once per frame
@@ -59,7 +62,8 @@ public class Inventory : MonoBehaviour {
 	{
 	
 		if (slots [x, y].occupied) {
-			Weapon target = slots[x,y].weapon;
+			GameObject temp=slots[x,y].weapon;
+			Weapon target = temp.GetComponent<Weapon>();
 			for (int i=target.info.inventoryX; i<target.info.inventoryX+target.info.inventorySizeX; ++i) {
 				for(int j=target.info.inventoryX;j<target.info.inventoryY+target.info.inventorySizeY;++j)
 				{
@@ -68,44 +72,43 @@ public class Inventory : MonoBehaviour {
 			}
 		}
 	}
-	public bool ItemAdded(Weapon target,int x,int y)
+	public bool ItemAdded(Weapon target,int x,int y,int refx,int refy)
 	{
 		if (target==null)
 			return false;
-		if(x<0||x+target.info.inventorySizeX>=maxX||y<0||y+target.info.inventorySizeY>=maxY)
+		if(x-refx<0||x-refx+(target.info.inventorySizeX-1)>=maxX||y-refy<0||y-refy+(target.info.inventorySizeY-1)>=maxY)
 		{
-			if(target.info.inventoryX>=0&&target.info.inventoryX+target.info.inventorySizeX<maxX)
+			if(target.info.inventoryX>=0&&target.info.inventoryX+(target.info.inventorySizeX-1)<maxX)//set back to the original pos
 			{
-				if(target.info.inventoryY>=0&&target.info.inventoryY+target.info.inventorySizeY<maxY)
-					ItemAdded (target,target.info.inventoryX,target.info.inventoryY);
+				if(target.info.inventoryY>=0&&target.info.inventoryY+(target.info.inventorySizeY-1)<maxY)
+					ItemAdded (target,target.info.inventoryX,target.info.inventoryY,0,0);
 			}
 			return false;
 		}
-		for (int i=x; i<x+target.info.inventorySizeX; ++i) {
-			for(int j=y;j<y+target.info.inventorySizeY;++j)
+		for (int i=x-refx; i<x-refx+(target.info.inventorySizeX-1); ++i) {
+			for(int j=y-refy;j<y-refy+(target.info.inventorySizeY-1);++j)
 			{
 				if(slots[i,j].occupied)
 				{
 					if(target!=slots[i,j].weapon)//check if its going to overwrite itself
 					{
-						if(target.info.inventoryX>=0&&target.info.inventoryX<maxX)
+						if(target.info.inventoryX>=0&&target.info.inventoryX+(target.info.inventorySizeX-1)<maxX)
 						{
-							if(target.info.inventoryY>=0&&target.info.inventoryY<maxY)
-								ItemAdded (target,target.info.inventoryX,target.info.inventoryY);
+							if(target.info.inventoryY>=0&&target.info.inventoryY+(target.info.inventorySizeY-1)<maxY)
+								ItemAdded (target,target.info.inventoryX,target.info.inventoryY,0,0);
 						}
-						ItemAdded (target,target.info.inventoryX,target.info.inventoryY);
 					}
 					return false;
 				}
 			}
 		}
-		target.info.inventoryX = x;
-		target.info.inventoryY = y;
-		for (int i=x; i<x+target.info.inventorySizeX; ++i) {
-			for(int j=y;j<y+target.info.inventorySizeY;++j)
+		target.info.inventoryX = x-refx;
+		target.info.inventoryY = y-refy;
+		for (int i=x-refx; i<x-refx+target.info.inventorySizeX; ++i) {
+			for(int j=y-refy;j<y-refy+target.info.inventorySizeY;++j)
 			{
 				slots[i,j].occupied=true;
-				slots[i,j].weapon=target;
+				slots[i,j].weapon=target.gameObject;
 			}
 		}
 		return true;

@@ -20,6 +20,14 @@ public struct weaponInfo
 }
 
 [System.Serializable]
-public class Weapon{
+public class Weapon:MonoBehaviour{
 	public weaponInfo info;
+	void Start()
+	{
+		
+	}
+	void Update()
+	{
+
+	}
 }

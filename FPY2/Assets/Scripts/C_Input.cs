@@ -9,7 +9,8 @@ public class C_Input: MonoBehaviour {
 	public GameObject inventoryGO;
 	public Inventory inventory;
 	public bool holdingItem;
-	public Weapon holdingWeapon;
+	public GameObject holdingWeapon;
+	public int refX,refY;
 	// Use this for initialization
 	void Start () {
 		baseScript = GetComponent<C_Base> ();
@@ -51,16 +52,17 @@ public class C_Input: MonoBehaviour {
 							int x,y;
 							x=temp.x;
 							y=temp.y;
-							Debug.Log(x);
-							Debug.Log(y);
 							if(temp.occupied)
 							{
 								holdingWeapon=temp.weapon;
+								Weapon w_script=holdingWeapon.GetComponent<Weapon>();
 								holdingItem=true;
-								inventory.ItemRemoved(temp.weapon);
+								refX=x-w_script.info.inventoryX;
+								refY=y-w_script.info.inventoryY;
+								inventory.ItemRemoved(w_script);
 
 							}
-							inventory.slots[x,y].sprite.color=new Color(0.0f,0.0f,1.0f);
+
 						}
 					}
 				}
@@ -86,7 +88,11 @@ public class C_Input: MonoBehaviour {
 						Slot temp=target.gameObject.GetComponent<Slot>();
 						if(temp)
 						{
-							inventory.ItemAdded(holdingWeapon,temp.x,temp.y);
+							if(holdingWeapon)
+							{
+								Weapon w_script=holdingWeapon.GetComponent<Weapon>();
+								inventory.ItemAdded(w_script,temp.x,temp.y,refX,refY);
+							}
 						}
 						else
 							failed=true;
@@ -98,7 +104,8 @@ public class C_Input: MonoBehaviour {
 					failed=true;
 				if(failed)
 				{
-					inventory.ItemAdded(holdingWeapon,-1,-1);
+					Weapon w_script=holdingWeapon.GetComponent<Weapon>();
+					inventory.ItemAdded(w_script,-1,-1,0,0);
 				}
 				holdingWeapon=null;
 			}
