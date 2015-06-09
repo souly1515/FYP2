@@ -11,11 +11,14 @@ public class C_Input: MonoBehaviour {
 	public bool holdingItem;
 	public GameObject holdingWeapon;
 	public int refX,refY;
+	Animator anim;
+
 	// Use this for initialization
 	void Start () {
 		baseScript = GetComponent<C_Base> ();
 		clickRadius = 0.1f;
 		inventory = inventoryGO.GetComponent<Inventory> ();
+		anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -127,6 +130,9 @@ public class C_Input: MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.I))
 		{
 
+		}
+		if (Input.GetKeyDown (KeyCode.Q)) {
+			baseScript.attackAnimation();
 		}
 	}
 	void MoveMe()

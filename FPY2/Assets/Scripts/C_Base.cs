@@ -126,21 +126,34 @@ public class C_Base: MonoBehaviour {
 		}
 		
 		anim.SetFloat("y_Velocity",direction.y);
-		if(direction.x>0&&left)
-		{
-			left=false;
-			Vector3 tempScale=transform.localScale;
-			tempScale.x*=-1;
-			transform.localScale=tempScale;
-		}
-		else if(direction.x<0&&!left)
-		{
-			left=true;
-			Vector3 tempScale=transform.localScale;
-			tempScale.x*=-1;
-			transform.localScale=tempScale;
+		anim.SetFloat ("x_Velocity", direction.x);
+		AnimatorStateInfo AState = anim.GetCurrentAnimatorStateInfo (anim.GetLayerIndex ("Base Layer"));
+		if (AState.IsName ("C_Run_B") || AState.IsName ("C_Run_F")) {
+			if (direction.x < 0) {
+				left = false;
+				Vector3 tempScale = transform.localScale;
+				if (tempScale.x < 0)
+					tempScale.x *= -1;
+				transform.localScale = tempScale;
+			} else if (direction.x > 0) {
+				left = true;
+				Vector3 tempScale = transform.localScale;
+				if (tempScale.x > 0)
+					tempScale.x *= -1;
+				transform.localScale = tempScale;
+			}
 		}
 	}
+
+	public void attackAnimation()
+	{
+		anim.SetTrigger("attack");
+		Vector3 tempScale=transform.localScale;
+		if (tempScale.x > 0)
+			tempScale.x *= -1;
+		transform.localScale = tempScale;
+	}
+
 	public void Attack(int type,Vector2 mousePos)
 	{
 		direction=-Camera.main.WorldToScreenPoint(transform.position)+(Vector3)mousePos;

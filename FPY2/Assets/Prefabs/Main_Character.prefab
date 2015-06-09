@@ -13,8 +13,6 @@ GameObject:
   - 114: {fileID: 11492924}
   - 114: {fileID: 11490856}
   - 95: {fileID: 9587420}
-  - 61: {fileID: 6159100}
-  - 58: {fileID: 5843656}
   - 58: {fileID: 5881362}
   m_Layer: 0
   m_Name: Main_Character
@@ -30,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 196030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.46700001, y: -.852999985, z: 0}
+  m_LocalPosition: {x: -1.08000004, y: -1.01999998, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -50,19 +48,6 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!58 &5843656
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 196030}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: .0199999996, y: -.150000006}
-  serializedVersion: 2
-  m_Radius: .100000001
 --- !u!58 &5881362
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -73,22 +58,9 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: .0199999996, y: .0500000007}
+  m_Offset: {x: -.00999999978, y: 0}
   serializedVersion: 2
   m_Radius: .100000001
---- !u!61 &6159100
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 196030}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: .0182055831, y: -.0361508392}
-  serializedVersion: 2
-  m_Size: {x: .194618568, y: .172232255}
 --- !u!95 &9587420
 Animator:
   serializedVersion: 3
@@ -139,8 +111,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Interactables:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32
   clickRadius: 0
+  inventoryGO: {fileID: 0}
+  inventory: {fileID: 0}
+  holdingItem: 0
+  holdingWeapon: {fileID: 0}
+  refX: 0
+  refY: 0
 --- !u!212 &21206816
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -165,7 +143,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 32f38f3669308324bbc0bf0dd86ebf01, type: 3}
+  m_Sprite: {fileID: 21300020, guid: eba1e0922ff3af8438066540af55e397, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
