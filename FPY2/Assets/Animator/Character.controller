@@ -44,7 +44,7 @@ AnimatorController:
     m_DefaultWeight: 0
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_MultiThreadedStateMachine: 1
 --- !u!1101 &110104880
 AnimatorStateTransition:
@@ -211,23 +211,6 @@ AnimatorState:
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: 679dcc91079a3f94c82b1c980503aad6, type: 2}
   m_Tag: 
---- !u!1102 &110209676
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: C_Run_B_Hand
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_Motion: {fileID: 7400000, guid: 17a92a707381eae49818913626161620, type: 2}
-  m_Tag: 
 --- !u!1102 &110222690
 AnimatorState:
   serializedVersion: 5
@@ -263,41 +246,7 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_Motion: {fileID: 7400000, guid: 220a0278bcc96d945a30dfc142847fc0, type: 2}
-  m_Tag: 
---- !u!1102 &110274186
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: TempRunF
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_Motion: {fileID: 7400000, guid: cde3e4714d88b99468193f74e9e43c59, type: 2}
-  m_Tag: 
---- !u!1102 &110285798
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: tempRunB
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_Motion: {fileID: 7400000, guid: 264621a591ae84e4a8f0763422d2cf63, type: 2}
+  m_Motion: {fileID: 7400000, guid: fb95ea256fda21a42993fc39697d3ac8, type: 2}
   m_Tag: 
 --- !u!1107 &110773670
 AnimatorStateMachine:
@@ -314,17 +263,8 @@ AnimatorStateMachine:
     m_State: {fileID: 110200972}
     m_Position: {x: 360, y: 264, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 110285798}
-    m_Position: {x: 395, y: 329, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 110274186}
-    m_Position: {x: 430, y: 394, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: 110238752}
     m_Position: {x: 708, y: -72, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 110209676}
-    m_Position: {x: 84, y: -24, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 110146538}

@@ -1,16 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\C_Base.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Anim_controller.cs">
     <Files>
-      <File FileName="Assets\Scripts\C_Base.cs" Line="152" Column="22" />
-      <File FileName="Assets\Scripts\C_Input.cs" Line="134" Column="24" />
+      <File FileName="Assets\Scripts\Anim_controller.cs" Line="15" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="C:\Users\kennard\Documents\GitHub\FYP2\FPY2\Assets\Scripts\C_Base.cs" line="153" />
-      <Breakpoint file="C:\Users\kennard\Documents\GitHub\FYP2\FPY2\Assets\Scripts\C_Base.cs" line="152" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
