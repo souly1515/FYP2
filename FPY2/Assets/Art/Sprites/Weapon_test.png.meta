@@ -1,12 +1,12 @@
 fileFormatVersion: 2
 guid: b3adc4973b3c64c4791b4a0410bd7e1c
-timeCreated: 1433916728
+timeCreated: 1433950556
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Weapon_test_0
-    21300002: Weapon_test_1
-    21300004: Weapon_test_2
+    21300000: Weapon1
+    21300002: Weapon2
+    21300004: Weapon3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -52,17 +52,17 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Weapon_test_0
+    - name: Weapon1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 1024
         height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .460668653, y: .755653918}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Weapon_test_1
+    - name: Weapon2
       rect:
         serializedVersion: 2
         x: 1024
@@ -70,9 +70,9 @@ TextureImporter:
         width: 1024
         height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Weapon_test_2
+    - name: Weapon3
       rect:
         serializedVersion: 2
         x: 2048
@@ -80,7 +80,7 @@ TextureImporter:
         width: 1024
         height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

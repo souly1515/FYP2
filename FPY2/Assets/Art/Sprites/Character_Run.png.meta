@@ -1,12 +1,12 @@
 fileFormatVersion: 2
 guid: 32f38f3669308324bbc0bf0dd86ebf01
-timeCreated: 1431259970
+timeCreated: 1433946871
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Character_Run_0
-    21300002: Character_Run_1
-    21300004: Character_Run_2
+    21300000: Weapon1
+    21300002: Weapon2
+    21300004: Weapon3
     21300006: Character_Run_3
     21300008: Character_Run_4
     21300010: Character_Run_5
@@ -55,7 +55,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Character_Run_0
+    - name: Weapon1
       rect:
         serializedVersion: 2
         x: 0
@@ -63,9 +63,9 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Character_Run_1
+    - name: Weapon2
       rect:
         serializedVersion: 2
         x: 512
@@ -73,9 +73,9 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Character_Run_2
+    - name: Weapon3
       rect:
         serializedVersion: 2
         x: 1024
@@ -83,7 +83,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Character_Run_3
       rect:
@@ -93,7 +93,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Character_Run_4
       rect:
@@ -103,7 +103,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Character_Run_5
       rect:
@@ -113,7 +113,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
