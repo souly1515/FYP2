@@ -41,11 +41,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapWidth_units: 100
   mapHeight_units: 100
-  h_offset: 1
-  v_offset: .400000006
+  h_offset: .75
+  v_offset: .449999988
   z_offset: 1
   tilePrefab: {fileID: 132040, guid: 17a0b11f1f8d31d4b97332fa8298853d, type: 2}
   wallPrefab: {fileID: 150690, guid: 3cd4dffe1e6356346b0c7f9c500a9f50, type: 2}
+  SheetName: env_swamp
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
