@@ -1,0 +1,371 @@
+fileFormatVersion: 2
+guid: 103ef04c3c171bc4f81b5dcb3fba7649
+timeCreated: 1434114424
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: fmoss1_0007.png
+    21300002: fmoss2_0008.png
+    21300004: fmoss3_0009.png
+    21300006: fmud1_0000.png
+    21300008: fmud2_0001.png
+    21300010: fstone1_0004.png
+    21300012: fstone2_0005.png
+    21300014: fstone3_0006.png
+    21300016: fwater1_0002.png
+    21300018: fwater2_0003.png
+    21300020: grass1.png
+    21300022: grass2.png
+    21300024: pebble.png
+    21300026: rock1.png
+    21300028: rock2.png
+    21300030: rock3.png
+    21300032: rock4.png
+    21300034: ruins1.png
+    21300036: ruins2.png
+    21300038: tswamp1_0017.png
+    21300040: tswamp2_0018.png
+    21300042: tswamp3_0019.png
+    21300044: tswamp4_0020.png
+    21300046: wall1.png
+    21300048: wall2.png
+    21300050: Tile1.png
+    21300052: Tile2.png
+    21300054: Tile3.png
+    21300056: fmud1.png
+    21300058: fmud2.png
+    21300060: Tile4.png
+    21300062: Tile5.png
+    21300064: Tile6.png
+    21300066: fwater1.png
+    21300068: fwater2.png
+    21300070: fTile1.png
+    21300072: fTile2.png
+    21300074: fTile3.png
+    21300076: fTile4.png
+    21300078: fTile5.png
+    21300080: fTile6.png
+    21300082: fTile1
+    21300084: fTile2
+    21300086: fTile3
+    21300088: fTile9
+    21300090: fTile7
+    21300092: fTile4
+    21300094: fTile5
+    21300096: fTile6
+    21300098: fTile8
+    21300100: fTile10
+    21300102: grass1
+    21300104: grass2
+    21300106: pebble
+    21300108: rock1
+    21300110: rock2
+    21300112: rock3
+    21300114: rock4
+    21300116: ruins1
+    21300118: ruins2
+    21300120: tswamp1_0017
+    21300122: tswamp2_0018
+    21300124: tswamp3_0019
+    21300126: tswamp4_0020
+    21300128: wall1
+    21300130: wall2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 8192
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 1024
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: fTile1
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 570
+        width: 297
+        height: 213
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fTile2
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 785
+        width: 298
+        height: 212
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fTile3
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 356
+        width: 297
+        height: 212
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fTile9
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 545
+        width: 298
+        height: 204
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fTile7
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 1622
+        width: 297
+        height: 212
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fTile4
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 1399
+        width: 298
+        height: 213
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fTile5
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 999
+        width: 298
+        height: 212
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fTile6
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 1836
+        width: 297
+        height: 212
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fTile8
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 1193
+        width: 297
+        height: 204
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fTile10
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 142
+        width: 297
+        height: 212
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: grass1
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 388
+        width: 19
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: grass2
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 420
+        width: 22
+        height: 47
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pebble
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 432
+        width: 44
+        height: 35
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: rock1
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 469
+        width: 126
+        height: 74
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: rock2
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 1446
+        width: 246
+        height: 251
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: rock3
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 1238
+        width: 187
+        height: 159
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: rock4
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 407
+        width: 168
+        height: 136
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ruins1
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 1699
+        width: 285
+        height: 349
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ruins2
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 821
+        width: 285
+        height: 370
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tswamp1_0017
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 751
+        width: 418
+        height: 460
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tswamp2_0018
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1614
+        width: 450
+        height: 434
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tswamp3_0019
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 386
+        width: 327
+        height: 363
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tswamp4_0020
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1213
+        width: 440
+        height: 399
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wall1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 18
+        width: 326
+        height: 366
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wall2
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 7
+        width: 326
+        height: 377
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
