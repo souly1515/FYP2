@@ -18,10 +18,10 @@
 	<SubTexture name="rock4" x="329" y="1505" width="168" height="136"/>
 	<SubTexture name="ruins1" x="751" y="0" width="285" height="349"/>
 	<SubTexture name="ruins2" x="720" y="857" width="285" height="370"/>
-	<SubTexture name="tswamp1_0017" x="0" y="837" width="418" height="460"/>
-	<SubTexture name="tswamp2_0018" x="0" y="0" width="450" height="434"/>
-	<SubTexture name="tswamp3_0019" x="0" y="1299" width="327" height="363"/>
-	<SubTexture name="tswamp4_0020" x="0" y="436" width="440" height="399"/>
+	<SubTexture name="tswamp1" x="0" y="837" width="418" height="460"/>
+	<SubTexture name="tswamp2" x="0" y="0" width="450" height="434"/>
+	<SubTexture name="tswamp3" x="0" y="1299" width="327" height="363"/>
+	<SubTexture name="tswamp4" x="0" y="436" width="440" height="399"/>
 	<SubTexture name="wall1" x="0" y="1664" width="326" height="366"/>
 	<SubTexture name="wall2" x="328" y="1664" width="326" height="377"/>
 </TextureAtlas>

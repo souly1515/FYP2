@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Editor\TextureSlicer.cs" />
+     <None Include="Assets\Resources\Environments\env_swamp.xml" />
      <None Include="Assets\Art\Sprites\env_swamp.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

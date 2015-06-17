@@ -100,7 +100,7 @@ public class C_Base: MonoBehaviour {
 			temp.z = -10;
 			//Camera.main.transform.position = Vector3.Lerp (Camera.main.transform.position, temp, cameraSpd);
 
-			float xDif = transform.position.x - Camera.main.transform.position.x;
+			float xDif = temp.x - Camera.main.transform.position.x;
 
 			if (Mathf.Abs (xDif) < 5) {
 				xDif = 0;
@@ -110,7 +110,7 @@ public class C_Base: MonoBehaviour {
 				xDif += 5;
 			}
 
-			float yDif = transform.position.y - Camera.main.transform.position.y;
+			float yDif = temp.y - Camera.main.transform.position.y;
 
 			if (Mathf.Abs (yDif) < 3) {
 				yDif = 0;
@@ -128,7 +128,7 @@ public class C_Base: MonoBehaviour {
 		anim.SetFloat("y_Velocity",direction.y);
 		anim.SetFloat ("x_Velocity", direction.x);
 		AnimatorStateInfo AState = anim.GetCurrentAnimatorStateInfo (anim.GetLayerIndex ("Base Layer"));
-		if (AState.IsName ("C_Run_B") || AState.IsName ("C_Run_F")) {
+		/*if (AState.IsName ("C_Run_B") || AState.IsName ("C_Run_F")) {
 			if (direction.x < 0) {
 				left = false;
 				Vector3 tempScale = transform.localScale;
@@ -142,7 +142,7 @@ public class C_Base: MonoBehaviour {
 					tempScale.x *= -1;
 				transform.localScale = tempScale;
 			}
-		}
+		}*/
 	}
 
 	public void attackAnimation()

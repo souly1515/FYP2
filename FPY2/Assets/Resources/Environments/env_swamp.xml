@@ -1,0 +1,27 @@
+<TextureAtlas imagePath="env_swamp">
+	<SubTexture name="fTile1" x="629" y="1265" width="297" height="213"/>
+	<SubTexture name="fTile2" x="420" y="1051" width="298" height="212"/>
+	<SubTexture name="fTile3" x="656" y="1480" width="297" height="212"/>
+	<SubTexture name="fmud1" x="329" y="1299" width="298" height="204"/>
+	<SubTexture name="fmud2" x="452" y="214" width="297" height="212"/>
+	<SubTexture name="fTile4" x="442" y="436" width="298" height="213"/>
+	<SubTexture name="fTile5" x="420" y="837" width="298" height="212"/>
+	<SubTexture name="fTile6" x="452" y="0" width="297" height="212"/>
+	<SubTexture name="fwater1" x="720" y="651" width="297" height="204"/>
+	<SubTexture name="fwater2" x="656" y="1694" width="297" height="212"/>
+	<SubTexture name="grass1" x="499" y="1618" width="19" height="42"/>
+	<SubTexture name="grass2" x="545" y="1581" width="22" height="47"/>
+	<SubTexture name="pebble" x="499" y="1581" width="44" height="35"/>
+	<SubTexture name="rock1" x="499" y="1505" width="126" height="74"/>
+	<SubTexture name="rock2" x="751" y="351" width="246" height="251"/>
+	<SubTexture name="rock3" x="442" y="651" width="187" height="159"/>
+	<SubTexture name="rock4" x="329" y="1505" width="168" height="136"/>
+	<SubTexture name="ruins1" x="751" y="0" width="285" height="349"/>
+	<SubTexture name="ruins2" x="720" y="857" width="285" height="370"/>
+	<SubTexture name="tswamp1" x="0" y="837" width="418" height="460"/>
+	<SubTexture name="tswamp2" x="0" y="0" width="450" height="434"/>
+	<SubTexture name="tswamp3" x="0" y="1299" width="327" height="363"/>
+	<SubTexture name="tswamp4" x="0" y="436" width="440" height="399"/>
+	<SubTexture name="wall1" x="0" y="1664" width="326" height="366"/>
+	<SubTexture name="wall2" x="328" y="1664" width="326" height="377"/>
+</TextureAtlas>

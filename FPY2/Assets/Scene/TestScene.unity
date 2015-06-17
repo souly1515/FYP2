@@ -218,6 +218,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 11482966, guid: 48174fcafef3d694c9c35485ed5ff510, type: 2}
+      propertyPath: smallPropFreq
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11482966, guid: 48174fcafef3d694c9c35485ed5ff510, type: 2}
+      propertyPath: propFreq
+      value: .0500000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 11482966, guid: 48174fcafef3d694c9c35485ed5ff510, type: 2}
+      propertyPath: waterFrequency
+      value: .200000003
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48174fcafef3d694c9c35485ed5ff510, type: 2}
   m_IsPrefabParent: 0
@@ -264,6 +276,10 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9587420, guid: 472c4e5a9cd7a1045a50bbcd54986a7a, type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5c4f32d77ed252d4f8fb16d76d207409, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 472c4e5a9cd7a1045a50bbcd54986a7a, type: 2}
   m_IsPrefabParent: 0

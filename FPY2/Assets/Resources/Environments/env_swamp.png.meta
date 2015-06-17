@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 103ef04c3c171bc4f81b5dcb3fba7649
-timeCreated: 1434114424
+timeCreated: 1434441256
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -48,13 +48,13 @@ TextureImporter:
     21300082: fTile1
     21300084: fTile2
     21300086: fTile3
-    21300088: fTile9
-    21300090: fTile7
+    21300088: fMud2
+    21300090: fMud1
     21300092: fTile4
     21300094: fTile5
     21300096: fTile6
-    21300098: fTile8
-    21300100: fTile10
+    21300098: fWater1
+    21300100: fWater2
     21300102: grass1
     21300104: grass2
     21300106: pebble
@@ -64,10 +64,10 @@ TextureImporter:
     21300114: rock4
     21300116: ruins1
     21300118: ruins2
-    21300120: tswamp1_0017
-    21300122: tswamp2_0018
-    21300124: tswamp3_0019
-    21300126: tswamp4_0020
+    21300120: tswamp1
+    21300122: tswamp2
+    21300124: tswamp3
+    21300126: tswamp4
     21300128: wall1
     21300130: wall2
   serializedVersion: 2
@@ -145,7 +145,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: fTile9
+    - name: fMud2
       rect:
         serializedVersion: 2
         x: 329
@@ -155,7 +155,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: fTile7
+    - name: fMud1
       rect:
         serializedVersion: 2
         x: 449
@@ -195,7 +195,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: fTile8
+    - name: fWater1
       rect:
         serializedVersion: 2
         x: 720
@@ -205,7 +205,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: fTile10
+    - name: fWater2
       rect:
         serializedVersion: 2
         x: 656
@@ -222,8 +222,8 @@ TextureImporter:
         y: 388
         width: 19
         height: 42
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .100000001}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: grass2
       rect:
@@ -232,8 +232,8 @@ TextureImporter:
         y: 420
         width: 22
         height: 47
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .100000001}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: pebble
       rect:
@@ -242,8 +242,8 @@ TextureImporter:
         y: 432
         width: 44
         height: 35
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .100000001}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: rock1
       rect:
@@ -252,8 +252,8 @@ TextureImporter:
         y: 469
         width: 126
         height: 74
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .100000001}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: rock2
       rect:
@@ -262,8 +262,8 @@ TextureImporter:
         y: 1446
         width: 246
         height: 251
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .200000003}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: rock3
       rect:
@@ -272,8 +272,8 @@ TextureImporter:
         y: 1238
         width: 187
         height: 159
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .300000012}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: rock4
       rect:
@@ -282,8 +282,8 @@ TextureImporter:
         y: 407
         width: 168
         height: 136
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .200000003}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: ruins1
       rect:
@@ -292,8 +292,8 @@ TextureImporter:
         y: 1699
         width: 285
         height: 349
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .200000003}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: ruins2
       rect:
@@ -302,48 +302,48 @@ TextureImporter:
         y: 821
         width: 285
         height: 370
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .300000012}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tswamp1_0017
+    - name: tswamp1
       rect:
         serializedVersion: 2
         x: 0
         y: 751
         width: 418
         height: 460
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .100000001}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tswamp2_0018
+    - name: tswamp2
       rect:
         serializedVersion: 2
         x: 0
         y: 1614
         width: 450
         height: 434
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .0500000007}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tswamp3_0019
+    - name: tswamp3
       rect:
         serializedVersion: 2
         x: 0
         y: 386
         width: 327
         height: 363
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .100000001}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tswamp4_0020
+    - name: tswamp4
       rect:
         serializedVersion: 2
         x: 0
         y: 1213
         width: 440
         height: 399
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .400000006}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: wall1
       rect:
@@ -352,8 +352,8 @@ TextureImporter:
         y: 18
         width: 326
         height: 366
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .200000003}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: wall2
       rect:
@@ -362,8 +362,8 @@ TextureImporter:
         y: 7
         width: 326
         height: 377
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .189999998}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

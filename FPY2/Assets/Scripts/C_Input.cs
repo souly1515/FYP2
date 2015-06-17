@@ -17,7 +17,7 @@ public class C_Input: MonoBehaviour {
 	void Start () {
 		baseScript = GetComponent<C_Base> ();
 		clickRadius = 0.1f;
-		inventory = inventoryGO.GetComponent<Inventory> ();
+		//inventory = inventoryGO.GetComponent<Inventory> ();
 		anim = GetComponent<Animator> ();
 	}
 	
