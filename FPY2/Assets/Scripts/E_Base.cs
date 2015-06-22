@@ -18,7 +18,6 @@ public enum E_States
 	IDLE_MOVE,
 	IDLE_NOTMOVE,
 	TRACKING,
-	TRACKING_STOP,
 	ATTACK,
 	STATE_TOTAL
 }
@@ -32,11 +31,12 @@ public class E_Base : MonoBehaviour {
 	public float detectionRange;
 	public float attackRange;
 	public Collider2D Target;
-	Vector2 originalPos;
-	Vector2 lastIdlePos;
-	Vector2 knockBackEffect;
-	Rigidbody2D rb ;
-	float timeLeft;//for timings with state machine
+	protected Vector2 originalPos;
+	protected Vector2 lastIdlePos;
+	protected Vector2 knockBackEffect;
+	protected Rigidbody2D rb ;
+	protected float timeLeft;//for timings with state machine
+
 	// Use this for initialization
 	void Start () {
 		stats.health = 5;
@@ -44,7 +44,11 @@ public class E_Base : MonoBehaviour {
 		rb = gameObject.GetComponent<Rigidbody2D> ();
 		knockbackDrag = 0.8f;
 	}
-	
+
+	public abstract void Attack_State();
+
+	public abstract void Tracking_State();
+
 	// Update is called once per frame
 	void Update () {
 		currentHealth = stats.health;
