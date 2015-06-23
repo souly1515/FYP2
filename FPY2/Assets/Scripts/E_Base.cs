@@ -22,27 +22,30 @@ public enum E_States
 	STATE_TOTAL
 }
 
-public class E_Base : MonoBehaviour {
-	public E_States states=new E_States();
+public abstract class E_Base : MonoBehaviour {
+	public E_States states;
 	public E_Stats stats=new E_Stats();
 	public int currentHealth;
 	public float knockbackDrag;
 	public LayerMask Tracks;
-	public float detectionRange;
-	public float attackRange;
+	public float detectionRange=10;
+	public float attackRange=5;
 	public Collider2D Target;
 	protected Vector2 originalPos;
 	protected Vector2 lastIdlePos;
 	protected Vector2 knockBackEffect;
 	protected Rigidbody2D rb ;
-	protected float timeLeft;//for timings with state machine
+	public float timeLeft;//for timings with state machine
+	protected bool stateChange;//tracks if state has changed
 
 	// Use this for initialization
-	void Start () {
+	virtual protected void Start () {
 		stats.health = 5;
 		originalPos = transform.position;
 		rb = gameObject.GetComponent<Rigidbody2D> ();
 		knockbackDrag = 0.8f;
+		states = E_States.IDLE_MOVE;
+		stateChange = false;
 	}
 
 	public abstract void Attack_State();
@@ -87,7 +90,7 @@ public class E_Base : MonoBehaviour {
 		rb.velocity = Dir * amount;
 	}
 
-	void ChangeState()
+	protected virtual void ChangeState()
 	{
 		switch (states) {
 		case E_States.IDLE_NOTMOVE:
@@ -95,30 +98,34 @@ public class E_Base : MonoBehaviour {
 			if(Target)
 			{
 				states=E_States.TRACKING;
+				stateChange=false;
 			}
 			break;
 		case E_States.ATTACK:
 			if(!Physics2D.OverlapCircle(gameObject.transform.position,attackRange,Tracks))
 			{
 				states=E_States.TRACKING;
+				stateChange=true;
 			}
 			break;
 		case E_States.TRACKING:
 			if(!Physics2D.OverlapCircle(gameObject.transform.position,detectionRange,Tracks))
 			{
 				states=E_States.IDLE_NOTMOVE;
-				rb.velocity=knockBackEffect;
+				stateChange=true;
+				//rb.velocity=knockBackEffect;
 			}
 			else if(Physics2D.OverlapCircle(gameObject.transform.position,attackRange,Tracks))
 			{
 				states=E_States.ATTACK;
-				rb.velocity=knockBackEffect;
+				stateChange=true;
+				//rb.velocity=knockBackEffect;
 			}
 
 			break;
 		}
 	}
-	void UpdateStates()
+	protected  virtual void UpdateStates()
 	{
 		switch (states) {
 			
@@ -126,16 +133,12 @@ public class E_Base : MonoBehaviour {
 			break;
 		case E_States.ATTACK:
 			//attacking code here
+			Attack_State();
 			break;
 		case E_States.TRACKING:
-			Vector2 Dir=Target.gameObject.transform.position-gameObject.transform.position;
-			Dir.Normalize();
-			Vector2 newVel=Dir*2;
-			if(knockBackEffect.sqrMagnitude<0.5)
-			{
-				rb.velocity=newVel;
-			}
+			Tracking_State();
 			break;
 		}
+		stateChange=false;
 	}
 }
