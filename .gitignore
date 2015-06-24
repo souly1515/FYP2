@@ -7,7 +7,8 @@
 [Oo]bj/
 [Bb]uild
 [Ll]ibrary/
-sysinfo.txt
+[Ee]xe/
+\sysinfo.txt
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
@@ -32,3 +33,5 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 [Tt]humbs.db
+*.csproj
+*.csproj

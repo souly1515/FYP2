@@ -1,0 +1,221 @@
+fileFormatVersion: 2
+guid: dceb035470123704ba44ba357076f210
+timeCreated: 1435152521
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: m_tadpole00_4x4_0
+    21300002: m_tadpole00_4x4_1
+    21300004: m_tadpole00_4x4_2
+    21300006: m_tadpole00_4x4_3
+    21300008: m_tadpole00_4x4_4
+    21300010: m_tadpole00_4x4_5
+    21300012: m_tadpole00_4x4_6
+    21300014: m_tadpole00_4x4_7
+    21300016: m_tadpole00_4x4_8
+    21300018: m_tadpole00_4x4_9
+    21300020: m_tadpole00_4x4_10
+    21300022: m_tadpole00_4x4_11
+    21300024: m_tadpole00_4x4_12
+    21300026: m_tadpole00_4x4_13
+    21300028: m_tadpole00_4x4_14
+    21300030: m_tadpole00_4x4_15
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 512
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: m_tadpole00_4x4_0
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_tadpole00_4x4_1
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_tadpole00_4x4_2
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_tadpole00_4x4_3
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_tadpole00_4x4_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_tadpole00_4x4_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_tadpole00_4x4_6
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_tadpole00_4x4_7
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_tadpole00_4x4_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_tadpole00_4x4_9
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 257
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_tadpole00_4x4_10
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_tadpole00_4x4_11
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_tadpole00_4x4_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 128
+        height: 256
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_tadpole00_4x4_14
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_tadpole00_4x4_15
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
