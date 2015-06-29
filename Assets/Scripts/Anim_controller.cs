@@ -30,9 +30,6 @@ public class Anim_controller : MonoBehaviour {
 					sRenderer.sprite = nsprite;
 				}
 			}
-			else{
-				int p=0;
-			}
 		} else {
 			string curSprite = sRenderer.sprite.name;
 			Sprite nsprite = Array.Find (subsprite, item => item.name == curSprite);

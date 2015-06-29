@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: dceb035470123704ba44ba357076f210
-timeCreated: 1435152521
+timeCreated: 1435490723
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -20,6 +20,8 @@ TextureImporter:
     21300026: m_tadpole00_4x4_13
     21300028: m_tadpole00_4x4_14
     21300030: m_tadpole00_4x4_15
+    21300032: m_tadpole00_4x4_16
+    21300034: m_tadpole00_4x4_17
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -69,7 +71,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 768
+        y: 800
         width: 128
         height: 128
       alignment: 0
@@ -79,7 +81,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 768
+        y: 800
         width: 128
         height: 128
       alignment: 0
@@ -89,7 +91,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 576
-        y: 768
+        y: 800
         width: 128
         height: 128
       alignment: 0
@@ -99,7 +101,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 832
-        y: 768
+        y: 800
         width: 128
         height: 128
       alignment: 0
@@ -109,7 +111,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 512
+        y: 544
         width: 128
         height: 128
       alignment: 0
@@ -119,7 +121,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 512
+        y: 544
         width: 128
         height: 128
       alignment: 0
@@ -129,7 +131,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 576
-        y: 512
+        y: 544
         width: 128
         height: 128
       alignment: 0
@@ -139,7 +141,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 832
-        y: 512
+        y: 544
         width: 128
         height: 128
       alignment: 0
@@ -149,7 +151,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 256
+        y: 288
         width: 128
         height: 128
       alignment: 0
@@ -159,17 +161,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 257
+        y: 288
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: m_tadpole00_4x4_10
       rect:
         serializedVersion: 2
         x: 576
-        y: 256
+        y: 288
         width: 128
         height: 128
       alignment: 0
@@ -179,41 +181,41 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 832
-        y: 256
+        y: 288
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_tadpole00_4x4_12
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: m_tadpole00_4x4_13
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 320
+        y: 32
         width: 128
-        height: 256
+        height: 128
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: m_tadpole00_4x4_14
       rect:
         serializedVersion: 2
-        x: 320
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: m_tadpole00_4x4_15
-      rect:
-        serializedVersion: 2
         x: 576
-        y: 0
+        y: 32
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

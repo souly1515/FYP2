@@ -1,39 +1,28 @@
 fileFormatVersion: 2
-guid: 25ac312654e6dbe46beeb400b69f9e34
-timeCreated: 1435491374
+guid: bd0a23287e2909a4b98a282d1d8ea556
+timeCreated: 1435492312
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: m_tadpoleflip00_4x4_0
-    21300002: m_tadpoleflip00_4x4_1
-    21300004: m_tadpoleflip00_4x4_2
-    21300006: m_tadpoleflip00_4x4_3
-    21300008: m_tadpoleflip00_4x4_4
-    21300010: m_tadpoleflip00_4x4_5
-    21300012: m_tadpoleflip00_4x4_6
-    21300014: m_tadpoleflip00_4x4_7
-    21300016: m_tadpoleflip00_4x4_8
-    21300018: m_tadpoleflip00_4x4_9
-    21300020: m_tadpoleflip00_4x4_10
-    21300022: m_tadpoleflip00_4x4_11
-    21300024: m_tadpoleflip00_4x4_12
-    21300026: m_tadpoleflip00_4x4_13
-    21300028: m_tadpoleflip00_4x4_14
-    21300030: m_tadpoleflip_0
-    21300032: m_tadpoleflip_1
-    21300034: m_tadpoleflip_2
-    21300036: m_tadpoleflip_3
-    21300038: m_tadpoleflip_4
-    21300040: m_tadpoleflip_5
-    21300042: m_tadpoleflip_6
-    21300044: m_tadpoleflip_7
-    21300046: m_tadpoleflip_8
-    21300048: m_tadpoleflip_9
-    21300050: m_tadpoleflip_10
-    21300052: m_tadpoleflip_11
-    21300054: m_tadpoleflip_12
-    21300056: m_tadpoleflip_13
-    21300058: m_tadpoleflip_14
+    21300000: m_frogB_0
+    21300002: m_frogB_1
+    21300004: m_frogB_2
+    21300006: m_frogB_3
+    21300008: m_frogB_4
+    21300010: m_frogB_5
+    21300012: m_frogB_6
+    21300014: m_frogB_7
+    21300016: m_frogB_8
+    21300018: m_frogB_9
+    21300020: m_frogB_10
+    21300022: m_frogB_11
+    21300024: m_frogB_12
+    21300026: m_frogB_13
+    21300028: m_frogB_14
+    21300030: m_frogB_15
+    21300032: m_frogB_16
+    21300034: m_frogB_17
+    21300036: m_frogB_18
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -79,153 +68,193 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: m_tadpoleflip00_4x4_0
+    - name: m_frogB_0
       rect:
         serializedVersion: 2
-        x: 64
-        y: 800
-        width: 128
-        height: 128
+        x: 0
+        y: 2048
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: m_tadpoleflip00_4x4_1
+    - name: m_frogB_1
       rect:
         serializedVersion: 2
-        x: 320
-        y: 800
-        width: 128
-        height: 128
+        x: 512
+        y: 2048
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: m_tadpoleflip00_4x4_2
+    - name: m_frogB_2
       rect:
         serializedVersion: 2
-        x: 576
-        y: 800
-        width: 128
-        height: 128
+        x: 1024
+        y: 2048
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: m_tadpoleflip00_4x4_3
+    - name: m_frogB_3
       rect:
         serializedVersion: 2
-        x: 832
-        y: 800
-        width: 128
-        height: 128
+        x: 1536
+        y: 2048
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: m_tadpoleflip00_4x4_4
+    - name: m_frogB_4
       rect:
         serializedVersion: 2
-        x: 64
-        y: 544
-        width: 128
-        height: 128
+        x: 0
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: m_tadpoleflip00_4x4_5
+    - name: m_frogB_5
       rect:
         serializedVersion: 2
-        x: 320
-        y: 544
-        width: 128
-        height: 128
+        x: 512
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: m_tadpoleflip00_4x4_6
+    - name: m_frogB_6
       rect:
         serializedVersion: 2
-        x: 576
-        y: 544
-        width: 128
-        height: 128
+        x: 1024
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: m_tadpoleflip00_4x4_7
+    - name: m_frogB_7
       rect:
         serializedVersion: 2
-        x: 832
-        y: 544
-        width: 128
-        height: 128
+        x: 1536
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: m_tadpoleflip00_4x4_8
+    - name: m_frogB_8
       rect:
         serializedVersion: 2
-        x: 64
-        y: 288
-        width: 128
-        height: 128
+        x: 0
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: m_tadpoleflip00_4x4_9
+    - name: m_frogB_9
       rect:
         serializedVersion: 2
-        x: 320
-        y: 288
-        width: 128
-        height: 128
+        x: 512
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: m_tadpoleflip00_4x4_10
+    - name: m_frogB_10
       rect:
         serializedVersion: 2
-        x: 576
-        y: 288
-        width: 128
-        height: 128
+        x: 1024
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: m_tadpoleflip00_4x4_11
+    - name: m_frogB_11
       rect:
         serializedVersion: 2
-        x: 832
-        y: 288
-        width: 128
-        height: 128
+        x: 1536
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: m_tadpoleflip00_4x4_12
+    - name: m_frogB_12
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
-        width: 128
-        height: 128
+        x: 0
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: m_tadpoleflip00_4x4_13
+    - name: m_frogB_13
       rect:
         serializedVersion: 2
-        x: 320
-        y: 32
-        width: 128
-        height: 128
+        x: 512
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: m_tadpoleflip00_4x4_14
+    - name: m_frogB_14
       rect:
         serializedVersion: 2
-        x: 576
-        y: 32
-        width: 128
-        height: 128
+        x: 1024
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_frogB_15
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_frogB_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_frogB_17
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: m_frogB_18
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

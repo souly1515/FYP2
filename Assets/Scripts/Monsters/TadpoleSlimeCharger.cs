@@ -1,29 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Charger :  E_Base {
-	Vector3 targ;//where its charging
-	public Vector3 charVel;
-	const float chargeCoolOff=0.50f;//after the attack miss how long it will charge for
-	const float idleTime=3.0f;
-	const float prepTime=1.0f;
-	Animator anim;
-	bool left=true;
-	public enum Internal_AttackState
-	{
-		CHARGE_PREP,
-		CHARGE,
-		CHARGE_SLOW,
-		IDLE
-	}
-	public Internal_AttackState a_State=Internal_AttackState.CHARGE_PREP;
+public class TadpoleSlimeCharger :  Charger {
+	TadpoleSlime_Slime slimeScript;
+	GameObject slime;
 
 	override protected void Start ()
 	{
+		slime = (transform.GetChild (0)).gameObject;
+		slimeScript = slime.GetComponent<TadpoleSlime_Slime> ();
 		base.Start ();
 		base.detectionRange = 10;
 		base.attackRange = 5;
 		anim = gameObject.GetComponent<Animator> ();
+		slimeScript = GetComponentInChildren<TadpoleSlime_Slime> ();
 	}
 
 	protected override void Update ()
@@ -48,13 +38,13 @@ public class Charger :  E_Base {
 		}
 	}
 
-	public override void Attack_State()
+	protected override void Attack_State()
 	{
 		anim.SetFloat ("y_speed", charVel.y);
 		charVel.z = 0;
 		switch (a_State) {
-		case Internal_AttackState.IDLE:
-			if(timeLeft>0)
+		case InternalAttackState.IDLE:
+			if(timeLeft>0||!slimeScript.regenerated)
 			{
 				timeLeft-=Time.deltaTime;
 			}
@@ -63,13 +53,13 @@ public class Charger :  E_Base {
 				charVel=targ-gameObject.transform.position;
 				charVel=charVel.normalized*5.0f;
 				timeLeft=UnityEngine.Random.Range(prepTime*0.8f,prepTime*1.2f);
-				a_State=Internal_AttackState.CHARGE_PREP;
+				a_State=InternalAttackState.CHARGE_PREP;
 				anim.SetFloat ("y_speed", charVel.y);
 				anim.SetBool("Charge_Prep",true);
 			}
 			//stop moving and start counting down then switch to charge enemy
 			break;
-		case Internal_AttackState.CHARGE:
+		case InternalAttackState.CHARGE:
 			if(Vector3.Dot(targ-gameObject.transform.position,charVel)>0){//not passed yet
 				Vector3 temp=gameObject.transform.position;
 				charVel+=charVel.normalized*1.2f*Time.deltaTime;
@@ -77,13 +67,13 @@ public class Charger :  E_Base {
 			}
 			else{//passed the charge pos
 				timeLeft=UnityEngine.Random.Range(chargeCoolOff*0.8f,chargeCoolOff*1.2f);
-				a_State=Internal_AttackState.CHARGE_SLOW;
+				a_State=InternalAttackState.CHARGE_SLOW;
 			}
 			//move at high speed towards the enemy
 			//after moving pass the enemy start a countdown before stopping
 			//use dot product between moving direction and the direction between enemy and original player pos>0 to determine if it passed the player
 			break;
-		case Internal_AttackState.CHARGE_SLOW:
+		case InternalAttackState.CHARGE_SLOW:
 			timeLeft-=Time.deltaTime;
 			Vector3 pos=gameObject.transform.position;
 			gameObject.transform.position=pos+charVel*Time.deltaTime;
@@ -96,13 +86,19 @@ public class Charger :  E_Base {
 			}
 			if(charVel.sqrMagnitude<0.01)
 			{
-				a_State=Internal_AttackState.IDLE;
+				a_State=InternalAttackState.IDLE;
 				timeLeft=UnityEngine.Random.Range(idleTime*0.8f,idleTime*1.2f);
 				anim.SetBool("Charge",false);
+				slime.transform.SetParent(transform);
+				slime.transform.localPosition=new Vector3(0,0,slime.transform.position.z);
+				if(charVel.y>0)
+					slimeScript.RegenerateSlime(false);
+				else
+					slimeScript.RegenerateSlime(true);
 				//dist=UnityEngine.Random.Range(2,4);
 			}
 			break;
-		case Internal_AttackState.CHARGE_PREP:
+		case InternalAttackState.CHARGE_PREP:
 			targ=Target.transform.position;
 			charVel=targ-gameObject.transform.position;
 			charVel=charVel.normalized*5.0f;
@@ -110,9 +106,14 @@ public class Charger :  E_Base {
 			timeLeft-=Time.deltaTime;
 			if(timeLeft<=0)
 			{
-				a_State=Internal_AttackState.CHARGE;
+				if(charVel.y>0)
+					slimeScript.KillSlime(false);
+				else
+					slimeScript.KillSlime(true);
+				a_State=InternalAttackState.CHARGE;
 				anim.SetBool("Charge_Prep",false);
 				anim.SetBool("Charge",true);
+				slime.transform.SetParent(null);
 			}
 			break;
 		}
@@ -123,38 +124,38 @@ public class Charger :  E_Base {
 	protected override void ChangeState ()
 	{
 		switch (states) {
-		case E_States.IDLE_MOVE:
+		case E_States.IDLE:
 			Target=Physics2D.OverlapCircle(gameObject.transform.position,detectionRange,Tracks);
 			if(Target)
 			{
-				//the moment detection occurs the enemy will charge at the player
-				states=E_States.ATTACK;
-
-				//uncomment once done with circle test
-				//*
 				states=E_States.ATTACK;
 				targ=Target.transform.position;
 				charVel=targ-gameObject.transform.position;
 				charVel=charVel.normalized*5.0f;
-				a_State=Internal_AttackState.CHARGE;
-				stateChange=true;
-				//*/
+				timeLeft=UnityEngine.Random.Range(prepTime*0.8f,prepTime*1.2f);
+				a_State=InternalAttackState.CHARGE_PREP;
+				anim.SetFloat ("y_speed", charVel.y);
+				anim.SetBool("Charge_Prep",true);
 			}
 			break;
 		case E_States.ATTACK:
 			Target=Physics2D.OverlapCircle(gameObject.transform.position,detectionRange,Tracks);
 			if(!Target)
 			{
-				states=E_States.IDLE_MOVE;
+				states=E_States.IDLE;
 				stateChange=true;
 			}
 			break;
 		}
 	}
 
-	public override void Tracking_State ()
+	protected override void Tracking_State ()
 	{
 
+	}
+
+	protected override void Idle_State ()
+	{
 	}
 
 

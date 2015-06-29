@@ -15,8 +15,7 @@ public class E_Stats
 public enum E_States
 {
 	STATE_NONE=0,
-	IDLE_MOVE,
-	IDLE_NOTMOVE,
+	IDLE,
 	TRACKING,
 	ATTACK,
 	STATE_TOTAL
@@ -46,13 +45,14 @@ public abstract class E_Base : MonoBehaviour {
 		originalPos = transform.position;
 		rb = gameObject.GetComponent<Rigidbody2D> ();
 		knockbackDrag = 0.8f;
-		states = E_States.IDLE_MOVE;
 		stateChange = false;
 	}
 
-	public abstract void Attack_State();
+	protected abstract void Attack_State();
 
-	public abstract void Tracking_State();
+	protected abstract void Tracking_State();
+
+	protected abstract void Idle_State();
 
 	// Update is called once per frame
 	virtual protected void Update () {
@@ -78,7 +78,7 @@ public abstract class E_Base : MonoBehaviour {
 		}
 		else 
 		{
-			states=E_States.IDLE_NOTMOVE;
+			states=E_States.IDLE;
 			stunDur-=Time.deltaTime;
 			if(stunDur<=0)
 			{
@@ -107,7 +107,7 @@ public abstract class E_Base : MonoBehaviour {
 	protected virtual void ChangeState()
 	{
 			switch (states) {
-		case E_States.IDLE_NOTMOVE:
+		case E_States.IDLE:
 			Target = Physics2D.OverlapCircle (gameObject.transform.position, detectionRange, Tracks);
 			if (Target) {
 				states = E_States.TRACKING;
@@ -122,7 +122,7 @@ public abstract class E_Base : MonoBehaviour {
 			break;
 		case E_States.TRACKING:
 			if (!Physics2D.OverlapCircle (gameObject.transform.position, detectionRange, Tracks)) {
-				states = E_States.IDLE_NOTMOVE;
+				states = E_States.IDLE;
 				stateChange = true;
 				//rb.velocity=knockBackEffect;
 			} else if (Physics2D.OverlapCircle (gameObject.transform.position, attackRange, Tracks)) {
@@ -134,11 +134,12 @@ public abstract class E_Base : MonoBehaviour {
 			break;
 		}
 	}
+
 	protected  virtual void UpdateStates()
 	{
 		switch (states) {
 			
-		case E_States.IDLE_NOTMOVE:
+		case E_States.IDLE:
 			break;
 		case E_States.ATTACK:
 			//attacking code here
