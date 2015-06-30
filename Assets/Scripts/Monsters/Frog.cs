@@ -20,6 +20,7 @@ public class Frog:  E_Base {
 	public Vector3 ShadowOffset=new Vector3(-1.5f,-0.5f);
 	Vector3 ShadowSize;
 	public GameObject Tadpole;
+	Animator HeadAnim;
 	public Vector3 lastLashDir;
 	public bool left = true;//which direction its facing
 	public bool up = false;//which direction its facing
@@ -45,7 +46,8 @@ public class Frog:  E_Base {
 		TongueB=transform.FindChild("Tongue_B").gameObject;
 		Shadow=transform.FindChild("Shadow").gameObject;
 		BodySprite = gameObject.GetComponent<SpriteRenderer> ();
-
+		HeadAnim = Head.GetComponent<Animator> ();
+		HeadAnim.enabled = false;
 	}
 
 	protected override void Update ()
@@ -72,14 +74,18 @@ public class Frog:  E_Base {
 					a_State=InternalAttackState.PREP_TONGUE_LASH;
 					timeLeft=TonguePrepTime;
 					timeLeft2=TongueFreezeTime;
+					anim.SetBool("FrogLashPrep",true);
+					//anim.SetBool("JumpPrep",false);
 				}
 				else if(chance >=5&&chance<=7)//5-7 jump attack
 				{
 					a_State=InternalAttackState.PREP_JUMP;
 					timeLeft=JumpPrepTime;
+					anim.SetBool("JumpPrep",true);
 				}
 				else{
-					a_State=InternalAttackState.SPAWN_TADPOLES;
+					//a_State=InternalAttackState.SPAWN_TADPOLES;
+					//anim.SetBool("SpawnTadpoles",true);
 				}
 				//*/
 			}
@@ -142,11 +148,14 @@ public class Frog:  E_Base {
 				if(dir.y>0)
 				{
 					up=true;
+					anim.SetBool("Forward",false);
 				}
 				else 
 				{
 					up=false;
+					anim.SetBool("Forward",true);
 				}
+				anim.SetBool("Jump",false);
 			}
 			else if(timeLeft2>0)
 			{
@@ -173,11 +182,13 @@ public class Frog:  E_Base {
 				Head.SetActive(false);
 				Bubbles.SetActive(false);
 				a_State=InternalAttackState.JUMP;
+				anim.SetBool("JumpPrep",false);
+				anim.SetBool("Jump",true);
 			}
 			break;
 		case InternalAttackState.TONGUE_LASH:
 			//play animation;
-			//if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime<=1)
+			if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime>=1)
 			{
 				if(up)
 				{
@@ -188,6 +199,7 @@ public class Frog:  E_Base {
 				}
 				a_State=InternalAttackState.IDLE;
 				timeLeft=IdleTime;
+				anim.SetBool("FrogLash",false);
 			}
 			break;
 		case InternalAttackState.PREP_TONGUE_LASH:
@@ -195,6 +207,8 @@ public class Frog:  E_Base {
 			timeLeft2-=Time.deltaTime;
 			if(timeLeft<=0)
 			{
+				anim.SetBool("FrogLash",true);
+				anim.SetBool("FrogLashPrep",false);
 				if(up)
 				{
 					TongueB.SetActive(true);
@@ -216,6 +230,8 @@ public class Frog:  E_Base {
 					{
 						a_State=InternalAttackState.PREP_JUMP;
 						timeLeft=JumpPrepTime;
+						anim.SetBool("FrogLashPrep",false);
+						anim.SetBool("JumpPrep",true);
 					}
 				}
 				else{
@@ -223,6 +239,8 @@ public class Frog:  E_Base {
 					{
 						a_State=InternalAttackState.PREP_JUMP;
 						timeLeft=JumpPrepTime;
+						anim.SetBool("FrogLashPrep",false);
+						anim.SetBool("JumpPrep",true);
 					}
 				}
 				if(up)
@@ -231,6 +249,8 @@ public class Frog:  E_Base {
 					{
 						a_State=InternalAttackState.PREP_JUMP;
 						timeLeft=JumpPrepTime;
+						anim.SetBool("FrogLashPrep",false);
+						anim.SetBool("JumpPrep",true);
 					}
 				}
 				else{
@@ -238,6 +258,8 @@ public class Frog:  E_Base {
 					{
 						a_State=InternalAttackState.PREP_JUMP;
 						timeLeft=JumpPrepTime;
+						anim.SetBool("FrogLashPrep",false);
+						anim.SetBool("JumpPrep",true);
 					}
 				}
 				dir.Normalize();
