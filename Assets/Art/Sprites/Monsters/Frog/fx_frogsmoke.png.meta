@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c028d77a0648ec842b7de0a45c0936b5
-timeCreated: 1435492565
+timeCreated: 1435674232
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,15 +10,15 @@ TextureImporter:
     21300006: fx_frogsmoke_3
     21300008: fx_frogsmoke_4
     21300010: fx_frogsmoke_5
-    21300012: fx_frogsmoke_6
-    21300014: fx_frogsmoke_7
+    21300012: fx_frogsmoke_13
+    21300014: fx_frogsmoke_14
     21300016: fx_frogsmoke_8
     21300018: fx_frogsmoke_9
     21300020: fx_frogsmoke_10
     21300022: fx_frogsmoke_11
     21300024: fx_frogsmoke_12
-    21300026: fx_frogsmoke_13
-    21300028: fx_frogsmoke_14
+    21300026: fx_frogsmoke_6
+    21300028: fx_frogsmoke_7
     21300030: fx_frogsmoke_15
     21300032: fx_frogsmoke_16
     21300034: fx_frogsmoke_17
@@ -77,7 +77,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: fx_frogsmoke_1
       rect:
@@ -87,7 +87,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: fx_frogsmoke_2
       rect:
@@ -97,7 +97,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: fx_frogsmoke_3
       rect:
@@ -107,7 +107,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: fx_frogsmoke_4
       rect:
@@ -117,7 +117,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: fx_frogsmoke_5
       rect:
@@ -127,9 +127,9 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: fx_frogsmoke_6
+    - name: fx_frogsmoke_13
       rect:
         serializedVersion: 2
         x: 0
@@ -137,9 +137,9 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: fx_frogsmoke_7
+    - name: fx_frogsmoke_14
       rect:
         serializedVersion: 2
         x: 512
@@ -147,17 +147,17 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: fx_frogsmoke_8
       rect:
         serializedVersion: 2
         x: 1024
-        y: 1536
+        y: 1541
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: fx_frogsmoke_9
       rect:
@@ -167,7 +167,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: fx_frogsmoke_10
       rect:
@@ -177,7 +177,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: fx_frogsmoke_11
       rect:
@@ -187,7 +187,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: fx_frogsmoke_12
       rect:
@@ -197,9 +197,9 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: fx_frogsmoke_13
+    - name: fx_frogsmoke_6
       rect:
         serializedVersion: 2
         x: 0
@@ -207,9 +207,9 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: fx_frogsmoke_14
+    - name: fx_frogsmoke_7
       rect:
         serializedVersion: 2
         x: 512
@@ -217,7 +217,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: fx_frogsmoke_15
       rect:
@@ -227,7 +227,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: fx_frogsmoke_16
       rect:
@@ -237,7 +237,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: fx_frogsmoke_17
       rect:
@@ -247,7 +247,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: fx_frogsmoke_18
       rect:
@@ -257,7 +257,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: fx_frogsmoke_19
       rect:
@@ -267,7 +267,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

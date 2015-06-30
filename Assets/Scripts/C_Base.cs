@@ -265,8 +265,6 @@ public class C_Base: MonoBehaviour {
 			skillsInfo temp=new skillsInfo();
 			temp.damage=2;
 			temp.castTime=0.4f;
-			temp.rangeY=10;
-			temp.rangeX=3;
 			temp.isProjectile=false;
 			temp.knockback=10;
 			skill.SetInfo(temp);
@@ -296,8 +294,6 @@ public class C_Base: MonoBehaviour {
 			skillsInfo temp=new skillsInfo();
 			temp.damage=1;
 			temp.castTime=2.0f;
-			temp.rangeY=3;
-			temp.rangeX=3;
 			temp.knockback=1;
 			temp.velocity=direction*5;
 			temp.isProjectile=true;

@@ -11,16 +11,20 @@ public class Frog:  E_Base {
 	public float TonguePrepTime=3.0f;
 	public float TongueFreezeTime=2.0f;
 	public float IdleTime=2.0f;
+	public float HeadRestPeriod=1.0f;
 	public GameObject Shadow;
 	public GameObject Tongue;
 	public GameObject TongueB;
 	public GameObject Head;
 	public GameObject Bubbles;
+	public GameObject Dust;
 	public SpriteRenderer BodySprite;
 	public Vector3 ShadowOffset=new Vector3(-1.5f,-0.5f);
 	Vector3 ShadowSize;
 	public GameObject Tadpole;
 	Animator HeadAnim;
+	Animator DustAnim;
+	bool HeadRest=false;
 	public Vector3 lastLashDir;
 	public bool left = true;//which direction its facing
 	public bool up = false;//which direction its facing
@@ -45,9 +49,12 @@ public class Frog:  E_Base {
 		Tongue=transform.FindChild("Tongue_F").gameObject;
 		TongueB=transform.FindChild("Tongue_B").gameObject;
 		Shadow=transform.FindChild("Shadow").gameObject;
+		Dust = transform.FindChild ("DustClouds").gameObject;
 		BodySprite = gameObject.GetComponent<SpriteRenderer> ();
 		HeadAnim = Head.GetComponent<Animator> ();
 		HeadAnim.enabled = false;
+		DustAnim = Dust.GetComponent<Animator> ();
+		Dust.transform.SetParent (null);
 	}
 
 	protected override void Update ()
@@ -60,110 +67,147 @@ public class Frog:  E_Base {
 		switch (a_State) {
 		case InternalAttackState.IDLE:
 			timeLeft-=Time.deltaTime;
-			if(timeLeft<=0)
-			{
-				//random attack
-				//higher chance to do the tongue lash attack
-				//normal chance to jump
-				//low chance to spawn tadpoles
+			HeadAnim.enabled=true;
 
-				//*
-				int chance=UnityEngine.Random.Range(0,10);//random here
-				if(chance<5)
+			if(HeadAnim.GetCurrentAnimatorStateInfo(0).normalizedTime>=1)
+			{
+				if(up)
 				{
-					a_State=InternalAttackState.PREP_TONGUE_LASH;
-					timeLeft=TonguePrepTime;
-					timeLeft2=TongueFreezeTime;
-					anim.SetBool("FrogLashPrep",true);
-					//anim.SetBool("JumpPrep",false);
+					HeadAnim.SetBool("Forward",false);
 				}
-				else if(chance >=5&&chance<=7)//5-7 jump attack
+				else
 				{
-					a_State=InternalAttackState.PREP_JUMP;
-					timeLeft=JumpPrepTime;
-					anim.SetBool("JumpPrep",true);
+					HeadAnim.SetBool("Forward",true);
 				}
-				else{
-					//a_State=InternalAttackState.SPAWN_TADPOLES;
-					//anim.SetBool("SpawnTadpoles",true);
+				if(timeLeft<=0)
+				{
+					//random attack
+					//higher chance to do the tongue lash attack
+					//normal chance to jump
+					//low chance to spawn tadpoles
+					
+					//*
+					HeadAnim.enabled=false;
+					int chance=UnityEngine.Random.Range(0,10);//random here
+					if(chance<5)
+					{
+						a_State=InternalAttackState.PREP_TONGUE_LASH;
+						timeLeft=TonguePrepTime;
+						timeLeft2=TongueFreezeTime;
+						anim.SetBool("FrogLashPrep",true);
+						//anim.SetBool("JumpPrep",false);
+					}
+					else if(chance >=5&&chance<=7)//5-7 jump attack
+					{
+						a_State=InternalAttackState.PREP_JUMP;
+						timeLeft=JumpPrepTime;
+						anim.SetBool("JumpPrep",true);
+					}
+					else{
+						//a_State=InternalAttackState.SPAWN_TADPOLES;
+						//anim.SetBool("SpawnTadpoles",true);
+					}
+					//*/
 				}
-				//*/
+				else if(HeadRest)
+				{
+					timeLeft2-=Time.deltaTime;
+					if(timeLeft2<=0)
+					{
+						int a=UnityEngine.Random.Range(1,3);
+						HeadAnim.SetInteger("AnimNum",a);
+						HeadRest=false;
+					}
+				}
+				else
+				{
+					HeadRest=true;
+					timeLeft2=HeadRestPeriod;
+					HeadAnim.SetInteger("AnimNum",0);
+				}
 			}
 			break;
 		case InternalAttackState.JUMP:
 		{
-			timeLeft-=Time.deltaTime;
-			timeLeft2-=Time.deltaTime;
-			Shadow.transform.localScale=Vector3.Lerp(Vector3.zero,ShadowSize,(JumpAirTime-timeLeft)/JumpAirTime);
-			Vector3 dir=Target.transform.position-transform.position;
-			if(timeLeft<=0)
+			if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime>=1)
 			{
-				BodySprite.enabled=true;
-				Head.SetActive(true);
-				Bubbles.SetActive(true);
-				hitBox.enabled=true;
-				a_State=InternalAttackState.IDLE;
-				timeLeft=IdleTime;
-				if(dir.x>0)
+				timeLeft-=Time.deltaTime;
+				timeLeft2-=Time.deltaTime;
+				Shadow.transform.localScale=Vector3.Lerp(Vector3.zero,ShadowSize,(JumpAirTime-timeLeft)/JumpAirTime);
+				Vector3 dir=Target.transform.position-transform.position;
+				if(timeLeft<=0)
 				{
-					left=false;
-					Vector3 scale=transform.localScale;
-					if(dir.y<0)
+					BodySprite.enabled=true;
+					Head.SetActive(true);
+					Bubbles.SetActive(true);
+					hitBox.enabled=true;
+					a_State=InternalAttackState.IDLE;
+					timeLeft=IdleTime;
+					if(dir.x>0)
 					{
-						if(scale.x>0)
+						left=false;
+						Vector3 scale=transform.localScale;
+						if(dir.y<0)
 						{
-							scale.x*=-1;
-							transform.localScale=scale;
+							if(scale.x>0)
+							{
+								scale.x*=-1;
+								transform.localScale=scale;
+							}
+						}
+						else
+						{
+							if(scale.x<0)
+							{
+								scale.x*=-1;
+								transform.localScale=scale;
+							}
 						}
 					}
-					else
-					{
-						if(scale.x<0)
+					else{
+						left=true;
+						Vector3 scale=transform.localScale;
+						if(dir.y<0)
 						{
-							scale.x*=-1;
-							transform.localScale=scale;
+							if(scale.x<0)
+							{
+								scale.x*=-1;
+								transform.localScale=scale;
+							}
+						}
+						else
+						{
+							if(scale.x>0)
+							{
+								scale.x*=-1;
+								transform.localScale=scale;
+							}
 						}
 					}
-				}
-				else{
-					left=true;
-					Vector3 scale=transform.localScale;
-					if(dir.y<0)
+					if(dir.y>0)
 					{
-						if(scale.x<0)
-						{
-							scale.x*=-1;
-							transform.localScale=scale;
-						}
+						up=true;
+						anim.SetBool("Forward",false);
 					}
-					else
+					else 
 					{
-						if(scale.x>0)
-						{
-							scale.x*=-1;
-							transform.localScale=scale;
-						}
+						up=false;
+						anim.SetBool("Forward",true);
 					}
+					anim.SetBool("Jump",false);
+					DustAnim.SetTrigger("Land");
+					Vector3 tempTran=transform.position;
+					tempTran.y-=0.1f;
+					Dust.transform.position=tempTran;
 				}
-				if(dir.y>0)
+				else if(timeLeft2>0)
 				{
-					up=true;
-					anim.SetBool("Forward",false);
-				}
-				else 
-				{
-					up=false;
-					anim.SetBool("Forward",true);
-				}
-				anim.SetBool("Jump",false);
-			}
-			else if(timeLeft2>0)
-			{
-				dir+=ShadowOffset;
-				if(dir.sqrMagnitude>0.001)//if its too close dont bother moving
-				{
-					dir.Normalize();
-					transform.position+=dir*Time.deltaTime*3.0f;
+					dir+=ShadowOffset;
+					if(dir.sqrMagnitude>0.001)//if its too close dont bother moving
+					{
+						dir.Normalize();
+						transform.position+=dir*Time.deltaTime*3.0f;
+					}
 				}
 			}
 		}
@@ -184,6 +228,10 @@ public class Frog:  E_Base {
 				a_State=InternalAttackState.JUMP;
 				anim.SetBool("JumpPrep",false);
 				anim.SetBool("Jump",true);
+				DustAnim.SetTrigger("Jump");
+				Vector3 tempTran=transform.position;
+				tempTran.y-=0.1f;
+				Dust.transform.position=tempTran;
 			}
 			break;
 		case InternalAttackState.TONGUE_LASH:
@@ -261,6 +309,13 @@ public class Frog:  E_Base {
 						anim.SetBool("FrogLashPrep",false);
 						anim.SetBool("JumpPrep",true);
 					}
+				}
+				if((Target.gameObject.transform.position-transform.position).sqrMagnitude>100)
+				{
+					a_State=InternalAttackState.PREP_JUMP;
+					timeLeft=JumpPrepTime;
+					anim.SetBool("FrogLashPrep",false);
+					anim.SetBool("JumpPrep",true);
 				}
 				dir.Normalize();
 				float angle=Mathf.Atan(dir.y/dir.x);//not using atan2 cause i dont want quadrant info

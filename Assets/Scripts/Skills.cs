@@ -12,10 +12,8 @@ public struct buff
 public struct skillsInfo
 {
 	public float damage;
-	public float rangeY;
-	public float rangeX;
 	public float knockback;
-	public float castTime;
+	public float castTime;//should be supplemented by animation duration
 	public buff buffType;
 	public bool isProjectile;
 	public Vector2 velocity;
@@ -35,7 +33,6 @@ public class Skills : MonoBehaviour {
 	public void SetInfo(skillsInfo newInfo)
 	{
 		info = newInfo;
-		gameObject.transform.localScale=new Vector3(info.rangeX,info.rangeY,0);
 	}
 
 	// Update is called once per frame
