@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21233232}
   - 61: {fileID: 6171022}
   - 114: {fileID: 11424558}
+  - 50: {fileID: 5078950}
   m_Layer: 8
   m_Name: Slimeling
   m_TagString: Untagged
@@ -30,6 +31,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &5078950
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 120798}
+  m_Mass: 1000
+  m_LinearDrag: 15
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_FixedAngle: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!61 &6171022
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -40,9 +56,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -.00866336841, y: -.0519807823}
   serializedVersion: 2
-  m_Size: {x: .159999996, y: .159999996}
+  m_Size: {x: .177326903, y: .125346139}
 --- !u!114 &11424558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54,12 +70,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd3d8dffe7c5fa4c82a83fb5680fd23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0, z: 0}
-  originalVel: {x: 0, y: 0, z: 0}
-  targets:
+  states: 0
+  currentHealth: 0
+  knockbackDrag: 0
+  Tracks:
     serializedVersion: 2
     m_Bits: 1
-  life: 0
+  detectionRange: 10
+  attackRange: 5
+  Target: {fileID: 0}
+  timeLeft: 0
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!212 &21233232
 SpriteRenderer:
   m_ObjectHideFlags: 1

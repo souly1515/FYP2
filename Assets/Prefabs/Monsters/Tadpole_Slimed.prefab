@@ -31,6 +31,7 @@ GameObject:
   - 61: {fileID: 6180924}
   - 50: {fileID: 5006068}
   - 95: {fileID: 9597512}
+  - 114: {fileID: 11494216}
   m_Layer: 8
   m_Name: Tadpole_Slimed
   m_TagString: Untagged
@@ -45,7 +46,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.59808445, y: -2.85706449, z: 0}
+  m_LocalPosition: {x: 1.38999999, y: -3.54999995, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 499978}
@@ -88,9 +89,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: .0106101995, y: -.0454722419}
   serializedVersion: 2
-  m_Size: {x: .159999996, y: .159999996}
+  m_Size: {x: .181220442, y: .15393725}
 --- !u!95 &9544076
 Animator:
   serializedVersion: 3
@@ -136,9 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0720b04055ec2e4fbea68bf8904ea4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  states: 0
+  states: 1
   currentHealth: 0
-  knockbackDrag: 0
+  knockbackDrag: .800000012
   Tracks:
     serializedVersion: 2
     m_Bits: 1
@@ -146,6 +147,7 @@ MonoBehaviour:
   attackRange: 5
   Target: {fileID: 0}
   timeLeft: 0
+  targ: {x: 0, y: 0, z: 0}
   charVel: {x: 0, y: 0, z: 0}
   chargeCoolOff: .5
   idleTime: 3
@@ -166,6 +168,19 @@ MonoBehaviour:
   regenerated: 1
   dead: 0
   anim: {fileID: 0}
+--- !u!114 &11494216
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 140226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a190e6f4e06b74f90993688a7f0dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitOnce: 0
+  damage: 15
 --- !u!212 &21206322
 SpriteRenderer:
   m_ObjectHideFlags: 1

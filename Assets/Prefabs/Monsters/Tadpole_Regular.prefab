@@ -13,6 +13,7 @@ GameObject:
   - 61: {fileID: 6167992}
   - 50: {fileID: 5029026}
   - 95: {fileID: 9577364}
+  - 114: {fileID: 11475268}
   m_Layer: 8
   m_Name: Tadpole_Regular
   m_TagString: Untagged
@@ -77,6 +78,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11475268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a190e6f4e06b74f90993688a7f0dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitOnce: 0
+  damage: 10
 --- !u!114 &11477256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -98,6 +112,7 @@ MonoBehaviour:
   attackRange: 0
   Target: {fileID: 0}
   timeLeft: 0
+  targ: {x: 0, y: 0, z: 0}
   charVel: {x: 0, y: 0, z: 0}
   chargeCoolOff: .5
   idleTime: 3

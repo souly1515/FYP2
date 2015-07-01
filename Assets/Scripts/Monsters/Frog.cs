@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class Frog:  E_Base {
-	protected Animator anim;
 	protected BoxCollider2D hitBox;
 	protected float timeLeft2 = 0.0f;
 	public float JumpAirTime=4.0f;
@@ -28,6 +27,7 @@ public class Frog:  E_Base {
 	public Vector3 lastLashDir;
 	public bool left = true;//which direction its facing
 	public bool up = false;//which direction its facing
+	DamageOnContact jumpDamage;
 	public enum InternalAttackState
 	{
 		IDLE,
@@ -51,17 +51,30 @@ public class Frog:  E_Base {
 		Shadow=transform.FindChild("Shadow").gameObject;
 		Dust = transform.FindChild ("DustClouds").gameObject;
 		BodySprite = gameObject.GetComponent<SpriteRenderer> ();
+		jumpDamage = GetComponent<DamageOnContact> ();
+		jumpDamage.enabled = false;
 		HeadAnim = Head.GetComponent<Animator> ();
 		HeadAnim.enabled = false;
 		DustAnim = Dust.GetComponent<Animator> ();
 		Dust.transform.SetParent (null);
+		stats.health = 40;
 	}
 
 	protected override void Update ()
 	{
 		base.Update ();
+		if (stunned) {
+			HeadAnim.enabled=true;
+		}
 	}
-
+	protected override void stunHandle ()
+	{
+		stunned=false;
+		states=E_States.ATTACK;
+		if(anim)
+			anim.SetBool("Flinch",false);
+	}
+	
 	protected override void Attack_State()
 	{
 		switch (a_State) {
@@ -104,8 +117,8 @@ public class Frog:  E_Base {
 						anim.SetBool("JumpPrep",true);
 					}
 					else{
-						//a_State=InternalAttackState.SPAWN_TADPOLES;
-						//anim.SetBool("SpawnTadpoles",true);
+						a_State=InternalAttackState.SPAWN_TADPOLES;
+						anim.SetBool("SpawnTadpoles",true);
 					}
 					//*/
 				}
@@ -138,6 +151,7 @@ public class Frog:  E_Base {
 				if(timeLeft<=0)
 				{
 					BodySprite.enabled=true;
+					jumpDamage.enabled=true;
 					Head.SetActive(true);
 					Bubbles.SetActive(true);
 					hitBox.enabled=true;

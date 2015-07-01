@@ -19,8 +19,6 @@ public class Slime  :  E_Base{
 	public float avgMoveDist=2.0f;
 	public int avgProj=4;//average projectiles
 	public int projLeft = 0;//number of projectiles left to shoot
-	Animator anim;
-	new Vector3 originalPos;
 	float moveProgress = 0.0f;
 	float timeMod=0;//used to determine the speed when moving
 	float movementspd=3;//movement speed
@@ -126,7 +124,7 @@ public class Slime  :  E_Base{
 			{
 				//prepare attack
 				states=E_States.ATTACK;
-				a_State=InternalAttackState.PRE_MOVE;
+				a_State=InternalAttackState.PRE_ATTACK;
 			}
 			break;
 		case E_States.ATTACK:

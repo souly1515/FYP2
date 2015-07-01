@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class C_Stats
 {
 	public int Str;//strength
@@ -10,6 +11,7 @@ public class C_Stats
 	public int End;//endurance
 	public int Wil;//willpower, potentially haki thing
 	public int moveSpd;//move speed
+	public int Health;
 }
 
 public class buffs
@@ -36,18 +38,18 @@ public class C_Base: MonoBehaviour {
 	public float moveSpdModded;//after modifications
 	public float speedMod=1.0f;
 	public bool moving=false;
-	public GameObject skillPrefab;
 	Rigidbody2D rb;
 	Animator anim;
-	float atkDurationLeft;
 	public bool inAttackAnimation;
 	//bool left;
 	public Vector3 direction;
 	public Vector3 lastDir;
-	public Weapon myWeap;
-
+	public string SkillPath="Skills/";
 	public int weaponType;
-	int attackType;
+	GameObject skillGO=null;
+	Skills skillScript=null;
+	bool dead=false;
+
 
 	//debug
 	//end of debug
@@ -68,12 +70,17 @@ public class C_Base: MonoBehaviour {
 		anim = GetComponent<Animator> ();
 		//bool left = false;
 		direction = new Vector3 ();
+		stats.Health = 300;
 	}
 
-	void OnCollisionEnter(Collision col)
+	public void Damage(int damage)
 	{
-			//moving = false;
+		stats.Health -= damage;
+		if (stats.Health <= 0) {
+			anim.SetTrigger("Death");
+		}
 	}
+
 	bool ProcBuffs()
 	{
 		bool returnvalue = true;
@@ -132,21 +139,28 @@ public class C_Base: MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
+		if (dead)
+			return;
 		//basic mechanics: movement with mouse
 		if (!ProcBuffs())//basically stunned
 			return;
 		if (inAttackAnimation) {
-			rb.velocity=new Vector2(0,0);
-			if(atkDurationLeft<=0)
-			{
-			
-
-
-				nextPos=transform.position;
-				inAttackAnimation=false;
+			if (skillScript != null) {
+				if (!skillScript.SkillOver) {
+					rb.velocity = new Vector2 (0, 0);
+					nextPos = transform.position;
+					inAttackAnimation = true;
+				} else
+				{
+					anim.SetTrigger("EndAttack");
+					inAttackAnimation = false;
+					skillGO.transform.SetParent(null);
+				}
 			}
-			else{
-				atkDurationLeft-=Time.deltaTime;
+			else
+			{
+				anim.SetTrigger("EndAttack");
+				inAttackAnimation=false;
 			}
 		}
 		else if (moving) {
@@ -165,6 +179,11 @@ public class C_Base: MonoBehaviour {
 			{
 				moving=false;
 				rb.velocity=new Vector2(0,0);
+				anim.SetBool("Moving",false);
+			}
+			else
+			{
+				anim.SetBool("Moving",true);
 			}
 
 			//basic mechanics: camera movement with character
@@ -202,8 +221,16 @@ public class C_Base: MonoBehaviour {
 		} else {
 			anim.speed=1.0f; 
 		}
-		anim.SetFloat("y_Velocity",direction.y);
-		anim.SetFloat ("x_Velocity", direction.x);
+		if (direction.y > 0) {
+			anim.SetBool ("Forward", false);
+		} else {
+			anim.SetBool("Forward",true);
+		}
+		if (direction.x > 0) {
+			anim.SetBool ("Left", false);
+		} else {
+			anim.SetBool("Left",true);
+		}
 		AnimatorStateInfo AState = anim.GetCurrentAnimatorStateInfo (anim.GetLayerIndex ("Base Layer"));
 		/*if (AState.IsName ("C_Run_B") || AState.IsName ("C_Run_F")) {
 			if (direction.x < 0) {
@@ -222,68 +249,117 @@ public class C_Base: MonoBehaviour {
 		}*/
 	}
 
-	public void attackAnimation()
-	{
-		anim.SetTrigger("attack");
-		Vector3 tempScale=transform.localScale;
-		if (tempScale.x > 0)
-			tempScale.x *= -1;
-		transform.localScale = tempScale;
-	}
 
 	public void Attack(int type,Vector2 mousePos)
 	{
 		direction=-Camera.main.WorldToScreenPoint(transform.position)+(Vector3)mousePos;
 		direction.Normalize ();
-		switch(weaponType)
-		{
-		case 1:
-			SwordAttack(type);
-			break;
-		case 2:
-			RangedAttack(type);
-			break;
-		}
+		SwordAttack(type,direction);
 		//remove once proper skills are implemented
 		inAttackAnimation = true;
-		atkDurationLeft = 0.5f;
 
 		//find a way to change the sprite at run time;
 		Vector2 Dir = ( Vector2 )(direction);
 
 	}
 
-	void SwordAttack(int type)
+	void SwordAttack(int type,Vector3 AttackDir)
 	{
+		direction = AttackDir;
+		Debug.Log (AttackDir);
+		anim.SetTrigger("attack");
+		anim.SetInteger ("AtkType", 1);
+		inAttackAnimation = true;
+		GameObject go=null;
+		GameObject skillObj = null;
+		if(type!=1)
+			go=Resources.Load(SkillPath+"Fire_"+type.ToString())as GameObject;
 		switch (type) {
 		case 1:
+		{
 			//direct.z = direction.y/ direction.x * 180 / 3.142f;
-			GameObject skillObj=Instantiate (skillPrefab, transform.position+direction,Quaternion.Euler(new Vector3(0,0,Mathf.Atan2(direction.y,direction.x)*180f/3.142f))) as GameObject;
-			
+			skillsInfo temp=new skillsInfo();
+			temp.damage=2;
+			temp.castTime=0.4f;
+			temp.isProjectile=false;
+			temp.knockback=5.0f;
+			temp.ConstantDam=false;
+			if(AttackDir.y<0)
+			{
+				go=Resources.Load (SkillPath+"Fire_1F")as GameObject;
+				temp.skillName=SkillPath+"Fire_1F";
+			}
+			else
+			{
+				go=Resources.Load (SkillPath+"Fire_1B")as GameObject;
+				temp.skillName=SkillPath+"Fire_1B";
+			}
+			skillObj=Instantiate (go, transform.position,Quaternion.identity) as GameObject;
+			if(AttackDir.x<0)
+			{
+				Vector3 scale=skillObj.transform.localScale;
+				scale.x=-scale.x;
+				skillObj.transform.localScale=scale;
+			}
 			Skills skill=skillObj.GetComponent<Skills>();
+
+			skill.SetInfo(temp);
+			skill.Dir = direction;
+		}
+			break;
+		case 2:
+		{
+
+			//direct.z = direction.y/ direction.x * 180 / 3.142f;
+			skillObj=Instantiate (go, transform.position,Quaternion.identity) as GameObject;
+			Skills skill=skillObj.GetComponent<Skills>();
+			if(AttackDir.x>0)
+			{
+				
+			}
 			
 			skillsInfo temp=new skillsInfo();
 			temp.damage=2;
 			temp.castTime=0.4f;
 			temp.isProjectile=false;
-			temp.knockback=10;
+			temp.knockback=0.2f;
+			temp.ConstantDam=true;
+			temp.skillName=SkillPath+"Fire_"+type.ToString();
 			skill.SetInfo(temp);
 			skill.Dir = direction;
-			break;
-		case 2:
 
+		}
 			break;
 		case 3:
-
+		{
+			//direct.z = direction.y/ direction.x * 180 / 3.142f;
+			skillObj=Instantiate (go, transform.position+direction*1,Quaternion.identity) as GameObject;
+			Skills skill=skillObj.GetComponent<Skills>();
+			
+			skillsInfo temp=new skillsInfo();
+			temp.damage=1;
+			temp.castTime=0.1f;
+			temp.isProjectile=true;
+			temp.pierceNumber=5;
+			temp.knockback=0.2f;
+			temp.ConstantDam=false;
+			temp.skillName=SkillPath+"Fire_"+type.ToString();
+			skill.SetInfo(temp);
+			skill.Dir = direction;
+		}
 			break;
 		case 4:
 
 			break;
 		}
+		skillGO = skillObj;
+		skillScript = skillGO.GetComponent<Skills> ();
+		//skillObj.transform.SetParent (transform);
 	}
 
 	void RangedAttack(int type)
 	{
+		/*
 		switch (type) {
 		case 1:
 			//direct.z = direction.y/ direction.x * 180 / 3.142f;
@@ -301,5 +377,6 @@ public class C_Base: MonoBehaviour {
 			skill.Dir = direction;
 			break;
 		}
+		//*/
 	}
 }

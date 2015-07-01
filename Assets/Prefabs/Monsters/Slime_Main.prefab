@@ -70,9 +70,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1838e46f01c5d4b81a4993c30e2e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  states: 0
+  states: 1
   currentHealth: 0
-  knockbackDrag: 0
+  knockbackDrag: .800000012
   Tracks:
     serializedVersion: 2
     m_Bits: 1

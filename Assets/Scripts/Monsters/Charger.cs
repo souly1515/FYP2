@@ -8,7 +8,6 @@ public class Charger :  E_Base {
 	public float idleTime=3.0f;
 	public float prepTime=1.0f;
 	public float chargeSpd=5.0f;
-	public Animator anim;
 	protected bool left=true;
 	public enum InternalAttackState
 	{

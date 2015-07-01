@@ -13,7 +13,7 @@ GameObject:
   - 60: {fileID: 6046064}
   - 114: {fileID: 11437092}
   m_Layer: 0
-  m_Name: Bear_Maul_B
+  m_Name: Fire_1B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 109104}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
@@ -82,15 +82,19 @@ MonoBehaviour:
     damage: 0
     knockback: 0
     castTime: 0
+    ConstantDam: 0
     isProjectile: 0
     velocity: {x: 0, y: 0}
     pierceNumber: 0
     endType: 0
+    skillName: 
   ApplyDamage: 0
+  appliedDamage: 0
   enemy:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   Dir: {x: 0, y: 0}
+  anim: {fileID: 0}
 --- !u!212 &21236152
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -18,6 +18,7 @@ public enum E_States
 	IDLE,
 	TRACKING,
 	ATTACK,
+	STUNNED,
 	STATE_TOTAL
 }
 
@@ -30,14 +31,18 @@ public abstract class E_Base : MonoBehaviour {
 	public float detectionRange=10;
 	public float attackRange=5;
 	public Collider2D Target;
-	protected Vector2 originalPos;
-	protected Vector2 lastIdlePos;
-	protected Vector2 knockBackEffect;
+	protected Vector3 originalPos;
+	protected Vector3 lastIdlePos;
+	protected Vector3 knockBackEffect;
 	protected Rigidbody2D rb ;
+	protected E_States LastState;
+	protected C_Base characterScript;
 	public float timeLeft;//for timings with state machine
 	protected bool stateChange;//tracks if state has changed
-	bool stunned=false;
-	float stunDur = 0.0f;
+	protected Animator anim;
+	protected bool stunned=false;
+	protected float InitialKnockBack;
+	protected float stunDur = 0.0f;
 
 	// Use this for initialization
 	virtual protected void Start () {
@@ -46,6 +51,7 @@ public abstract class E_Base : MonoBehaviour {
 		rb = gameObject.GetComponent<Rigidbody2D> ();
 		knockbackDrag = 0.8f;
 		stateChange = false;
+		anim = GetComponent<Animator> ();
 	}
 
 	protected abstract void Attack_State();
@@ -58,50 +64,59 @@ public abstract class E_Base : MonoBehaviour {
 	virtual protected void Update () {
 		currentHealth = stats.health;
 		if (knockBackEffect.sqrMagnitude > 0) {
-
-			Vector2 minus=rb.velocity*(1-knockbackDrag);
-			rb.velocity=rb.velocity-minus;
-			knockBackEffect-=minus;
-			
-			if(rb.velocity.sqrMagnitude<0.1f)
-			{
-				knockBackEffect=Vector2.zero;
-				rb.velocity=Vector2.zero;
-			}
-			else if(knockBackEffect.sqrMagnitude<0.1f)
+			float reduction=InitialKnockBack*knockbackDrag;
+			knockBackEffect-=knockBackEffect*reduction*Time.deltaTime;
+			//knockBackEffect-=minus;
+			transform.position+=knockBackEffect*Time.deltaTime;
+			if(knockBackEffect.sqrMagnitude<0.1f)
 				knockBackEffect=Vector2.zero;
 
 		}
-		if (!stunned) 
+		else if (!stunned) 
 		{
 			ChangeState ();
+			UpdateStates ();
 		}
 		else 
 		{
-			states=E_States.IDLE;
 			stunDur-=Time.deltaTime;
 			if(stunDur<=0)
 			{
-				stunned=false;
+				stunHandle();
 			}
 		}
-		UpdateStates ();
 	}
 
-	public void ApplyDamage(float attack,float stunDur)
+	protected virtual void stunHandle()
+	{
+
+			stunned=false;
+			states=E_States.IDLE;
+			if(anim)
+				anim.SetBool("Flinch",false);
+	}
+	
+	public void ApplyDamage(float attack)
 	{
 		//apply armor application
-		//stats.health -= (int)attack;
+		stats.health -= (int)attack;
 		Debug.Log ("Damaged\n");
+		Debug.Log (attack);
 		if (stats.health <= 0) {
 			gameObject.SetActive (false);
 
 		}
 	}
-	public void KnockBack(float amount,Vector2 Dir)
+	public void KnockBack(float amount,Vector2 Dir,float stunDuration)
 	{
+		stunDur = stunDuration;
 		knockBackEffect = Dir * amount;
-		rb.velocity = Dir * amount;
+		stunned = true;
+		LastState = states;
+		InitialKnockBack = amount;
+		states = E_States.STUNNED;
+		if(anim)
+			anim.SetBool ("Flinch", true);
 	}
 
 	protected virtual void ChangeState()

@@ -42,7 +42,7 @@ AnimationClip:
       - time: .5
         value: {x: 0, y: 0, z: .603721201, w: .797195554}
         inSlope: {x: Infinity, y: Infinity, z: Infinity, w: Infinity}
-        outSlope: {x: Infinity, y: Infinity, z: Infinity, w: Infinity} 
+        outSlope: {x: Infinity, y: Infinity, z: Infinity, w: Infinity}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -232,7 +232,7 @@ AnimationClip:
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0

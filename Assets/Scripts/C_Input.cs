@@ -115,24 +115,18 @@ public class C_Input: MonoBehaviour {
 		}
 		if(Input.GetMouseButtonDown(1))
 		{
-			if(!baseScript.inAttackAnimation)
-				baseScript.Attack(1,Input.mousePosition);
+			baseScript.Attack(1,Input.mousePosition);
 		}
-
 		//keyboard stuff
-		if(Input.GetKeyDown(KeyCode.Space))
-		{
-			if(baseScript.weaponType==1)
-				baseScript.weaponType=2;
-			else
-				baseScript.weaponType=1;
-		}
 		if(Input.GetKeyDown(KeyCode.I))
 		{
 
 		}
 		if (Input.GetKeyDown (KeyCode.Q)) {
-			baseScript.attackAnimation();
+			baseScript.Attack(2,Input.mousePosition);
+		}
+		if (Input.GetKeyDown (KeyCode.W)) {
+			baseScript.Attack(3,Input.mousePosition);
 		}
 	}
 	void MoveMe()
