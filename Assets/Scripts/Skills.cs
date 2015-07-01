@@ -49,7 +49,7 @@ public class Skills : MonoBehaviour {
 			SkillOver=true;
 		}
 		if (info.isProjectile) {
-			/*
+			//*
 			info.castTime-=Time.deltaTime;
 			if(info.pierceNumber>0&&info.castTime<=0)
 			{

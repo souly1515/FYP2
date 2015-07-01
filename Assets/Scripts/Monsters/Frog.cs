@@ -57,7 +57,7 @@ public class Frog:  E_Base {
 		HeadAnim.enabled = false;
 		DustAnim = Dust.GetComponent<Animator> ();
 		Dust.transform.SetParent (null);
-		stats.health = 40;
+		stats.health = 80;
 	}
 
 	protected override void Update ()

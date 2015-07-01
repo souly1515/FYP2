@@ -29,6 +29,7 @@ GameObject:
   - 61: {fileID: 6167842}
   - 95: {fileID: 9569046}
   - 50: {fileID: 5048068}
+  - 114: {fileID: 11425388}
   m_Layer: 8
   m_Name: Frog
   m_TagString: Untagged
@@ -383,6 +384,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11425388
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a190e6f4e06b74f90993688a7f0dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitOnce: 1
+  damage: 30
 --- !u!114 &11449430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -421,6 +435,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states: 3
+  stats:
+    health: 0
+    defense: 0
+    attack: 0
+    moveSpd: 0
+    atkSpd: 0
+    minAggro: 0
+    maxAggro: 0
   currentHealth: 5
   knockbackDrag: .800000012
   Tracks:
@@ -429,6 +451,8 @@ MonoBehaviour:
   detectionRange: 15
   attackRange: 6
   Target: {fileID: 0}
+  invincTime: .699999988
+  invincTimeLeft: 0
   timeLeft: 1.51015639
   JumpAirTime: 4
   JumpMovementFreeze: 3

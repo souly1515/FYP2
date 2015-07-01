@@ -103,6 +103,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states: 0
+  stats:
+    health: 0
+    defense: 0
+    attack: 0
+    moveSpd: 0
+    atkSpd: 0
+    minAggro: 0
+    maxAggro: 0
   currentHealth: 0
   knockbackDrag: 0
   Tracks:
@@ -111,6 +119,8 @@ MonoBehaviour:
   detectionRange: 0
   attackRange: 0
   Target: {fileID: 0}
+  invincTime: .300000012
+  invincTimeLeft: 0
   timeLeft: 0
   targ: {x: 0, y: 0, z: 0}
   charVel: {x: 0, y: 0, z: 0}

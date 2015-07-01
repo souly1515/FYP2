@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+[System.Serializable]
 public class E_Stats
 {
 	public int health;
@@ -31,6 +31,8 @@ public abstract class E_Base : MonoBehaviour {
 	public float detectionRange=10;
 	public float attackRange=5;
 	public Collider2D Target;
+	public float invincTime;
+	public float invincTimeLeft;
 	protected Vector3 originalPos;
 	protected Vector3 lastIdlePos;
 	protected Vector3 knockBackEffect;
@@ -43,7 +45,9 @@ public abstract class E_Base : MonoBehaviour {
 	protected bool stunned=false;
 	protected float InitialKnockBack;
 	protected float stunDur = 0.0f;
-
+	public bool dead=false;
+	public float DeadTimer=2.0f;
+	SpriteRenderer spriteR;
 	// Use this for initialization
 	virtual protected void Start () {
 		stats.health = 5;
@@ -52,6 +56,7 @@ public abstract class E_Base : MonoBehaviour {
 		knockbackDrag = 0.8f;
 		stateChange = false;
 		anim = GetComponent<Animator> ();
+		spriteR = GetComponent<SpriteRenderer> ();
 	}
 
 	protected abstract void Attack_State();
@@ -62,27 +67,40 @@ public abstract class E_Base : MonoBehaviour {
 
 	// Update is called once per frame
 	virtual protected void Update () {
-		currentHealth = stats.health;
-		if (knockBackEffect.sqrMagnitude > 0) {
-			float reduction=InitialKnockBack*knockbackDrag;
-			knockBackEffect-=knockBackEffect*reduction*Time.deltaTime;
-			//knockBackEffect-=minus;
-			transform.position+=knockBackEffect*Time.deltaTime;
-			if(knockBackEffect.sqrMagnitude<0.1f)
-				knockBackEffect=Vector2.zero;
-
-		}
-		else if (!stunned) 
-		{
-			ChangeState ();
-			UpdateStates ();
-		}
-		else 
-		{
-			stunDur-=Time.deltaTime;
-			if(stunDur<=0)
+		if (dead) {
+			if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime>=0)
 			{
-				stunHandle();
+				DeadTimer-=Time.deltaTime;
+				if(DeadTimer<=0)
+				{
+					Color tempColor=spriteR.color;
+					tempColor.a-=1.0f*Time.deltaTime;
+					spriteR.color=tempColor;
+					if(spriteR.color.a<=0)
+					{
+						Destroy(gameObject);
+					}
+				}
+			}
+		} else {
+			invincTimeLeft -= Time.deltaTime;
+			currentHealth = stats.health;
+			if (knockBackEffect.sqrMagnitude > 0) {
+				float reduction = InitialKnockBack * knockbackDrag;
+				knockBackEffect -= knockBackEffect * reduction * Time.deltaTime;
+				//knockBackEffect-=minus;
+				transform.position += knockBackEffect * Time.deltaTime;
+				if (knockBackEffect.sqrMagnitude < 0.1f)
+					knockBackEffect = Vector2.zero;
+
+			} else if (!stunned) {
+				ChangeState ();
+				UpdateStates ();
+			} else {
+				stunDur -= Time.deltaTime;
+				if (stunDur <= 0) {
+					stunHandle ();
+				}
 			}
 		}
 	}
@@ -98,17 +116,23 @@ public abstract class E_Base : MonoBehaviour {
 	
 	public void ApplyDamage(float attack)
 	{
+		if (invincTimeLeft > 0)
+			return;
+		invincTimeLeft = invincTime;
 		//apply armor application
 		stats.health -= (int)attack;
 		Debug.Log ("Damaged\n");
 		Debug.Log (attack);
 		if (stats.health <= 0) {
-			gameObject.SetActive (false);
-
+			anim.SetTrigger("Death");
+			anim.SetBool("Flinch",false);
+			dead=true;
 		}
 	}
 	public void KnockBack(float amount,Vector2 Dir,float stunDuration)
 	{
+		if (dead)
+			return;
 		stunDur = stunDuration;
 		knockBackEffect = Dir * amount;
 		stunned = true;

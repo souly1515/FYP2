@@ -23,6 +23,13 @@ public class C_Input: MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (baseScript.dead) {
+			if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime>=0)
+			{
+
+			}
+			return;
+		}
 		if (Input.GetMouseButton (0)) {
 			//skills and weapons 1: casting weapons skills
 
@@ -37,6 +44,8 @@ public class C_Input: MonoBehaviour {
 
 			//basic mechanics: movement with mouse
 			//check if mouse pos is not on top of obstacle or enemy
+			
+			if (!baseScript.inAttackAnimation)//should not be able to do anything
 			{
 				Vector2 point=Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				Collider2D target=Physics2D.OverlapCircle(point,clickRadius,Interactables);
@@ -113,7 +122,8 @@ public class C_Input: MonoBehaviour {
 				holdingWeapon=null;
 			}
 		}
-		if(Input.GetMouseButtonDown(1))
+		//if(Input.GetMouseButtonDown(1))
+		if(Input.GetKeyDown(KeyCode.Q))
 		{
 			baseScript.Attack(1,Input.mousePosition);
 		}
@@ -122,10 +132,10 @@ public class C_Input: MonoBehaviour {
 		{
 
 		}
-		if (Input.GetKeyDown (KeyCode.Q)) {
+		if (Input.GetKeyDown (KeyCode.W)) {
 			baseScript.Attack(2,Input.mousePosition);
 		}
-		if (Input.GetKeyDown (KeyCode.W)) {
+		if (Input.GetKeyDown (KeyCode.E)) {
 			baseScript.Attack(3,Input.mousePosition);
 		}
 	}

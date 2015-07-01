@@ -46,9 +46,11 @@ public class C_Base: MonoBehaviour {
 	public Vector3 lastDir;
 	public string SkillPath="Skills/";
 	public int weaponType;
+	public float  InvincTime=0.5f;
+	public float InvincTimeLeft;
 	GameObject skillGO=null;
 	Skills skillScript=null;
-	bool dead=false;
+	public bool dead=false;
 
 
 	//debug
@@ -75,6 +77,9 @@ public class C_Base: MonoBehaviour {
 
 	public void Damage(int damage)
 	{
+		if (InvincTimeLeft > 0)
+			return;
+		InvincTimeLeft = InvincTime;
 		stats.Health -= damage;
 		if (stats.Health <= 0) {
 			anim.SetTrigger("Death");
@@ -141,6 +146,7 @@ public class C_Base: MonoBehaviour {
 	void Update () {
 		if (dead)
 			return;
+		InvincTimeLeft -= Time.deltaTime;
 		//basic mechanics: movement with mouse
 		if (!ProcBuffs())//basically stunned
 			return;
@@ -193,22 +199,22 @@ public class C_Base: MonoBehaviour {
 
 			float xDif = temp.x - Camera.main.transform.position.x;
 
-			if (Mathf.Abs (xDif) < 5) {
+			if (Mathf.Abs (xDif) < 2.5f) {
 				xDif = 0;
 			} else if (xDif > 0) {
-				xDif -= 5;
+				xDif -= 2.5f;
 			} else {
-				xDif += 5;
+				xDif += 2.5f;
 			}
 
 			float yDif = temp.y - Camera.main.transform.position.y;
 
-			if (Mathf.Abs (yDif) < 3) {
+			if (Mathf.Abs (yDif) < 1.5f) {
 				yDif = 0;
 			} else if (yDif > 0) {
-				yDif -= 3;
+				yDif -= 1.5f;
 			} else {
-				yDif += 3;
+				yDif += 1.5f;
 			}
 			Camera.main.transform.position += new Vector3 (xDif, yDif, 0);
 			//end of basic mechanics: camera movement with character
@@ -252,21 +258,22 @@ public class C_Base: MonoBehaviour {
 
 	public void Attack(int type,Vector2 mousePos)
 	{
-		direction=-Camera.main.WorldToScreenPoint(transform.position)+(Vector3)mousePos;
-		direction.Normalize ();
-		SwordAttack(type,direction);
-		//remove once proper skills are implemented
-		inAttackAnimation = true;
+		if (!inAttackAnimation) {
+			direction = -Camera.main.WorldToScreenPoint (transform.position) + (Vector3)mousePos;
+			direction.Normalize ();
+			SwordAttack (type, direction);
+			//remove once proper skills are implemented
+			inAttackAnimation = true;
 
-		//find a way to change the sprite at run time;
-		Vector2 Dir = ( Vector2 )(direction);
+			//find a way to change the sprite at run time;
+			Vector2 Dir = (Vector2)(direction);
+		}
 
 	}
 
 	void SwordAttack(int type,Vector3 AttackDir)
 	{
 		direction = AttackDir;
-		Debug.Log (AttackDir);
 		anim.SetTrigger("attack");
 		anim.SetInteger ("AtkType", 1);
 		inAttackAnimation = true;
