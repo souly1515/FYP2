@@ -50,7 +50,6 @@ public abstract class E_Base : MonoBehaviour {
 	SpriteRenderer spriteR;
 	// Use this for initialization
 	virtual protected void Start () {
-		stats.health = 5;
 		originalPos = transform.position;
 		rb = gameObject.GetComponent<Rigidbody2D> ();
 		knockbackDrag = 0.8f;
@@ -68,6 +67,8 @@ public abstract class E_Base : MonoBehaviour {
 	// Update is called once per frame
 	virtual protected void Update () {
 		if (dead) {
+			if(!anim)
+				Destroy (gameObject);
 			if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime>=0)
 			{
 				DeadTimer-=Time.deltaTime;
@@ -124,12 +125,18 @@ public abstract class E_Base : MonoBehaviour {
 		Debug.Log ("Damaged\n");
 		Debug.Log (attack);
 		if (stats.health <= 0) {
-			anim.SetTrigger("Death");
-			anim.SetBool("Flinch",false);
-			dead=true;
+			if(anim)
+			{
+				anim.SetTrigger("Death");
+				anim.SetBool("Flinch",false);
+				dead=true;
+			}
+			else{
+				Destroy(gameObject);
+			}
 		}
 	}
-	public void KnockBack(float amount,Vector2 Dir,float stunDuration)
+	virtual public void KnockBack(float amount,Vector2 Dir,float stunDuration)
 	{
 		if (dead)
 			return;

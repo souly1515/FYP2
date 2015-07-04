@@ -39,15 +39,15 @@ public class MapSetup : MonoBehaviour {
 		string path = "Environments/" + SheetName;
 		subsprite = Resources.LoadAll<Sprite> (path) as Sprite[];
 
-		GeneratePropInfo ();
+		//GeneratePropInfo ();
 		
-		GeneratePropInstances ();
+		//GeneratePropInstances ();
 
 		for(int i=mapWidth_units;i>0;--i)
 		{
 			for(int j=0;j<mapHeight_units;++j)
 			{
-				GameObject thing=Instantiate (tilePrefab,new Vector3((i+j)*h_offset,-(i-j)*v_offset,1),Quaternion.identity) as GameObject;
+				GameObject thing=Instantiate (tilePrefab,new Vector3((i+j)*h_offset-mapWidth_units*0.5f,-(i-j)*v_offset/*+mapHeight_units*0.5f*/,1),Quaternion.identity) as GameObject;
 
 				SetTileTextures(thing,i,j);
 				
@@ -60,7 +60,7 @@ public class MapSetup : MonoBehaviour {
 				scale.x=rot*scale.x;
 				thing.transform.localScale=scale;
 				thing.transform.parent=BaseObject.transform;
-				
+				/*
 				if(i==6&&j>=0&&j<5)
 				{
 					thing=Instantiate (wallPrefab,new Vector3((i+j)*h_offset,-(i-j)*v_offset+z_offset*1,1-1*0.01f),Quaternion.identity) as GameObject;
@@ -68,6 +68,7 @@ public class MapSetup : MonoBehaviour {
 					thing.layer=LayerMask.NameToLayer("Background");
 					//thing.transform.parent=BaseObject.transform;
 				}
+				//*/
 			}
 		}
 	}
@@ -132,7 +133,7 @@ public class MapSetup : MonoBehaviour {
 		//end of do while loop
 		//recursive function that will spread the water here
 		//end of for loop
-		
+		/*
 		for (int i=0;i<pondPos.Length;++i)
 		{
 			Vector2 closest=new Vector2();
@@ -160,6 +161,7 @@ public class MapSetup : MonoBehaviour {
 			mapArray[(int)pond.x,(int)pond.y]=1;
 			growPond((int)pond.x,(int)pond.y,100);
 		}
+		//*/
 	}
 	
 	void growPond(int x,int y,float chance)

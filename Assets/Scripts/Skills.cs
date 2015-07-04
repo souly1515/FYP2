@@ -30,7 +30,9 @@ public class Skills : MonoBehaviour {
 	public LayerMask enemy;
 	public Vector2 Dir;
 	public Animator anim;
+	public float timeLeft;
 	public bool SkillOver=false;
+	bool resetTime=false;
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
@@ -43,6 +45,12 @@ public class Skills : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		timeLeft -= Time.deltaTime;
+		if (resetTime) {
+			timeLeft = info.castTime;
+			resetTime=false;
+		}
+
 		if (ApplyDamage) {
 			appliedDamage = true;
 			ApplyDamage=false;
@@ -83,11 +91,19 @@ public class Skills : MonoBehaviour {
 	}
 	void OnTriggerStay2D(Collider2D col)
 	{
+		if (info.ConstantDam) {
+			if(timeLeft>0)
+				return;
+		}
 		if (ApplyDamage||info.ConstantDam) {
 			if ((enemy.value & (1 << col.gameObject.layer)) > 0) {
 				E_Base E = col.gameObject.GetComponent<E_Base> ();
-				E.ApplyDamage (info.damage);
-				E.KnockBack (info.knockback, Dir,0);
+				if(E)
+				{
+					E.ApplyDamage (info.damage);
+					E.KnockBack (info.knockback, Dir,0);
+					resetTime=true;
+				}
 			}
 		}
 	}

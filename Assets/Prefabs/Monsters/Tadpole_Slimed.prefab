@@ -46,7 +46,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.38999999, y: -3.54999995, z: 0}
+  m_LocalPosition: {x: -3.05999994, y: 3.97000003, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 499978}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: 1
   stats:
-    health: 0
+    health: 8
     defense: 0
     attack: 0
     moveSpd: 0
@@ -157,6 +157,8 @@ MonoBehaviour:
   invincTime: .300000012
   invincTimeLeft: 0
   timeLeft: 0
+  dead: 0
+  DeadTimer: 2
   targ: {x: 0, y: 0, z: 0}
   charVel: {x: 0, y: 0, z: 0}
   chargeCoolOff: .5
@@ -214,7 +216,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: dceb035470123704ba44ba357076f210, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21217730
@@ -240,7 +242,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300010, guid: dceb035470123704ba44ba357076f210, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

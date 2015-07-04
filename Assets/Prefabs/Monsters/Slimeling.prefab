@@ -72,7 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: 0
   stats:
-    health: 0
+    health: 1
     defense: 0
     attack: 0
     moveSpd: 0
@@ -90,6 +90,8 @@ MonoBehaviour:
   invincTime: 0
   invincTimeLeft: 0
   timeLeft: 0
+  dead: 0
+  DeadTimer: 2
   velocity: {x: 0, y: 0, z: 0}
 --- !u!212 &21233232
 SpriteRenderer:
@@ -114,7 +116,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300010, guid: dceb035470123704ba44ba357076f210, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

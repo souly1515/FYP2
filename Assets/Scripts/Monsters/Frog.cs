@@ -57,11 +57,20 @@ public class Frog:  E_Base {
 		HeadAnim.enabled = false;
 		DustAnim = Dust.GetComponent<Animator> ();
 		Dust.transform.SetParent (null);
-		stats.health = 80;
+	}
+
+	public override void KnockBack (float amount, Vector2 Dir, float stunDuration)
+	{
+		if (dead)
+			return;
+		knockBackEffect = Dir * amount;
+		InitialKnockBack = amount;
 	}
 
 	protected override void Update ()
 	{
+		timeLeft -= Time.deltaTime;
+		timeLeft2 -= Time.deltaTime;
 		base.Update ();
 		if (stunned) {
 			HeadAnim.enabled=true;
@@ -69,7 +78,6 @@ public class Frog:  E_Base {
 	}
 	protected override void stunHandle ()
 	{
-		stunned=false;
 		states=E_States.ATTACK;
 		if(anim)
 			anim.SetBool("Flinch",false);
@@ -79,7 +87,6 @@ public class Frog:  E_Base {
 	{
 		switch (a_State) {
 		case InternalAttackState.IDLE:
-			timeLeft-=Time.deltaTime;
 			HeadAnim.enabled=true;
 
 			if(HeadAnim.GetCurrentAnimatorStateInfo(0).normalizedTime>=1)
@@ -144,8 +151,6 @@ public class Frog:  E_Base {
 		{
 			if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime>=1)
 			{
-				timeLeft-=Time.deltaTime;
-				timeLeft2-=Time.deltaTime;
 				Shadow.transform.localScale=Vector3.Lerp(Vector3.zero,ShadowSize,(JumpAirTime-timeLeft)/JumpAirTime);
 				Vector3 dir=Target.transform.position-transform.position;
 				if(timeLeft<=0)
@@ -227,7 +232,6 @@ public class Frog:  E_Base {
 		}
 			break;
 		case InternalAttackState.PREP_JUMP:
-			timeLeft-=Time.deltaTime;
 			if(timeLeft<=0)
 			{
 				hitBox.enabled=false;//make the frog invulnerable cause there is not hitbox for the skill to hit;
@@ -265,8 +269,6 @@ public class Frog:  E_Base {
 			}
 			break;
 		case InternalAttackState.PREP_TONGUE_LASH:
-			timeLeft-=Time.deltaTime;
-			timeLeft2-=Time.deltaTime;
 			if(timeLeft<=0)
 			{
 				anim.SetBool("FrogLash",true);

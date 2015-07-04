@@ -234,7 +234,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115880}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.23000002, y: -1.44000006, z: 0}
+  m_LocalPosition: {x: 3.01161528, y: 8.64609718, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 435250}
@@ -436,7 +436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: 3
   stats:
-    health: 0
+    health: 120
     defense: 0
     attack: 0
     moveSpd: 0
@@ -454,6 +454,8 @@ MonoBehaviour:
   invincTime: .699999988
   invincTimeLeft: 0
   timeLeft: 1.51015639
+  dead: 0
+  DeadTimer: 2
   JumpAirTime: 4
   JumpMovementFreeze: 3
   JumpPrepTime: 2

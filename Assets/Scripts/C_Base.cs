@@ -51,6 +51,8 @@ public class C_Base: MonoBehaviour {
 	GameObject skillGO=null;
 	Skills skillScript=null;
 	public bool dead=false;
+	float deathTimeLeft;
+	public float deathTime=3.0f;
 
 
 	//debug
@@ -68,11 +70,15 @@ public class C_Base: MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		int temp=PlayerPrefs.GetInt("PlayerHealth");
+		if (temp == 0)
+			stats.Health = 300;
+		else
+			stats.Health = temp;
 		rb = GetComponent<Rigidbody2D> ();
 		anim = GetComponent<Animator> ();
 		//bool left = false;
 		direction = new Vector3 ();
-		stats.Health = 300;
 	}
 
 	public void Damage(int damage)
@@ -82,7 +88,11 @@ public class C_Base: MonoBehaviour {
 		InvincTimeLeft = InvincTime;
 		stats.Health -= damage;
 		if (stats.Health <= 0) {
+			dead=true;
+			PlayerPrefs.SetInt("PlayerHealth",0);
 			anim.SetTrigger("Death");
+			deathTimeLeft=deathTime;
+
 		}
 	}
 
@@ -124,6 +134,7 @@ public class C_Base: MonoBehaviour {
 						else{
 							buffs.stackDic.Add(buff.buffName,1);
 						}
+						Damage(buffs.stackDic[buff.buffName]);
 					}
 					break;
 				case buffs.buffTypes.STUN:
@@ -144,8 +155,17 @@ public class C_Base: MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if (dead)
+		if (dead) {
+			if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime>=0)
+			{
+				if(deathTimeLeft<=0)
+					Application.LoadLevel("Level_1");
+				else
+					deathTimeLeft-=Time.deltaTime;
+			}
 			return;
+		
+		}
 		InvincTimeLeft -= Time.deltaTime;
 		//basic mechanics: movement with mouse
 		if (!ProcBuffs())//basically stunned
@@ -286,7 +306,7 @@ public class C_Base: MonoBehaviour {
 		{
 			//direct.z = direction.y/ direction.x * 180 / 3.142f;
 			skillsInfo temp=new skillsInfo();
-			temp.damage=2;
+			temp.damage=4;
 			temp.castTime=0.4f;
 			temp.isProjectile=false;
 			temp.knockback=5.0f;
@@ -326,8 +346,8 @@ public class C_Base: MonoBehaviour {
 			}
 			
 			skillsInfo temp=new skillsInfo();
-			temp.damage=2;
-			temp.castTime=0.4f;
+			temp.damage=1;
+			temp.castTime=0.5f;
 			temp.isProjectile=false;
 			temp.knockback=0.2f;
 			temp.ConstantDam=true;
@@ -344,7 +364,7 @@ public class C_Base: MonoBehaviour {
 			Skills skill=skillObj.GetComponent<Skills>();
 			
 			skillsInfo temp=new skillsInfo();
-			temp.damage=1;
+			temp.damage=2;
 			temp.castTime=0.1f;
 			temp.isProjectile=true;
 			temp.pierceNumber=5;
