@@ -436,7 +436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: 3
   stats:
-    health: 120
+    health: 100
     defense: 0
     attack: 0
     moveSpd: 0
