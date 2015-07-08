@@ -276,12 +276,20 @@ public class C_Base: MonoBehaviour {
 	}
 
 
-	public void Attack(int type,Vector2 mousePos)
+	public void Attack(int type,int weaponType,Vector2 mousePos)
 	{
 		if (!inAttackAnimation) {
 			direction = -Camera.main.WorldToScreenPoint (transform.position) + (Vector3)mousePos;
 			direction.Normalize ();
-			SwordAttack (type, direction);
+			switch(weaponType)
+			{
+			case 1:
+				SwordAttack (type, direction);
+				break;
+			case 2:
+				DefaultAttack(type,direction);
+				break;
+			}
 			//remove once proper skills are implemented
 			inAttackAnimation = true;
 
@@ -289,6 +297,30 @@ public class C_Base: MonoBehaviour {
 			Vector2 Dir = (Vector2)(direction);
 		}
 
+	}
+
+	void DefaultAttack(int type,Vector3 AttackDir)
+	{
+		direction = AttackDir;
+		anim.SetTrigger ("attack");
+		anim.SetInteger ("AtkType", type);
+		inAttackAnimation = true;
+		GameObject go = null;
+		GameObject skillObj = null;
+		skillObj = transform.FindChild ("Skill_Default").gameObject;
+		Animator s_Anim = skillObj.GetComponent<Animator> ();
+		if (direction.y > 0)
+			s_Anim.SetBool ("Forward", false);
+		else
+			s_Anim.SetBool ("Forward", true);
+
+		if (direction.x > 0)
+			s_Anim.SetBool ("Left", false);
+		else
+			s_Anim.SetBool ("Left", true);
+
+		s_Anim.SetTrigger ("Attack");
+		s_Anim.SetInteger ("type", type);
 	}
 
 	void SwordAttack(int type,Vector3 AttackDir)

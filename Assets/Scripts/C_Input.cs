@@ -125,7 +125,7 @@ public class C_Input: MonoBehaviour {
 		//if(Input.GetMouseButtonDown(1))
 		if(Input.GetKeyDown(KeyCode.Q))
 		{
-			baseScript.Attack(1,Input.mousePosition);
+			baseScript.Attack(1,1,Input.mousePosition);
 		}
 		//keyboard stuff
 		if(Input.GetKeyDown(KeyCode.I))
@@ -133,10 +133,18 @@ public class C_Input: MonoBehaviour {
 
 		}
 		if (Input.GetKeyDown (KeyCode.W)) {
-			baseScript.Attack(2,Input.mousePosition);
+			baseScript.Attack(2,1,Input.mousePosition);
 		}
 		if (Input.GetKeyDown (KeyCode.E)) {
-			baseScript.Attack(3,Input.mousePosition);
+			baseScript.Attack(3,1,Input.mousePosition);
+		}
+		if(Input.GetKeyDown(KeyCode.A))
+		{
+			baseScript.Attack(1,2,Input.mousePosition);
+		}
+		if(Input.GetKeyDown(KeyCode.S))
+	    {
+			baseScript.Attack(2,2,Input.mousePosition);
 		}
 	}
 	void MoveMe()
