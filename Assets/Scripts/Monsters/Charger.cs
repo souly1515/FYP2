@@ -9,6 +9,7 @@ public class Charger :  E_Base {
 	public float prepTime=1.0f;
 	public float chargeSpd=5.0f;
 	protected bool left=true;
+	protected DamageOnContact damageScript;
 	public enum InternalAttackState
 	{
 		CHARGE_PREP,
@@ -24,6 +25,7 @@ public class Charger :  E_Base {
 		base.detectionRange = 10;
 		base.attackRange = 5;
 		anim = gameObject.GetComponent<Animator> ();
+		damageScript = GetComponent<DamageOnContact> ();
 	}
 
 	protected override void Update ()
@@ -55,6 +57,8 @@ public class Charger :  E_Base {
 		charVel.z = 0;
 		switch (a_State) {
 		case InternalAttackState.IDLE:
+			if(damageScript.enabled)
+				damageScript.enabled=false;
 			if(timeLeft>0)
 			{
 				timeLeft-=Time.deltaTime;
@@ -112,6 +116,7 @@ public class Charger :  E_Base {
 			if(timeLeft<=0)
 			{
 				a_State=InternalAttackState.CHARGE;
+				damageScript.enabled=true;
 				anim.SetBool("Charge_Prep",false);
 				anim.SetBool("Charge",true);
 			}

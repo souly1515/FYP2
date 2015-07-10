@@ -44,6 +44,8 @@ public class TadpoleSlimeCharger :  Charger {
 		charVel.z = 0;
 		switch (a_State) {
 		case InternalAttackState.IDLE:
+			if(damageScript.enabled)
+				damageScript.enabled=false;
 			if(timeLeft>0||!slimeScript.regenerated)
 			{
 				timeLeft-=Time.deltaTime;
@@ -106,6 +108,7 @@ public class TadpoleSlimeCharger :  Charger {
 			timeLeft-=Time.deltaTime;
 			if(timeLeft<=0)
 			{
+				damageScript.enabled=true;
 				if(charVel.y>0)
 					slimeScript.KillSlime(false);
 				else

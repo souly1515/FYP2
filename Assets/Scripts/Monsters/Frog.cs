@@ -88,7 +88,8 @@ public class Frog:  E_Base {
 		switch (a_State) {
 		case InternalAttackState.IDLE:
 			HeadAnim.enabled=true;
-
+			if(jumpDamage.enabled)
+				jumpDamage.enabled=false;
 			if(HeadAnim.GetCurrentAnimatorStateInfo(0).normalizedTime>=1)
 			{
 				if(up)
