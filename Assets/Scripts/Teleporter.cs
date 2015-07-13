@@ -19,7 +19,7 @@ public class Teleporter : MonoBehaviour {
 		C_Base temp = col.gameObject.GetComponent<C_Base> ();
 		if(temp)
 		{
-			PlayerPrefs.SetInt("PlayerHealth",temp.stats.Health);
+			PlayerPrefs.SetFloat("PlayerHealth",temp.stats.Health);
 			PlayerPrefs.Save();
 			Application.LoadLevel(CurrentLevel+"_"+(++currentLevelNum).ToString());
 		}

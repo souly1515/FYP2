@@ -5,13 +5,175 @@ using System.Collections.Generic;
 [System.Serializable]
 public class C_Stats
 {
-	public int Str;//strength
-	public int Dex;//dexterity
-	public int Int;//intelligence
-	public int End;//endurance
-	public int Wil;//willpower, potentially haki thing
-	public int moveSpd;//move speed
-	public int Health;
+	public int Level{
+		get;
+		private set;
+	}
+	public int Exp{
+		get;
+		private set;
+	}
+
+	public int Str{
+		get;
+		private set;
+	}//strength
+	public int Dex{
+		get;
+		private set;
+	}//dexterity
+	public int Int{
+		get;
+		private set;
+	}//intelligence
+	public int End {
+		get;
+		private set;
+	}//endurance
+
+	public float moveSpd{
+		get;
+		private set;
+	}//move speed
+	public float Health{
+		get
+		{
+			return Health;
+		}
+		set{
+			if(value>MaxHealth)
+			{
+				Health=MaxHealth;
+			}
+			else
+				Health=value;
+		}
+	}
+	public float MaxHealth{
+		get;
+		private set;
+	}
+	public float Mana {
+		get{
+			return Mana;
+		}
+		set{
+			if(value>MaxMana)
+			{
+				Mana=MaxMana;
+			}
+			else
+				Mana=value;
+		}
+	}
+	public float MaxMana{
+		get;
+		private set;
+	}
+
+	public int statPoints {
+		get;
+		private set;
+	}
+	
+	const int baseHealth=200;
+	const int baseMana=100;
+	const float baseMs=3.7f;
+	void Add(int type)
+	{
+		if (statPoints <= 0)
+			return;
+		int statNeeded = 0;
+		switch (type) {
+		case 1:
+			statNeeded=GetPointsNeeded(Str);
+			if(statPoints>=statNeeded)
+			{
+				Str+=1;
+				statPoints-=statNeeded;
+			}
+			else
+				return;
+			break;
+		case 2:
+			statNeeded=GetPointsNeeded(Dex);
+			if(statPoints>=statNeeded)
+			{
+				Dex+=1;
+				statPoints-=statNeeded;
+			}
+			break;
+		case 3:
+			statNeeded=GetPointsNeeded(Int);
+			if(statPoints>=statNeeded)
+			{
+				Int+=1;
+				statPoints-=statNeeded;
+			}
+			break;
+		case 4:
+			statNeeded=GetPointsNeeded(End);
+			if(statPoints>=statNeeded)
+			{
+				End+=1;
+				statPoints-=statNeeded;
+			}
+			break;
+		}
+		RecalStats ();
+	}
+	public void SetExp(int exp)
+	{
+		Exp = exp;
+		CalcLevel ();
+	}
+
+	void CalcLevel()
+	{
+		//set exp to current level
+	}
+
+	int expToLevel()
+	{
+		//return the amount of exp needed to level up
+		return 0;
+	}
+
+	void AddExp(int amount)
+	{
+		Exp += amount;
+		int expthing = expToLevel ();
+		while (Exp > expthing) {
+			Exp-=expthing;
+			Level++;
+		}
+	}
+
+	void AddStatPoints()//adds stat points based on current level
+	{
+		int bonus = Mathf.FloorToInt(Mathf.Pow ((Level - 2), 1.2f));
+		if (bonus < 0)
+			bonus = 0;
+		statPoints += 5 + bonus;
+	}
+
+	public int GetPointsNeeded(int num)
+	{
+		return Mathf.FloorToInt (Mathf.Pow (num / 8, 1.3f)); 
+	}
+	void RecalStats()
+	{
+		float percentageHealth = Health / MaxHealth;
+		float percentageMana = Mana / MaxMana;
+		MaxHealth = baseHealth + (0.5f * Str)+(3.0f*End)+Level*2.2f;
+		Health = (MaxHealth * percentageHealth);
+		MaxMana = baseMana + 4 * Int+Level*1;
+		Mana = (MaxMana * percentageMana);
+		moveSpd = baseMs + Dex * 0.05f;
+
+		//calculate level base on exp
+
+	}
 }
 
 public class buffs
@@ -34,7 +196,6 @@ public class C_Base: MonoBehaviour {
 	public List<buffs> buffList=new List<buffs>();
 	public Vector2 nextPos;
 	public C_Stats stats;
-	public float moveSpd=4;//original move speed
 	public float moveSpdModded;//after modifications
 	public float speedMod=1.0f;
 	public bool moving=false;
@@ -99,7 +260,7 @@ public class C_Base: MonoBehaviour {
 	bool ProcBuffs()
 	{
 		bool returnvalue = true;
-		moveSpdModded = moveSpd;
+		moveSpdModded = stats.moveSpd;
 		speedMod = 1.0f;
 		foreach (buffs buff in buffList)
 		{
@@ -116,7 +277,7 @@ public class C_Base: MonoBehaviour {
 				case buffs.buffTypes.SLOW:
 					if(buffs.stackDic[buff.buffName]<=8)
 					{
-						moveSpdModded-=moveSpd*buff.effect;
+						moveSpdModded-=stats.moveSpd*buff.effect;
 						speedMod-=buff.effect;
 					}
 					else{
@@ -153,6 +314,8 @@ public class C_Base: MonoBehaviour {
 		}
 		return returnvalue;
 	}
+
+
 	// Update is called once per frame
 	void Update () {
 		if (dead) {

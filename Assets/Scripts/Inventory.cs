@@ -72,7 +72,18 @@ public class Inventory : MonoBehaviour {
 			}
 		}
 	}
-	public bool ItemAdded(Weapon target,int x,int y,int refx,int refy)
+	public bool AddItem(Weapon target)
+	{
+		//get weapon size
+		//check if there is an empty space large enough for this
+			//add item if there is
+			//probably remove the item from the scene
+			//return true
+		//else
+			//return false
+		return false;
+	}
+	public bool ItemAdded(Weapon target,int x,int y,int refx,int refy)//for moving items only
 	{
 		if (target==null)
 			return false;
