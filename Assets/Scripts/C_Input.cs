@@ -54,6 +54,7 @@ public class C_Input: MonoBehaviour {
 					if(target.gameObject.layer==LayerMask.NameToLayer("Pickable"))
 					{
 						Weapon temp=target.GetComponent<Weapon>();
+						inventory.PickItem(temp);
 						//target.GetComponent<Weapon>()=gameObject.GetComponent<C_Base>().myWeap;
 					}
 					else if(target.gameObject.layer==LayerMask.NameToLayer("UI"))
@@ -91,35 +92,42 @@ public class C_Input: MonoBehaviour {
 		if (Input.GetMouseButtonUp (0)) {
 			if(holdingItem==true)
 			{
-				Collider2D target=Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(Input.mousePosition),clickRadius,Interactables);
-				bool failed=false;
-				if(target)
+				if(holdingWeapon!=null)
 				{
-					if(target.gameObject.layer==LayerMask.NameToLayer("UI"))
+					Collider2D target=Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(Input.mousePosition),clickRadius,Interactables);
+					bool failed=false;
+					if(target)
 					{
-						Slot temp=target.gameObject.GetComponent<Slot>();
-						if(temp)
+						if(target.gameObject.layer==LayerMask.NameToLayer("UI"))
 						{
-							if(holdingWeapon)
+							Slot temp=target.gameObject.GetComponent<Slot>();
+							if(temp)
 							{
-								Weapon w_script=holdingWeapon.GetComponent<Weapon>();
-								inventory.ItemAdded(w_script,temp.x,temp.y,refX,refY);
+								if(holdingWeapon)
+								{
+									Weapon w_script=holdingWeapon.GetComponent<Weapon>();
+									inventory.ItemMoved(w_script,temp.x,temp.y,refX,refY);
+								}
 							}
+							else
+								failed=true;
 						}
 						else
 							failed=true;
 					}
-					else
+					else 
 						failed=true;
+					if(failed)
+					{
+						Weapon w_script=holdingWeapon.GetComponent<Weapon>();
+						inventory.AddItem(w_script,0,0);
+					}
+					holdingWeapon=null;
 				}
-				else 
-					failed=true;
-				if(failed)
-				{
-					Weapon w_script=holdingWeapon.GetComponent<Weapon>();
-					inventory.ItemAdded(w_script,-1,-1,0,0);
-				}
-				holdingWeapon=null;
+			}
+			else
+			{
+				holdingItem=false;
 			}
 		}
 		//if(Input.GetMouseButtonDown(1))

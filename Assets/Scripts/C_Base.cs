@@ -5,71 +5,146 @@ using System.Collections.Generic;
 [System.Serializable]
 public class C_Stats
 {
+
+	[SerializeField]
+	private int level=1;
 	public int Level{
-		get;
-		private set;
+		get{
+			return level;
+		}
+		private set
+		{
+			level=value;
+		}
 	}
+	[SerializeField]
+	private int exp;
 	public int Exp{
-		get;
-		private set;
+		get
+		{
+			return exp;
+		}
+		private set
+		{
+			exp=value;
+		}
 	}
-
+	[SerializeField]
+	private int str;
 	public int Str{
-		get;
-		private set;
+		get
+		{
+			return str;
+		}
+		private set
+		{
+			str=value;
+		}
 	}//strength
+	
+	[SerializeField]
+	private int dex;
 	public int Dex{
-		get;
-		private set;
+		get{
+			return dex;
+		}
+		private set
+		{
+			dex=value;
+		}
 	}//dexterity
+	
+	[SerializeField]
+	private int intelligence;
 	public int Int{
-		get;
-		private set;
+		get{
+			return intelligence;
+		}
+		private set
+		{
+			intelligence=value;
+		}
 	}//intelligence
-	public int End {
-		get;
-		private set;
-	}//endurance
 
+	
+	[SerializeField]
+	private int end;
+	public int End {
+		get{
+			return end;
+		}
+		private set
+		{
+			end=value;
+		}
+	}//endurance
+	[SerializeField]
+	private float movespd;
 	public float moveSpd{
-		get;
-		private set;
+		get{
+			return movespd;
+		}
+		private set
+		{
+			movespd=value;
+		}
 	}//move speed
+	[SerializeField]
+	private float health=1;
 	public float Health{
 		get
 		{
-			return Health;
+			return health;
 		}
 		set{
 			if(value>MaxHealth)
 			{
-				Health=MaxHealth;
+				health=MaxHealth;
 			}
 			else
-				Health=value;
+				health=value;
 		}
 	}
+	[SerializeField]
+	private float maxHealth=1;
 	public float MaxHealth{
-		get;
-		private set;
+		get{
+			return maxHealth;
+		}
+		private set
+		{
+			maxHealth=value;
+		}
 	}
+	[SerializeField]
+	private float mana=1;
 	public float Mana {
 		get{
-			return Mana;
+			return mana;
 		}
 		set{
 			if(value>MaxMana)
 			{
-				Mana=MaxMana;
+				mana=MaxMana;
 			}
 			else
-				Mana=value;
+				mana=value;
 		}
 	}
+	[SerializeField]
+	private float maxMana=1;
 	public float MaxMana{
-		get;
-		private set;
+		get{
+			return maxMana;
+		}
+		private set
+		{
+			maxMana=value;
+		}
 	}
+	
+	[SerializeField]
+	private int statpoints;
 
 	public int statPoints {
 		get;
@@ -161,7 +236,7 @@ public class C_Stats
 	{
 		return Mathf.FloorToInt (Mathf.Pow (num / 8, 1.3f)); 
 	}
-	void RecalStats()
+	public void RecalStats()
 	{
 		float percentageHealth = Health / MaxHealth;
 		float percentageMana = Mana / MaxMana;
@@ -172,7 +247,10 @@ public class C_Stats
 		moveSpd = baseMs + Dex * 0.05f;
 
 		//calculate level base on exp
-
+	}
+	public void InitStats()
+	{
+		Health = MaxHealth = Mana = MaxMana=1;
 	}
 }
 
@@ -240,6 +318,8 @@ public class C_Base: MonoBehaviour {
 		anim = GetComponent<Animator> ();
 		//bool left = false;
 		direction = new Vector3 ();
+		stats.InitStats ();
+		stats.RecalStats ();
 	}
 
 	public void Damage(int damage)

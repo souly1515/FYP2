@@ -8,7 +8,7 @@ public class Slot : MonoBehaviour {
 	public int y;
 	GameObject lastWeapon;
 	public SpriteRenderer sprite;
-	Weapon weaponScript;
+	public weaponInfo weaponScript;
 	// Use this for initialization
 	void Start () {
 		sprite = GetComponent<SpriteRenderer> ();
@@ -23,8 +23,8 @@ public class Slot : MonoBehaviour {
 		else if (weapon != lastWeapon) {
 			if(weapon)
 			{
-				weaponScript = weapon.GetComponent<Weapon> ();
-				switch(weaponScript.info.wtype)
+				weaponScript = weapon.GetComponent<Weapon> ().info;
+				switch(weaponScript.wtype)
 				{
 				case WeaponTypes.OH_MACE:
 					sprite.color = new Color (1.0f, 0.0f, 0.0f);
