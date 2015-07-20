@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour {
 	int maxY=8;
 	public bool showInventory;
 	public GameObject slotPrefab;
-	public GameObject weaponTemp;
+	public GameObject weaponInInventory;
 	float inventoryTrans;//transition between not active and active
 	// Use this for initialization
 	void Start () {
@@ -23,12 +23,6 @@ public class Inventory : MonoBehaviour {
 				slots[i,j]=thing.GetComponent<Slot>();
 			}
 		}
-		GameObject tempGo=Instantiate(weaponTemp,new Vector3(0,0),Quaternion.identity)as GameObject;
-		Weapon temp = tempGo.GetComponent<Weapon> ();
-		temp.info.wtype = WeaponTypes.OH_MACE;
-		temp.info.inventorySizeX = 2;
-		temp.info.inventorySizeY = 2;
-		ItemMoved (temp,0,0,0,0);
 		showInventory = true;
 		inventoryTrans = 0.0f;
 
@@ -49,10 +43,10 @@ public class Inventory : MonoBehaviour {
 			//dont render the inventory
 		}
 	}
-	public void ItemRemoved(Weapon target)
+	public void ItemRemoved(weaponInfo target)
 	{
-		for (int i=target.info.inventoryX; i<target.info.inventoryX+target.info.inventorySizeX; ++i) {
-			for(int j=target.info.inventoryY;j<target.info.inventoryY+target.info.inventorySizeY;++j)
+		for (int i=target.inventoryX; i<target.inventoryX+target.inventorySizeX; ++i) {
+			for(int j=target.inventoryY;j<target.inventoryY+target.inventorySizeY;++j)
 			{
 				slots[i,j].occupied=false;
 			}
@@ -62,10 +56,10 @@ public class Inventory : MonoBehaviour {
 	{
 	
 		if (slots [x, y].occupied) {
-			GameObject temp=slots[x,y].weapon;
-			Weapon target = temp.GetComponent<Weapon>();
-			for (int i=target.info.inventoryX; i<target.info.inventoryX+target.info.inventorySizeX; ++i) {
-				for(int j=target.info.inventoryX;j<target.info.inventoryY+target.info.inventorySizeY;++j)
+			//GameObject temp=slots[x,y].weapon;
+			weaponInfo target = slots[x,y].weaponScript;
+			for (int i=target.inventoryX; i<target.inventoryX+target.inventorySizeX; ++i) {
+				for(int j=target.inventoryX;j<target.inventoryY+target.inventorySizeY;++j)
 				{
 					slots[i,j].occupied=false;
 				}
@@ -89,7 +83,7 @@ public class Inventory : MonoBehaviour {
 					bool pass=true;
 					for(int i2=i;i2<i+sizeX&&pass;++i2)//check if the empty space found is large enough
 					{
-						for(int j2=i;j2<i+sizeY&&pass;++j2)
+						for(int j2=j;j2<j+sizeY&&pass;++j2)
 						{
 							if(slots[i2,j2].occupied)//there is something in where the weapon should be
 								pass=false;
@@ -105,86 +99,93 @@ public class Inventory : MonoBehaviour {
 			}
 		}
 		if (validSpace) {
-			if(AddItem(target,posX,posY))
-			{
-				//remove item from scene
-				Destroy(target.gameObject);
-
-			}
 			//add item if there is
 			//probably remove the item from the scene
-			return true;
-		}
-		else
+			if (AddItem (target.info, posX, posY)) {
+				//remove item from scene
+				Destroy (target.gameObject);
+				return true;
+
+			}
+			else
+			{
+				return false;
+			}
+		} else {
+			Debug.Log ("Failed due to lack of vaild space");
 			return false;
+		}
 	}
 
-	public bool AddItem(Weapon target,int posX,int posY)//this is for adding items
+	public bool AddItem(weaponInfo target,int posX,int posY)//this is for adding items
 	{
-		if (posX < 0 || posX + (target.info.inventorySizeX - 1) >= maxX || posY < 0 || posY + (target.info.inventorySizeY - 1) >= maxY) {//see if the things exceeds the bounds
+		if (posX < 0 || posX + (target.inventorySizeX - 1) >= maxX || posY < 0 || posY + (target.inventorySizeY - 1) >= maxY) {//see if the things exceeds the bounds
+			Debug.Log("Failed due to exceeded bounds");
 			return false;
 		} 
-		for (int i=posX; i<posX+(target.info.inventorySizeX-1); ++i) {
-			for(int j=posY;j<posY+(target.info.inventorySizeY-1);++j)
+		for (int i=posX; i<posX+(target.inventorySizeX-1); ++i) {
+			for(int j=posY;j<posY+(target.inventorySizeY-1);++j)
 			{
 				if(slots[i,j].occupied)
 				{
+					Debug.Log("Failed due to overlapping");
 					return false;
 				}
 			}
 		}
-		target.info.inventoryX = posX;
-		target.info.inventoryY = posY;
-		for (int i=posX; i<posX+target.info.inventorySizeX; ++i) {
-			for(int j=posY;j<posY+target.info.inventorySizeY;++j)
+		target.inventoryX = posX;
+		target.inventoryY = posY;
+		for (int i=posX; i<posX+target.inventorySizeX; ++i) {
+			for(int j=posY;j<posY+target.inventorySizeY;++j)
 			{
 				slots[i,j].occupied=true;
-				slots[i,j].weaponScript=target.gameObject.GetComponent<Weapon>().info;
+				slots[i,j].weaponScript=target;
 			}
 		}
+		Vector3 weaPos = slots [Mathf.FloorToInt (target.inventoryX + target.inventorySizeX * 0.5f), Mathf.FloorToInt (target.inventoryY + target.inventorySizeY * 0.5f)].transform.position - new Vector3 (0.25f, 0.25f);
+		GameObject temp = Instantiate (weaponInInventory,weaPos,Quaternion.identity)as GameObject;
 		return true;
 	}
 
 	//x,y is the pos of the item, refx,refy is the moving point
-	public bool ItemMoved(Weapon target,int x,int y,int refx,int refy)//for moving items only
+	public bool ItemMoved(weaponInfo target,int x,int y,int refx,int refy)//for moving items only
 	{
-		if (target==null)
+		if (target == null) {
+			Debug.Log("Failed due to null weapon");
 			return false;
-		if(x-refx<0||x-refx+(target.info.inventorySizeX-1)>=maxX||y-refy<0||y-refy+(target.info.inventorySizeY-1)>=maxY)//see if the things exceeds the bounds
+		
+		}if(x-refx<0||x-refx+(target.inventorySizeX-1)>=maxX||y-refy<0||y-refy+(target.inventorySizeY-1)>=maxY)//see if the things exceeds the bounds
 		{
-			if(target.info.inventoryX>=0&&target.info.inventoryX+(target.info.inventorySizeX-1)<maxX)//set back to the original pos
+			if(target.inventoryX>=0&&target.inventoryX+(target.inventorySizeX-1)<maxX)//set back to the original pos
 			{
-				if(target.info.inventoryY>=0&&target.info.inventoryY+(target.info.inventorySizeY-1)<maxY)
-					ItemMoved (target,target.info.inventoryX,target.info.inventoryY,0,0);
+				if(target.inventoryY>=0&&target.inventoryY+(target.inventorySizeY-1)<maxY)
+					ItemMoved (target,target.inventoryX,target.inventoryY,0,0);
 			}
+			Debug.Log("Failed due to exceeded bounds");
 			return false;
 		}
-		for (int i=x-refx; i<x-refx+(target.info.inventorySizeX-1); ++i) {
-			for(int j=y-refy;j<y-refy+(target.info.inventorySizeY-1);++j)
+		for (int i=x-refx; i<x-refx+(target.inventorySizeX); ++i) {
+			for(int j=y-refy;j<y-refy+(target.inventorySizeY);++j)
 			{
 				if(slots[i,j].occupied)
 				{
-					if(target!=slots[i,j].weapon)//check if its going to overwrite itself
-					{
-						if(target.info.inventoryX>=0&&target.info.inventoryX+(target.info.inventorySizeX-1)<maxX)
-						{
-							if(target.info.inventoryY>=0&&target.info.inventoryY+(target.info.inventorySizeY-1)<maxY)
-								ItemMoved (target,target.info.inventoryX,target.info.inventoryY,0,0);
-						}
-					}
+					ItemMoved (target,target.inventoryX,target.inventoryY,0,0);
+					Debug.Log("Failed due to overlapping");
 					return false;
 				}
 			}
 		}
-		target.info.inventoryX = x-refx;
-		target.info.inventoryY = y-refy;
-		for (int i=x-refx; i<x-refx+target.info.inventorySizeX; ++i) {
-			for(int j=y-refy;j<y-refy+target.info.inventorySizeY;++j)
+		target.inventoryX = x-refx;
+		target.inventoryY = y-refy;
+		for (int i=x-refx; i<x-refx+target.inventorySizeX; ++i) {
+			for(int j=y-refy;j<y-refy+target.inventorySizeY;++j)
 			{
 				slots[i,j].occupied=true;
-				slots[i,j].weapon=target.gameObject;
+				slots[i,j].weaponScript=target;
 			}
 		}
+		Vector3 weaPos = slots [Mathf.FloorToInt (target.inventoryX + target.inventorySizeX * 0.5f), Mathf.FloorToInt (target.inventoryY + target.inventorySizeY * 0.5f)].transform.position - new Vector3 (0.25f, 0.25f);
+		GameObject temp = Instantiate (weaponInInventory,weaPos,Quaternion.identity)as GameObject;
 		return true;
 	}
 }

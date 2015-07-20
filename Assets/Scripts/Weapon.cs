@@ -3,12 +3,13 @@ using System.Collections;
 
 public enum WeaponTypes
 {
-	OH_SWORD,
-	OH_MACE
+	ATTACK,
+	DEFENCE,
+	SUPPORT
 }
 
 [System.Serializable]
-public struct weaponInfo
+public class weaponInfo
 {
 	public float damage;
 	public WeaponTypes wtype;

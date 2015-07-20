@@ -9,7 +9,8 @@ public class C_Input: MonoBehaviour {
 	public GameObject inventoryGO;
 	public Inventory inventory;
 	public bool holdingItem;
-	public GameObject holdingWeapon;
+	public weaponInfo holdingWeapon;
+	public GameObject weaponSprite;
 	public int refX,refY;
 	Animator anim;
 
@@ -30,6 +31,16 @@ public class C_Input: MonoBehaviour {
 			}
 			return;
 		}
+		if (weaponSprite) {
+			Vector3 t=Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			t.z=0;
+
+
+			t.x+=0.25f-refX*0.5f;
+			t.y+=0.25f-refY*0.5f;
+
+			weaponSprite.transform.position=t;
+		}
 		if (Input.GetMouseButton (0)) {
 			//skills and weapons 1: casting weapons skills
 
@@ -48,34 +59,36 @@ public class C_Input: MonoBehaviour {
 			if (!baseScript.inAttackAnimation)//should not be able to do anything
 			{
 				Vector2 point=Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				Collider2D target=Physics2D.OverlapCircle(point,clickRadius,Interactables);
-				if(target)
+				Collider2D[] targetArray=Physics2D.OverlapCircleAll(point,clickRadius,Interactables);
+				if(targetArray.Length>0)
 				{
-					if(target.gameObject.layer==LayerMask.NameToLayer("Pickable"))
+					foreach(Collider2D target in targetArray)
 					{
-						Weapon temp=target.GetComponent<Weapon>();
-						inventory.PickItem(temp);
-						//target.GetComponent<Weapon>()=gameObject.GetComponent<C_Base>().myWeap;
-					}
-					else if(target.gameObject.layer==LayerMask.NameToLayer("UI"))
-					{
-						Slot temp=target.gameObject.GetComponent<Slot>();
-						if(temp)
+						if(target.gameObject.layer==LayerMask.NameToLayer("UI"))
 						{
-							int x,y;
-							x=temp.x;
-							y=temp.y;
-							if(temp.occupied)
+							if(!holdingItem)
 							{
-								holdingWeapon=temp.weapon;
-								Weapon w_script=holdingWeapon.GetComponent<Weapon>();
-								holdingItem=true;
-								refX=x-w_script.info.inventoryX;
-								refY=y-w_script.info.inventoryY;
-								inventory.ItemRemoved(w_script);
-
+								Slot temp=target.gameObject.GetComponent<Slot>();
+								if(temp)
+								{
+									int x,y;
+									x=temp.x;
+									y=temp.y;
+									if(temp.occupied)
+									{
+										holdingWeapon=temp.weaponScript;
+										//Weapon w_script=holdingWeapon.GetComponent<Weapon>();
+										holdingItem=true;
+										refX=x-holdingWeapon.inventoryX;
+										refY=y-holdingWeapon.inventoryY;
+										inventory.ItemRemoved(holdingWeapon);
+									}
+								}
 							}
-
+							if(target.gameObject.tag=="InventoryWeapon")
+							{
+								weaponSprite=target.gameObject;
+							}
 						}
 					}
 				}
@@ -92,42 +105,61 @@ public class C_Input: MonoBehaviour {
 		if (Input.GetMouseButtonUp (0)) {
 			if(holdingItem==true)
 			{
-				if(holdingWeapon!=null)
+				if(holdingWeapon!=(null))
 				{
-					Collider2D target=Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(Input.mousePosition),clickRadius,Interactables);
-					bool failed=false;
-					if(target)
+					Collider2D[] targetArray=Physics2D.OverlapCircleAll(Camera.main.ScreenToWorldPoint(Input.mousePosition),clickRadius,Interactables);
+					bool failed=true;
+					foreach(Collider2D target in targetArray)
 					{
-						if(target.gameObject.layer==LayerMask.NameToLayer("UI"))
+						if(target&&failed)
 						{
-							Slot temp=target.gameObject.GetComponent<Slot>();
-							if(temp)
+							if(target.gameObject.layer==LayerMask.NameToLayer("UI"))
 							{
-								if(holdingWeapon)
+								Slot temp=target.gameObject.GetComponent<Slot>();
+								if(temp)
 								{
-									Weapon w_script=holdingWeapon.GetComponent<Weapon>();
-									inventory.ItemMoved(w_script,temp.x,temp.y,refX,refY);
+									if(holdingWeapon!=(null))
+									{
+										//Weapon w_script=holdingWeapon.GetComponent<Weapon>();
+										inventory.ItemMoved(holdingWeapon,temp.x,temp.y,refX,refY);
+										if(weaponSprite)
+										{
+											Destroy(weaponSprite);
+											weaponSprite=null;
+										}
+										failed=false;
+									}
 								}
 							}
-							else
-								failed=true;
+
 						}
-						else
-							failed=true;
 					}
-					else 
-						failed=true;
 					if(failed)
 					{
-						Weapon w_script=holdingWeapon.GetComponent<Weapon>();
-						inventory.AddItem(w_script,0,0);
+						//Weapon w_script=holdingWeapon.GetComponent<Weapon>();
+						inventory.AddItem(holdingWeapon,0,0);
+						if(weaponSprite)
+						{
+							Destroy(weaponSprite);
+							weaponSprite=null;
+						}
 					}
 					holdingWeapon=null;
 				}
-			}
-			else
-			{
 				holdingItem=false;
+			}
+			else{
+				Vector2 point=Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				Collider2D target=Physics2D.OverlapCircle(point,clickRadius,Interactables);
+				if(target)
+				{
+					if(target.gameObject.layer==LayerMask.NameToLayer("Pickable"))
+					{
+						Weapon temp=target.GetComponent<Weapon>();
+						inventory.PickItem(temp);
+						//target.GetComponent<Weapon>()=gameObject.GetComponent<C_Base>().myWeap;
+					}
+				}
 			}
 		}
 		//if(Input.GetMouseButtonDown(1))

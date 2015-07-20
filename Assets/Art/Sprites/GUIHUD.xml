@@ -1,0 +1,30 @@
+<TextureAtlas imagePath="GUIHUD.png">
+	<SubTexture name="border_start" x="383" y="2007" width="256" height="38"/>
+	<SubTexture name="gauge_empty" x="0" y="976" width="472" height="472"/>
+	<SubTexture name="gauge_hp" x="0" y="28" width="472" height="472"/>
+	<SubTexture name="gauge_mp" x="0" y="502" width="472" height="472"/>
+	<SubTexture name="button_select" x="0" y="1645" width="381" height="195"/>
+	<SubTexture name="button_unselect" x="0" y="1842" width="381" height="195"/>
+	<SubTexture name="start" x="474" y="983" width="263" height="121"/>
+	<SubTexture name="options" x="474" y="362" width="307" height="104"/>
+	<SubTexture name="quit" x="746" y="1632" width="241" height="125"/>
+	<SubTexture name="credits" x="457" y="1450" width="324" height="92"/>
+	<SubTexture name="ui_arrow" x="746" y="1887" width="108" height="114"/>
+	<SubTexture name="border_corner" x="474" y="1392" width="39" height="39"/>
+	<SubTexture name="ui_sfx" x="739" y="983" width="141" height="107"/>
+	<SubTexture name="ui_bgm" x="768" y="689" width="97" height="110"/>
+	<SubTexture name="ui_settings" x="746" y="1759" width="126" height="126"/>
+	<SubTexture name="gameover" x="0" y="1450" width="455" height="193"/>
+	<SubTexture name="restart" x="457" y="1544" width="303" height="86"/>
+	<SubTexture name="paused" x="474" y="575" width="300" height="112"/>
+	<SubTexture name="resume" x="474" y="468" width="301" height="105"/>
+	<SubTexture name="hpmob_empty" x="474" y="1378" width="177" height="12"/>
+	<SubTexture name="hpboss_empty" x="0" y="0" width="497" height="12"/>
+	<SubTexture name="invenbox" x="732" y="1106" width="244" height="244"/>
+	<SubTexture name="brownbg" x="474" y="1106" width="256" height="256"/>
+	<SubTexture name="hpboss" x="0" y="14" width="497" height="12"/>
+	<SubTexture name="hpmob" x="474" y="1364" width="177" height="12"/>
+	<SubTexture name="ringboss" x="383" y="1645" width="361" height="360"/>
+	<SubTexture name="ring" x="474" y="28" width="343" height="332"/>
+	<SubTexture name="ringbg" x="474" y="689" width="292" height="292"/>
+</TextureAtlas>

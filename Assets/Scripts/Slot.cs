@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Slot : MonoBehaviour {
 	public bool occupied;
-	public GameObject weapon;
+	//public GameObject weapon;
 	public int x;
 	public int y;
-	GameObject lastWeapon;
+	weaponInfo lastWeapon;
 	public SpriteRenderer sprite;
 	public weaponInfo weaponScript;
 	// Use this for initialization
@@ -20,17 +20,20 @@ public class Slot : MonoBehaviour {
 			sprite.color=new Color(1.0f,1.0f,1.0f);
 			lastWeapon=null;
 		}
-		else if (weapon != lastWeapon) {
-			if(weapon)
+		else if (weaponScript != lastWeapon) {
+			if(weaponScript!=null)
 			{
-				weaponScript = weapon.GetComponent<Weapon> ().info;
+				//weaponScript = weapon.GetComponent<Weapon> ().info;
 				switch(weaponScript.wtype)
 				{
-				case WeaponTypes.OH_MACE:
+				case WeaponTypes.ATTACK:
 					sprite.color = new Color (1.0f, 0.0f, 0.0f);
 					break;
+				case WeaponTypes.DEFENCE:
+					sprite.color=new Color(0.0f,1.0f,0.0f);
+					break;
 				}
-				lastWeapon=weapon;
+				lastWeapon=weaponScript;
 			}
 		}
 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Inpassable
   - Character
+  - InventoryWeapon
   layers:
   - Default
   - TransparentFX

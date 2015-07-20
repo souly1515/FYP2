@@ -236,7 +236,7 @@ public class C_Stats
 	{
 		return Mathf.FloorToInt (Mathf.Pow (num / 8, 1.3f)); 
 	}
-	public void RecalStats()
+	public void RecalStats()//not used for base stats
 	{
 		float percentageHealth = Health / MaxHealth;
 		float percentageMana = Mana / MaxMana;
@@ -292,7 +292,7 @@ public class C_Base: MonoBehaviour {
 	public bool dead=false;
 	float deathTimeLeft;
 	public float deathTime=3.0f;
-
+	public weaponInfo equippedWeapon;
 
 	//debug
 	//end of debug
@@ -527,7 +527,7 @@ public class C_Base: MonoBehaviour {
 			switch(weaponType)
 			{
 			case 1:
-				SwordAttack (type, direction);
+				Attack_Fire(type, direction);
 				break;
 			case 2:
 				DefaultAttack(type,direction);
@@ -548,7 +548,6 @@ public class C_Base: MonoBehaviour {
 		anim.SetTrigger ("attack");
 		anim.SetInteger ("AtkType", type);
 		inAttackAnimation = true;
-		GameObject go = null;
 		GameObject skillObj = null;
 		skillObj = transform.FindChild ("Skill_Default").gameObject;
 		Animator s_Anim = skillObj.GetComponent<Animator> ();
@@ -566,7 +565,70 @@ public class C_Base: MonoBehaviour {
 		s_Anim.SetInteger ("type", type);
 	}
 
-	void SwordAttack(int type,Vector3 AttackDir)
+	void Attack_Nature(int type,Vector3 AttackDir)
+	{
+		direction = AttackDir;
+		anim.SetTrigger("attack");
+		anim.SetInteger ("AtkType", 1);
+		inAttackAnimation = true;
+		GameObject go=null;
+		GameObject skillObj = null;
+		switch (type) {
+		case 1:
+		{
+		}
+			break;
+		case 2:
+		{
+			
+		}
+			break;
+		case 3:
+		{
+		}
+			break;
+		case 4:
+			
+			break;
+		}
+		skillGO = skillObj;
+		skillScript = skillGO.GetComponent<Skills> ();
+		//skillObj.transform.SetParent (transform);
+	}
+
+	
+	void Attack_Water(int type,Vector3 AttackDir)
+	{
+		direction = AttackDir;
+		anim.SetTrigger("attack");
+		anim.SetInteger ("AtkType", 1);
+		inAttackAnimation = true;
+		GameObject go=null;
+		GameObject skillObj = null;
+		switch (type) {
+		case 1:
+		{
+		}
+			break;
+		case 2:
+		{
+			
+		}
+			break;
+		case 3:
+		{
+		}
+			break;
+		case 4:
+			
+			break;
+		}
+		skillGO = skillObj;
+		skillScript = skillGO.GetComponent<Skills> ();
+		//skillObj.transform.SetParent (transform);
+	}
+
+	void Attack_Fire(int type,Vector3 AttackDir)
 	{
 		direction = AttackDir;
 		anim.SetTrigger("attack");
@@ -581,7 +643,8 @@ public class C_Base: MonoBehaviour {
 		{
 			//direct.z = direction.y/ direction.x * 180 / 3.142f;
 			skillsInfo temp=new skillsInfo();
-			temp.damage=4;
+			//temp.damage=4;
+			temp.damage=4*stats.Str+2*equippedWeapon.damage;
 			temp.castTime=0.4f;
 			temp.isProjectile=false;
 			temp.knockback=5.0f;
@@ -621,10 +684,11 @@ public class C_Base: MonoBehaviour {
 			}
 			
 			skillsInfo temp=new skillsInfo();
-			temp.damage=1;
+			//temp.damage=1;
+			temp.damage=1*stats.Str+0.8f*equippedWeapon.damage;
 			temp.castTime=0.5f;
 			temp.isProjectile=false;
-			temp.knockback=0.2f;
+			temp.knockback=1.0f;
 			temp.ConstantDam=true;
 			temp.skillName=SkillPath+"Fire_"+type.ToString();
 			skill.SetInfo(temp);
@@ -639,10 +703,11 @@ public class C_Base: MonoBehaviour {
 			Skills skill=skillObj.GetComponent<Skills>();
 			
 			skillsInfo temp=new skillsInfo();
-			temp.damage=2;
+			//temp.damage=2;
+			temp.damage=2*stats.Str+equippedWeapon.damage*1.2f;
 			temp.castTime=0.1f;
 			temp.isProjectile=true;
-			temp.pierceNumber=5;
+			temp.pierceNumber=3;
 			temp.knockback=0.2f;
 			temp.ConstantDam=false;
 			temp.skillName=SkillPath+"Fire_"+type.ToString();

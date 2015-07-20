@@ -4,6 +4,7 @@ using System.Collections;
 public class E_Stats
 {
 	public int health;
+	public int maxHealth;
 	public float defense;
 	public float attack;
 	public float moveSpd;
@@ -47,6 +48,7 @@ public abstract class E_Base : MonoBehaviour {
 	protected float stunDur = 0.0f;
 	public bool dead=false;
 	public float DeadTimer=2.0f;
+	public GameObject healthBar;
 	SpriteRenderer spriteR;
 	// Use this for initialization
 	virtual protected void Start () {
@@ -56,6 +58,10 @@ public abstract class E_Base : MonoBehaviour {
 		stateChange = false;
 		anim = GetComponent<Animator> ();
 		spriteR = GetComponent<SpriteRenderer> ();
+		if (stats.health > 0) {
+			stats.maxHealth=stats.health;
+		}
+		healthBar = transform.FindChild ("HealthBar").gameObject;
 	}
 
 	protected abstract void Attack_State();
@@ -66,6 +72,7 @@ public abstract class E_Base : MonoBehaviour {
 
 	// Update is called once per frame
 	virtual protected void Update () {
+		healthBar.transform.localScale = new Vector3 ((float)((float)stats.health / (float) 	stats.maxHealth), 1, 1);
 		if (dead) {
 			if(!anim)
 				Destroy (gameObject);

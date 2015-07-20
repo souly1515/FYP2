@@ -1,0 +1,363 @@
+fileFormatVersion: 2
+guid: 00eaeaab1722ce843a7c8c58f75cc321
+timeCreated: 1437199244
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: border_start
+    21300002: gauge_empty
+    21300004: gauge_hp
+    21300006: gauge_mp
+    21300008: button_select
+    21300010: button_unselect
+    21300012: start
+    21300014: options
+    21300016: quit
+    21300018: credits
+    21300020: ui_arrow
+    21300022: border_corner
+    21300024: ui_sfx
+    21300026: ui_bgm
+    21300028: ui_settings
+    21300030: gameover
+    21300032: restart
+    21300034: paused
+    21300036: resume
+    21300038: hpmob_empty
+    21300040: hpboss_empty
+    21300042: invenbox
+    21300044: brownbg
+    21300046: hpboss
+    21300048: hpmob
+    21300050: ringboss
+    21300052: ring
+    21300054: ringbg
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 1024
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: border_start
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 3
+        width: 256
+        height: 38
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gauge_empty
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 472
+        height: 472
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gauge_hp
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1548
+        width: 472
+        height: 472
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gauge_mp
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1074
+        width: 472
+        height: 472
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: button_select
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 208
+        width: 381
+        height: 195
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: button_unselect
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 11
+        width: 381
+        height: 195
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: start
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 944
+        width: 263
+        height: 121
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: options
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 1582
+        width: 307
+        height: 104
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: quit
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 291
+        width: 241
+        height: 125
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: credits
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 506
+        width: 324
+        height: 92
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ui_arrow
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 47
+        width: 108
+        height: 114
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: border_corner
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 617
+        width: 39
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ui_sfx
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 958
+        width: 141
+        height: 107
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ui_bgm
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1249
+        width: 97
+        height: 110
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ui_settings
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 163
+        width: 126
+        height: 126
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gameover
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 405
+        width: 455
+        height: 193
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: restart
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 418
+        width: 303
+        height: 86
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: paused
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 1361
+        width: 300
+        height: 112
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: resume
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 1475
+        width: 301
+        height: 105
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hpmob_empty
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 658
+        width: 177
+        height: 12
+      alignment: 4
+      pivot: {x: 0, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hpboss_empty
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2036
+        width: 497
+        height: 12
+      alignment: 4
+      pivot: {x: 0, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: invenbox
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 698
+        width: 244
+        height: 244
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: brownbg
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 686
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hpboss
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2022
+        width: 497
+        height: 12
+      alignment: 4
+      pivot: {x: 0, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hpmob
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 672
+        width: 177
+        height: 12
+      alignment: 4
+      pivot: {x: 0, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ringboss
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 43
+        width: 361
+        height: 360
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ring
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 1688
+        width: 343
+        height: 332
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ringbg
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 1067
+        width: 292
+        height: 292
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
