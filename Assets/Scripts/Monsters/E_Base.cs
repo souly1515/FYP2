@@ -122,7 +122,7 @@ public abstract class E_Base : MonoBehaviour {
 				anim.SetBool("Flinch",false);
 	}
 	
-	public void ApplyDamage(float attack)
+	virtual public void ApplyDamage(float attack)
 	{
 		if (invincTimeLeft > 0)
 			return;
