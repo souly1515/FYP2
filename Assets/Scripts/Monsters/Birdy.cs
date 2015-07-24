@@ -13,11 +13,11 @@ public class Birdy : E_Base {
 	bool moving=false;
 	public enum InternalAttackState
 	{
+		REST,//considered idle
 		ATTACK,//head extension
 		PRE_ATTACK,//head compression
 		MOVE,//move towards the player
-		PRE_MOVE,
-		REST//considered idle
+		PRE_MOVE
 	}
 
 	protected override void Start ()
@@ -35,7 +35,12 @@ public class Birdy : E_Base {
 
 	protected override void Attack_State ()
 	{
-		targetDir = Target.gameObject.transform.position - transform.position;
+		if (attackStates == InternalAttackState.MOVE||attackStates==InternalAttackState.PRE_MOVE) {
+			targetDir = nextPos - transform.position;
+		}
+		else
+			targetDir = Target.gameObject.transform.position - transform.position;
+
 		targetDir.Normalize ();
 		if (targetDir.x > 0) {
 			if (transform.localScale.x > 0) {
@@ -59,7 +64,7 @@ public class Birdy : E_Base {
 
 		switch (attackStates) {
 		case InternalAttackState.ATTACK:
-			if (anim.GetCurrentAnimatorStateInfo (0).normalizedTime >= 1) {
+			if (anim.GetCurrentAnimatorStateInfo (0).normalizedTime >= 1&&timeLeft<=0&&anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) {
 				attackStates = InternalAttackState.REST;
 				//set time left
 				timeLeft = RestTime;
@@ -68,17 +73,55 @@ public class Birdy : E_Base {
 				Attacking = false;
 				anim.SetBool ("Attack", false);
 			}
+			else
+				timeLeft-=Time.deltaTime;
 
 			break;
 		case InternalAttackState.MOVE:
 			{
-				AnimatorStateInfo t = anim.GetCurrentAnimatorStateInfo (0);
+			AnimatorStateInfo t = anim.GetCurrentAnimatorStateInfo (0);
+			if((transform.position - nextPos).sqrMagnitude < 0.5f)
+			{
+				if(!t.IsTag("WalkLand"))
+				{
+					anim.SetTrigger("Land");
+				}
+				else
+				{
+					anim.SetBool("Walk",false);
+					attackStates=InternalAttackState.REST;
+				}
+			}
+			else if(t.IsTag("WalkLand"))
+			{
+				transform.position = transform.position + (nextPos - transform.position).normalized * (2*(1-t.normalizedTime)) * Time.deltaTime;//slow down as the animations stops
+			}
+			else if(t.IsTag("WalkMidAir"))
+			{
+				if (timeLeft > 0) {
+					timeLeft -= Time.deltaTime;
+					transform.position = transform.position + (nextPos - transform.position).normalized * 2.0f * Time.deltaTime;
+				} else {
+					anim.SetTrigger ("Land");
+				}
+			}else if (t.IsTag ("Walk")) {
+				timeLeft = 1.0f;
+				transform.position = transform.position + (nextPos - transform.position).normalized * (2.0f*t.normalizedTime) * Time.deltaTime;
+
+			}
+			else if(t.IsTag("WalkPrep"))
+			{
+				if(t.normalizedTime>=1)
+					anim.SetTrigger("Move");
+			}
+			/*
 				if ((transform.position - nextPos).sqrMagnitude < 0.5f && t.IsTag ("WalkLand")) {
 					anim.SetBool ("Walk", false);
 					attackStates = InternalAttackState.REST;
 					timeLeft = RestTime + 0.5f;
 				} else if (t.normalizedTime >= 1 && t.IsTag ("WalkLand")) {
 					attackStates = InternalAttackState.PRE_MOVE;
+					timeLeft=0.5f;
 				} else {
 					if (t.IsTag ("WalkMidAir")) {
 						if (timeLeft > 0) {
@@ -91,14 +134,16 @@ public class Birdy : E_Base {
 						timeLeft = 1.0f;
 					}
 				}
-
+			*/
 				break;
 			}
 		case InternalAttackState.PRE_MOVE:
-			if (anim.GetCurrentAnimatorStateInfo (0).normalizedTime >= 1) {
+			if (anim.GetCurrentAnimatorStateInfo (0).normalizedTime >= 1&&timeLeft<=0&&anim.GetCurrentAnimatorStateInfo(0).IsTag("WalkPrep")) {
 				attackStates = InternalAttackState.MOVE;
 				anim.SetTrigger ("Move");
 			}
+			else
+				timeLeft-=Time.deltaTime;
 			break;
 		case InternalAttackState.PRE_ATTACK:
 			{
@@ -107,7 +152,8 @@ public class Birdy : E_Base {
 				//basically i put walk in here cause i was lazy to make another completely different state for this
 				anim.SetBool ("Walk", true);
 				moving = true;
-				if ((transform.position - Target.transform.position).sqrMagnitude <= 2.0f && t.IsTag ("WalkLand")) {
+			Vector3 temp=(transform.position - Target.transform.position);
+				if (((transform.position - Target.transform.position).sqrMagnitude <=  1.5f && (t.IsTag ("Idle")||t.IsTag("PrepAttack")))||Attacking) {
 
 					Attacking = true;
 					anim.SetBool ("Walk", false);
@@ -115,17 +161,53 @@ public class Birdy : E_Base {
 					if (timeLeft > 0 && anim.GetCurrentAnimatorStateInfo (0).normalizedTime < 1) {//test if charge time is over and the charge animation is over as well
 						timeLeft -= Time.deltaTime;
 					} else {//if it is then go attack
-						if (targetDir.y > 0) {
-							attackColB.enabled = true;
-						} else {
-							attackColF.enabled = true;
+						if(t.IsTag("PrepAttack"))
+						{
+							if (targetDir.y > 0) {
+								attackColB.enabled = true;
+							} else {
+								attackColF.enabled = true;
+							}
+							attackStates = InternalAttackState.ATTACK;
+							anim.SetBool ("AttackPrep", false);
+							anim.SetBool ("Attack", true);
+							timeLeft=0.5f;
 						}
-						attackStates = InternalAttackState.ATTACK;
-						anim.SetBool ("AttackPrep", false);
-						anim.SetBool ("Attack", true);
 					}
 
-				} else if (t.normalizedTime >= 1 && t.IsTag ("WalkLand")) {
+				}
+			else if((transform.position - Target.transform.position).sqrMagnitude <= 1.5f )
+			{
+				if(!t.IsTag("WalkLand"))
+				{
+					anim.SetTrigger("Land");
+				}
+				anim.SetBool("Walk",false);
+			}
+			else if(t.IsTag("WalkLand"))
+			{
+				transform.position = transform.position + (Target.transform.position - transform.position).normalized * (2*(1-t.normalizedTime)) * Time.deltaTime;//slow down as the animations stops
+			}
+			else if(t.IsTag("WalkMidAir"))
+			{
+				if (timeLeft > 0) {
+					timeLeft -= Time.deltaTime;
+					transform.position = transform.position + (Target.transform.position - transform.position).normalized * 2.0f * Time.deltaTime;
+				} else {
+					anim.SetTrigger ("Land");
+				}
+			}else if (t.IsTag ("Walk")) {
+				timeLeft = 1.0f;
+				transform.position = transform.position + (Target.transform.position - transform.position).normalized * (2.0f*t.normalizedTime) * Time.deltaTime;
+				
+			}
+			else if(t.IsTag("WalkPrep"))
+			{
+				if(t.normalizedTime>=1)
+					anim.SetTrigger("Move");
+			}
+			/*
+			else if (t.normalizedTime >= 1 && t.IsTag ("WalkLand")) {
 
 
 				} else {
@@ -141,6 +223,8 @@ public class Birdy : E_Base {
 						timeLeft = 1.0f;
 					}
 				}
+				//*/
+			/*
 			Attacking = true;
 			anim.SetBool ("Walk", false);
 			anim.SetBool ("AttackPrep", true);
@@ -157,7 +241,7 @@ public class Birdy : E_Base {
 				anim.SetBool ("Attack", true);
 
 			}
-		
+			//*/
 
 			break;
 		}
@@ -172,7 +256,7 @@ public class Birdy : E_Base {
 				switch(chance)
 				{
 				case 0:
-					attackStates=InternalAttackState.MOVE;
+					attackStates=InternalAttackState.PRE_MOVE;
 					anim.SetBool("Walk",true);
 					{
 						float angle = UnityEngine.Random.Range(0,360);
@@ -182,12 +266,13 @@ public class Birdy : E_Base {
 						float dist=UnityEngine.Random.Range(0.5f,1.5f)*avgMoveDist;
 						nextPos=moveDir*dist;
 						originalPos=transform.position;
+						timeLeft=0.5f;
 					}
 					//do the random direction thing for the move
 					break;
 				default:
-					attackStates=InternalAttackState.PRE_ATTACK;
-					timeLeft=PreAttackTime;
+					//attackStates=InternalAttackState.PRE_ATTACK;
+					//timeLeft=PreAttackTime;
 					//set timer for the attack;
 					break;
 				}

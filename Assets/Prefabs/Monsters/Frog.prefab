@@ -437,6 +437,7 @@ MonoBehaviour:
   states: 3
   stats:
     health: 100
+    maxHealth: 0
     defense: 0
     attack: 0
     moveSpd: 0
@@ -456,6 +457,7 @@ MonoBehaviour:
   timeLeft: 1.51015639
   dead: 0
   DeadTimer: 2
+  healthBar: {fileID: 0}
   JumpAirTime: 4
   JumpMovementFreeze: 3
   JumpPrepTime: 2

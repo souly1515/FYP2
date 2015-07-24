@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 430722}
   - 95: {fileID: 9517878}
   - 114: {fileID: 11496832}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Birdy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - 4: {fileID: 401762}
   - 212: {fileID: 21281668}
   - 60: {fileID: 6033174}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   - 4: {fileID: 489026}
   - 212: {fileID: 21278354}
   - 60: {fileID: 6092750}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HeadB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 432654}
   - 212: {fileID: 21292452}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Legs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - 4: {fileID: 444328}
   - 212: {fileID: 21290972}
   - 61: {fileID: 6176106}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 154434}
   m_Enabled: 0
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
@@ -231,7 +231,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 162676}
   m_Enabled: 0
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c912e61b33b972b40b23ab8afa335f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  states: 0
+  states: 1
   stats:
     health: 5
     maxHealth: 5
