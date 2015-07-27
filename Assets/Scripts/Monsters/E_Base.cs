@@ -15,7 +15,6 @@ public class E_Stats
 
 public enum E_States
 {
-	STATE_NONE=0,
 	IDLE,
 	TRACKING,
 	ATTACK,
@@ -61,7 +60,9 @@ public abstract class E_Base : MonoBehaviour {
 		if (stats.health > 0) {
 			stats.maxHealth=stats.health;
 		}
-		healthBar = transform.FindChild ("HealthBar").gameObject;
+		Transform temp= transform.FindChild ("HealthBar");
+		if (temp)
+			healthBar = temp.gameObject;
 	}
 
 	protected abstract void Attack_State();
@@ -72,7 +73,8 @@ public abstract class E_Base : MonoBehaviour {
 
 	// Update is called once per frame
 	virtual protected void Update () {
-		healthBar.transform.localScale = new Vector3 ((float)((float)stats.health / (float) 	stats.maxHealth), 1, 1);
+		if(healthBar)
+			healthBar.transform.localScale = new Vector3 ((float)((float)stats.health / (float) 	stats.maxHealth), 1, 1);
 		if (dead) {
 			if(!anim)
 				Destroy (gameObject);

@@ -1,0 +1,247 @@
+fileFormatVersion: 2
+guid: 10a0e19b809af354caf451933de855bf
+timeCreated: 1437914470
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Feedback_0
+    21300002: Feedback_1
+    21300004: Feedback_2
+    21300006: Feedback_3
+    21300008: Feedback_4
+    21300010: Feedback_5
+    21300012: Feedback_6
+    21300014: Feedback_7
+    21300016: Feedback_8
+    21300018: Feedback_9
+    21300020: Feedback_10
+    21300022: Feedback_11
+    21300024: Feedback_12
+    21300026: Feedback_13
+    21300028: Feedback_14
+    21300030: Feedback_15
+    21300032: SpiritExplosion_0
+    21300034: SpiritExplosion_1
+    21300036: SpiritExplosion_2
+    21300038: SpiritExplosion_3
+    21300040: SpiritExplosion_4
+    21300042: SpiritExplosion_5
+    21300044: SpiritExplosion_6
+    21300046: SpiritExplosion_7
+    21300048: SpiritExplosion_8
+    21300050: SpiritExplosion_9
+    21300052: SpiritExplosion_10
+    21300054: SpiritExplosion_11
+    21300056: SpiritExplosion_12
+    21300058: SpiritExplosion_13
+    21300060: SpiritExplosion_14
+    21300062: SpiritExplosion_15
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 256
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: SpiritExplosion_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 784
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpiritExplosion_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 784
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpiritExplosion_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 784
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpiritExplosion_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 784
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpiritExplosion_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 528
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpiritExplosion_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 528
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpiritExplosion_6
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 528
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpiritExplosion_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 528
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpiritExplosion_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 272
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpiritExplosion_9
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 272
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpiritExplosion_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 272
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpiritExplosion_11
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 272
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpiritExplosion_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpiritExplosion_13
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpiritExplosion_14
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpiritExplosion_15
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

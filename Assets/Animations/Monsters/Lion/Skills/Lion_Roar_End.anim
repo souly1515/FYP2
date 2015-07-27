@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Lion_Spike_Prep
+  m_Name: Lion_Roar_End
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -18,16 +18,18 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300026, guid: a3e70766ae39f614582b85c8e1534bd6, type: 3}
-    - time: .25
-      value: {fileID: 21300028, guid: a3e70766ae39f614582b85c8e1534bd6, type: 3}
-    - time: .5
-      value: {fileID: 21300030, guid: a3e70766ae39f614582b85c8e1534bd6, type: 3}
+      value: {fileID: 21300000, guid: 465f569cb4f1e8443bff1375699937ad, type: 3}
+    - time: .100000001
+      value: {fileID: 21300002, guid: 465f569cb4f1e8443bff1375699937ad, type: 3}
+    - time: .200000003
+      value: {fileID: 21300004, guid: 465f569cb4f1e8443bff1375699937ad, type: 3}
+    - time: .300000012
+      value: {fileID: 21300006, guid: 465f569cb4f1e8443bff1375699937ad, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 4
+  m_SampleRate: 10
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -41,13 +43,14 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300026, guid: a3e70766ae39f614582b85c8e1534bd6, type: 3}
-    - {fileID: 21300028, guid: a3e70766ae39f614582b85c8e1534bd6, type: 3}
-    - {fileID: 21300030, guid: a3e70766ae39f614582b85c8e1534bd6, type: 3}
+    - {fileID: 21300000, guid: 465f569cb4f1e8443bff1375699937ad, type: 3}
+    - {fileID: 21300002, guid: 465f569cb4f1e8443bff1375699937ad, type: 3}
+    - {fileID: 21300004, guid: 465f569cb4f1e8443bff1375699937ad, type: 3}
+    - {fileID: 21300006, guid: 465f569cb4f1e8443bff1375699937ad, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: .75
+    m_StopTime: .400000006
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

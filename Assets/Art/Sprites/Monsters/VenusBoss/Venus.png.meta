@@ -1,37 +1,47 @@
 fileFormatVersion: 2
-guid: 70ae48dbd9ba1c44085b71e3a4d9dba3
-timeCreated: 1437446719
+guid: f1d7bd04fb3336249aa661c8ed215a3b
+timeCreated: 1437973641
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Lion_0
-    21300002: Lion_1
-    21300004: Lion_2
-    21300006: Lion_3
-    21300008: Lion_4
-    21300010: Lion_5
-    21300012: Lion_6
-    21300014: Lion_7
-    21300016: Lion_8
-    21300018: Lion_9
-    21300020: Lion_10
-    21300022: Lion_11
-    21300024: Lion_12
-    21300026: Lion_13
-    21300028: Lion_14
-    21300030: Lion_15
-    21300032: Lion_16
-    21300034: Lion_17
-    21300036: Lion_18
-    21300038: Lion_19
-    21300040: Lion_20
-    21300042: Lion_21
-    21300044: Lion_22
-    21300046: Lion_23
-    21300048: Lion_24
-    21300050: Lion_25
-    21300052: Lion_26
-    21300054: Lion_27
+    21300000: Venus_0
+    21300002: Venus_1
+    21300004: Venus_2
+    21300006: Venus_3
+    21300008: Venus_4
+    21300010: Venus_5
+    21300012: Venus_6
+    21300014: Venus_7
+    21300016: Venus_8
+    21300018: Venus_9
+    21300020: Venus_10
+    21300022: Venus_11
+    21300024: Venus_12
+    21300026: Venus_13
+    21300028: Venus_14
+    21300030: Venus_15
+    21300032: Venus_16
+    21300034: Venus_17
+    21300036: Venus_18
+    21300038: Venus_19
+    21300040: Venus_20
+    21300042: Venus_21
+    21300044: Venus_22
+    21300046: Venus_23
+    21300048: Venus_24
+    21300050: Venus_25
+    21300052: Venus_26
+    21300054: Venus_27
+    21300056: Venus_28
+    21300058: Venus_29
+    21300060: Venus_30
+    21300062: Venus_31
+    21300064: Venus_32
+    21300066: Venus_33
+    21300068: Venus_34
+    21300070: Venus_35
+    21300072: Venus_36
+    21300074: Venus_37
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -71,13 +81,137 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 196
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 8192
+    textureFormat: -1
+    compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: Lion_0
+    - name: Venus_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4608
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Venus_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 4608
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Venus_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 4608
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Venus_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 4608
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Venus_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4096
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Venus_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 4096
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Venus_6
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 4096
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Venus_7
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 4096
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Venus_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Venus_9
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Venus_10
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Venus_11
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 3584
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Venus_12
       rect:
         serializedVersion: 2
         x: 0
@@ -87,7 +221,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_1
+    - name: Venus_13
       rect:
         serializedVersion: 2
         x: 512
@@ -97,7 +231,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_2
+    - name: Venus_14
       rect:
         serializedVersion: 2
         x: 1024
@@ -107,7 +241,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_3
+    - name: Venus_15
       rect:
         serializedVersion: 2
         x: 1536
@@ -117,7 +251,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_4
+    - name: Venus_16
       rect:
         serializedVersion: 2
         x: 0
@@ -127,7 +261,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_5
+    - name: Venus_17
       rect:
         serializedVersion: 2
         x: 512
@@ -137,7 +271,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_6
+    - name: Venus_18
       rect:
         serializedVersion: 2
         x: 1024
@@ -147,7 +281,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_7
+    - name: Venus_19
       rect:
         serializedVersion: 2
         x: 1536
@@ -157,7 +291,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_8
+    - name: Venus_20
       rect:
         serializedVersion: 2
         x: 0
@@ -167,7 +301,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_9
+    - name: Venus_21
       rect:
         serializedVersion: 2
         x: 512
@@ -177,7 +311,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_10
+    - name: Venus_22
       rect:
         serializedVersion: 2
         x: 1024
@@ -187,7 +321,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_11
+    - name: Venus_23
       rect:
         serializedVersion: 2
         x: 1536
@@ -197,7 +331,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_12
+    - name: Venus_24
       rect:
         serializedVersion: 2
         x: 0
@@ -207,7 +341,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_13
+    - name: Venus_25
       rect:
         serializedVersion: 2
         x: 512
@@ -217,7 +351,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_14
+    - name: Venus_26
       rect:
         serializedVersion: 2
         x: 1024
@@ -227,7 +361,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_15
+    - name: Venus_27
       rect:
         serializedVersion: 2
         x: 1536
@@ -237,7 +371,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_16
+    - name: Venus_28
       rect:
         serializedVersion: 2
         x: 0
@@ -247,7 +381,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_17
+    - name: Venus_29
       rect:
         serializedVersion: 2
         x: 512
@@ -257,7 +391,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_18
+    - name: Venus_30
       rect:
         serializedVersion: 2
         x: 1024
@@ -267,7 +401,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_19
+    - name: Venus_31
       rect:
         serializedVersion: 2
         x: 1536
@@ -277,7 +411,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_20
+    - name: Venus_32
       rect:
         serializedVersion: 2
         x: 0
@@ -287,7 +421,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_21
+    - name: Venus_33
       rect:
         serializedVersion: 2
         x: 512
@@ -297,7 +431,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_22
+    - name: Venus_34
       rect:
         serializedVersion: 2
         x: 1024
@@ -307,7 +441,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_23
+    - name: Venus_35
       rect:
         serializedVersion: 2
         x: 1536
@@ -317,7 +451,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_24
+    - name: Venus_36
       rect:
         serializedVersion: 2
         x: 0
@@ -327,30 +461,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_25
+    - name: Venus_37
       rect:
         serializedVersion: 2
         x: 512
-        y: 0
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_26
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Lion_27
-      rect:
-        serializedVersion: 2
-        x: 1536
         y: 0
         width: 512
         height: 512
