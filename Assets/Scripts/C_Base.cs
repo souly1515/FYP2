@@ -462,15 +462,17 @@ public class C_Base: MonoBehaviour {
 
 			float xDif = temp.x - Camera.main.transform.position.x;
 
-			if (Mathf.Abs (xDif) < 2.5f) {
+			if (Mathf.Abs (xDif) < 4f) {
 				xDif = 0;
 			} else if (xDif > 0) {
-				xDif -= 2.5f;
+				xDif -= 4f;
 			} else {
-				xDif += 2.5f;
+				xDif += 4f;
 			}
 
 			float yDif = temp.y - Camera.main.transform.position.y;
+
+			yDif-=1.5f;
 
 			if (Mathf.Abs (yDif) < 1.5f) {
 				yDif = 0;
