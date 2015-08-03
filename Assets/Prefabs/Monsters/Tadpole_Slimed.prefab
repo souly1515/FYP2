@@ -195,10 +195,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0720b04055ec2e4fbea68bf8904ea4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  states: 1
+  states: 0
   stats:
-    health: 8
-    maxHealth: 0
+    health: 12
+    maxHealth: 12
     defense: 0
     attack: 0
     moveSpd: 0
@@ -219,6 +219,7 @@ MonoBehaviour:
   dead: 0
   DeadTimer: 2
   healthBar: {fileID: 0}
+  WeaponPrefab: {fileID: 0}
   targ: {x: 0, y: 0, z: 0}
   charVel: {x: 0, y: 0, z: 0}
   chargeCoolOff: .5

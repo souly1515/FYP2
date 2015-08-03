@@ -16,7 +16,7 @@ public struct skillsInfo
 	public float castTime;
 	public buff buffType;
 	public bool ConstantDam;//constantly damage
-	public bool isProjectile;
+	public int type;//0 melee, 1 cascade, 2 ranged
 	public Vector2 velocity;
 	public int pierceNumber;
 	public int endType;//hardcoded like 1 = no end, 2 = explosive ending
@@ -24,6 +24,7 @@ public struct skillsInfo
 }
 
 public class Skills : MonoBehaviour {
+	public GameObject character;
 	public skillsInfo info;
 	public bool ApplyDamage=false;
 	public bool appliedDamage=false;//to test if damage step was done
@@ -32,6 +33,8 @@ public class Skills : MonoBehaviour {
 	public Animator anim;
 	public float timeLeft;
 	public bool SkillOver=false;
+	public bool deathOnDamage=false;
+	public bool singleFrameDamage=true;
 	bool resetTime=false;
 	// Use this for initialization
 	void Start () {
@@ -52,12 +55,16 @@ public class Skills : MonoBehaviour {
 		}
 
 		if (ApplyDamage) {
-			appliedDamage = true;
-			ApplyDamage=false;
-			SkillOver=true;
+			if(singleFrameDamage)
+			{
+				appliedDamage = true;
+				ApplyDamage=false;
+				SkillOver=true;
+			}
 		}
-		if (info.isProjectile) {
+		switch(info.type) {
 			//*
+		case 1:
 			info.castTime-=Time.deltaTime;
 			if(info.pierceNumber>0&&info.castTime<=0)
 			{
@@ -68,20 +75,42 @@ public class Skills : MonoBehaviour {
 				skillsInfo temp=new skillsInfo();
 				temp.damage=1;
 				temp.castTime=0.1f;
-				temp.isProjectile=true;
+				temp.type=1;
 				temp.pierceNumber=info.pierceNumber-1;
 				temp.knockback=10;
 				temp.skillName=info.skillName;
 				skill.Dir=Dir;
 				skill.SetInfo(temp);
+				skill.character=character;
 				info.pierceNumber=0;
 			}
 			//*/
+			break;
+		case 2:
+			info.castTime-=Time.deltaTime;
+			if(!(info.castTime<=0))
+			{
+				transform.position+=(Vector3)info.velocity*5.0f*Time.deltaTime;
+				return;
+			}
+			else
+				Destroy(gameObject);
+
+			break;
+
 		}
+		//2 step process
+		//when the animation finishes the first time applieddamage should be false
+		//so it starts the stop animation and trigger the damage
+		//if its not single frame
+
+		//for constant damage objects
+		//it works the same way in that if it ends its animation it will trigger the apply damage
+		//last 1 frame then die
 		if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime>=1) {
 			if (appliedDamage) {
 				//collision testing and attack enemies
-				DestroyObject(gameObject);
+ 				Destroy(gameObject);
 			} else {
 				anim.SetBool("Stop",true);
 				ApplyDamage = true;
@@ -100,9 +129,11 @@ public class Skills : MonoBehaviour {
 				E_Base E = col.gameObject.GetComponent<E_Base> ();
 				if(E)
 				{
-					E.ApplyDamage (info.damage);
+					E.ApplyDamage (info.damage,character.GetComponent<C_Base>());
 					E.KnockBack (info.knockback, Dir,0);
 					resetTime=true;
+					if(deathOnDamage)
+						Destroy (gameObject);
 				}
 			}
 		}

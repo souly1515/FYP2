@@ -45,7 +45,7 @@ public class Charger :  E_Base {
 			{
 				left=true;
 				Vector3 temp=transform.localScale;
-				temp.x*=-1;
+					temp.x*=-1;
 				transform.localScale = temp;	
 			}
 		}
@@ -57,7 +57,6 @@ public class Charger :  E_Base {
 		charVel.z = 0;
 		switch (a_State) {
 		case InternalAttackState.IDLE:
-			if(damageScript.enabled)
 				damageScript.enabled=false;
 			if(timeLeft>0)
 			{
@@ -75,6 +74,7 @@ public class Charger :  E_Base {
 			//stop moving and start counting down then switch to charge enemy
 			break;
 		case InternalAttackState.CHARGE:
+			damageScript.enabled=true;
 			if(Vector3.Dot(targ-gameObject.transform.position,charVel)>0){//not passed yet
 				Vector3 temp=gameObject.transform.position;
 				charVel+=charVel.normalized*1.2f*Time.deltaTime;
@@ -90,6 +90,7 @@ public class Charger :  E_Base {
 			break;
 		case InternalAttackState.CHARGE_SLOW:
 			timeLeft-=Time.deltaTime;
+			damageScript.enabled=true;
 			Vector3 pos=gameObject.transform.position;
 			gameObject.transform.position=pos+charVel*Time.deltaTime;
 			if(timeLeft<0)
@@ -124,6 +125,13 @@ public class Charger :  E_Base {
 		}
 		charVel.z = 0;
 
+	}
+
+	public override void ApplyDamage (float attack, C_Base c)
+	{
+		base.ApplyDamage (attack, c);
+		if (stats.health <= 0)
+			damageScript.enabled = false;
 	}
 
 	protected override void ChangeState ()

@@ -134,6 +134,15 @@ Prefab:
       propertyPath: info.wtype
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11483124, guid: 1efd7bb21f20b52449b23c7b3c1b8b46, type: 2}
+      propertyPath: info.spriteName
+      value: weapon3
+      objectReference: {fileID: 0}
+    - target: {fileID: 21216846, guid: 1efd7bb21f20b52449b23c7b3c1b8b46, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300004, guid: 5c4e6f7ca4d6dbe41813e1d648ae1419,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1efd7bb21f20b52449b23c7b3c1b8b46, type: 2}
   m_IsPrefabParent: 0
@@ -217,14 +226,6 @@ Prefab:
     - target: {fileID: 496538, guid: 1efd7bb21f20b52449b23c7b3c1b8b46, type: 2}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 142486, guid: 1efd7bb21f20b52449b23c7b3c1b8b46, type: 2}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 11483124, guid: 1efd7bb21f20b52449b23c7b3c1b8b46, type: 2}
-      propertyPath: info.wtype
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 142486, guid: 1efd7bb21f20b52449b23c7b3c1b8b46, type: 2}
       propertyPath: m_Name
@@ -319,23 +320,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!1 &1729576936 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 142486, guid: 1efd7bb21f20b52449b23c7b3c1b8b46, type: 2}
-  m_PrefabInternal: {fileID: 1021687434}
---- !u!61 &1729576937
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1729576936}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: .159999996, y: .159999996}
 --- !u!1001 &1904560470
 Prefab:
   m_ObjectHideFlags: 0

@@ -10,7 +10,8 @@ GameObject:
   - 4: {fileID: 418424}
   - 212: {fileID: 21273462}
   - 95: {fileID: 9584236}
-  m_Layer: 0
+  - 114: {fileID: 11471298}
+  m_Layer: 13
   m_Name: Skill_Default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +47,38 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11471298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74b6cd4e196cda54499d748c012c6cb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+    damage: 0
+    knockback: 0
+    castTime: 0
+    ConstantDam: 0
+    type: 0
+    velocity: {x: 0, y: 0}
+    pierceNumber: 0
+    endType: 0
+    skillName: 
+  ApplyDamage: 0
+  appliedDamage: 0
+  enemy:
+    serializedVersion: 2
+    m_Bits: 256
+  Dir: {x: 0, y: 0}
+  anim: {fileID: 0}
+  timeLeft: 0
+  SkillOver: 0
+  deathOnDamage: 0
+  singleFrameDamage: 1
 --- !u!212 &21273462
 SpriteRenderer:
   m_ObjectHideFlags: 1

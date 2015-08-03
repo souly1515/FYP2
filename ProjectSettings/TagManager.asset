@@ -7,6 +7,7 @@ TagManager:
   - Inpassable
   - Character
   - InventoryWeapon
+  - SkillDisplay
   layers:
   - Default
   - TransparentFX
@@ -21,9 +22,9 @@ TagManager:
   - Background
   - Walls
   - Pickable
-  - 
-  - 
-  - 
+  - Skills
+  - Misc
+  - Skill
   - 
   - 
   - 

@@ -12,7 +12,9 @@ GameObject:
   - 114: {fileID: 11458470}
   - 95: {fileID: 9539270}
   - 114: {fileID: 11493812}
-  m_Layer: 0
+  - 114: {fileID: 11417808}
+  - 60: {fileID: 6093390}
+  m_Layer: 14
   m_Name: Spirit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +31,7 @@ GameObject:
   - 4: {fileID: 436644}
   - 212: {fileID: 21279604}
   - 114: {fileID: 11479894}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Spirit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +48,7 @@ GameObject:
   - 4: {fileID: 454760}
   - 212: {fileID: 21288224}
   - 114: {fileID: 11484798}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Spirit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +65,7 @@ GameObject:
   - 4: {fileID: 469782}
   - 212: {fileID: 21280288}
   - 114: {fileID: 11482384}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Spirit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +82,7 @@ GameObject:
   - 4: {fileID: 448400}
   - 212: {fileID: 21253186}
   - 114: {fileID: 11427012}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Spirit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,6 +153,25 @@ Transform:
   - {fileID: 454760}
   m_Father: {fileID: 403348}
   m_RootOrder: 0
+--- !u!60 &6093390
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101966}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: -.223192766, y: -.697620928}
+      - {x: .519728959, y: -.525552392}
+      - {x: .691475749, y: .105432972}
+      - {x: .285599798, y: .745362639}
+      - {x: -.61227715, y: .489700079}
+      - {x: -.606512368, y: -.427914083}
 --- !u!95 &9539270
 Animator:
   serializedVersion: 3
@@ -168,6 +189,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11417808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101966}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a190e6f4e06b74f90993688a7f0dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitOnce: 1
+  damage: 30
 --- !u!114 &11427012
 MonoBehaviour:
   m_ObjectHideFlags: 1

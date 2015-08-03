@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 402590}
   - 212: {fileID: 21290100}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LionTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 442132}
   - 212: {fileID: 21280784}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Skull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 495754}
   - 212: {fileID: 21297686}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,9 @@ GameObject:
   - 212: {fileID: 21254902}
   - 114: {fileID: 11433112}
   - 95: {fileID: 9500122}
-  m_Layer: 0
+  - 50: {fileID: 5048630}
+  - 61: {fileID: 6166780}
+  m_Layer: 8
   m_Name: Lion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,6 +119,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 461788}
   m_RootOrder: 0
+--- !u!50 &5048630
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197864}
+  m_Mass: 1000
+  m_LinearDrag: 15
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_FixedAngle: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+--- !u!61 &6166780
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197864}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: .184989452, y: .0849881172}
+  serializedVersion: 2
+  m_Size: {x: 3.10793734, y: 3.84337354}
 --- !u!95 &9500122
 Animator:
   serializedVersion: 3
@@ -147,8 +177,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: 0
   stats:
-    health: 0
-    maxHealth: 0
+    health: 500
+    maxHealth: 500
     defense: 0
     attack: 0
     moveSpd: 0
@@ -169,6 +199,7 @@ MonoBehaviour:
   dead: 0
   DeadTimer: 2
   healthBar: {fileID: 0}
+  WeaponPrefab: {fileID: 0}
   a_states: 0
   spikePrefab: {fileID: 192892, guid: 67d4feb03428fc641a330defc73ecc0b, type: 2}
   spiritPrefab: {fileID: 101966, guid: 107cf8cf2695dca41bbee3e67149985d, type: 2}

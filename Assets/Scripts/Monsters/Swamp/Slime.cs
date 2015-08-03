@@ -16,7 +16,7 @@ public class Slime  :  E_Base{
 	public float idleTime=3.0f;
 	public float prepTime=1.0f;
 	public float chargeSpd=5.0f;
-	public float avgMoveDist=2.0f;
+	public float avgMoveDist=1.0f;
 	public int avgProj=4;//average projectiles
 	public int projLeft = 0;//number of projectiles left to shoot
 	float moveProgress = 0.0f;
@@ -96,7 +96,7 @@ public class Slime  :  E_Base{
 				moveDir.x=Mathf.Cos (angle); 
 				moveDir.y=Mathf.Sin (angle);
 				float dist=UnityEngine.Random.Range(0.5f,1.5f)*avgMoveDist;
-				moveTarg=moveDir*dist;
+				moveTarg=transform.position+moveDir*dist;
 				originalPos=transform.position;
 				moveProgress=0.0f;
 				timeMod=(moveTarg-originalPos).magnitude/movementspd;

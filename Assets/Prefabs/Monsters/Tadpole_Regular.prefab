@@ -60,7 +60,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.75199986, y: -2.81800008, z: 0}
+  m_LocalPosition: {x: 19.7414532, y: -1.61456871, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 492526}
@@ -163,7 +163,7 @@ MonoBehaviour:
   states: 0
   stats:
     health: 4
-    maxHealth: 0
+    maxHealth: 4
     defense: 0
     attack: 0
     moveSpd: 0
@@ -184,6 +184,7 @@ MonoBehaviour:
   dead: 0
   DeadTimer: 2
   healthBar: {fileID: 0}
+  WeaponPrefab: {fileID: 0}
   targ: {x: 0, y: 0, z: 0}
   charVel: {x: 0, y: 0, z: 0}
   chargeCoolOff: .5

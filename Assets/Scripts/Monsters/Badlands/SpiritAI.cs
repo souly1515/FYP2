@@ -47,6 +47,7 @@ public class SpiritAI : MonoBehaviour {
 			{
 				move.enabled=false;
 				anim.SetTrigger("Explode");
+				GetComponent<DamageOnContact>().enabled=true;
 			}
 			else{
 				

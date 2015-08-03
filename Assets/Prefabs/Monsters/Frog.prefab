@@ -434,7 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b2e623c1e706354ea16e204d38b6ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  states: 3
+  states: 0
   stats:
     health: 100
     maxHealth: 0
@@ -458,6 +458,7 @@ MonoBehaviour:
   dead: 0
   DeadTimer: 2
   healthBar: {fileID: 0}
+  WeaponPrefab: {fileID: 0}
   JumpAirTime: 4
   JumpMovementFreeze: 3
   JumpPrepTime: 2
@@ -477,6 +478,7 @@ MonoBehaviour:
   lastLashDir: {x: 0, y: 0, z: 0}
   left: 1
   up: 0
+  healthThing: {fileID: 0}
   a_State: 0
 --- !u!212 &21204282
 SpriteRenderer:

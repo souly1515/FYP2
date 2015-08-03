@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 [System.Serializable]
 public class E_Stats
 {
@@ -28,8 +29,8 @@ public abstract class E_Base : MonoBehaviour {
 	public int currentHealth;
 	public float knockbackDrag;
 	public LayerMask Tracks;
-	public float detectionRange=10;
-	public float attackRange=5;
+	public float detectionRange=6;
+	public float attackRange=3;
 	public Collider2D Target;
 	public float invincTime;
 	public float invincTimeLeft;
@@ -48,7 +49,11 @@ public abstract class E_Base : MonoBehaviour {
 	public bool dead=false;
 	public float DeadTimer=2.0f;
 	public GameObject healthBar;
-	SpriteRenderer spriteR;
+	protected List<SpriteRenderer> spriteR=new List<SpriteRenderer>();
+	bool DroppedWeapon=false;
+	public GameObject WeaponPrefab;
+
+
 	// Use this for initialization
 	virtual protected void Start () {
 		originalPos = transform.position;
@@ -56,13 +61,17 @@ public abstract class E_Base : MonoBehaviour {
 		knockbackDrag = 0.8f;
 		stateChange = false;
 		anim = GetComponent<Animator> ();
-		spriteR = GetComponent<SpriteRenderer> ();
+		spriteR.AddRange( GetComponents<SpriteRenderer> ());
+		spriteR.AddRange (GetComponentsInChildren<SpriteRenderer> ());
+
 		if (stats.health > 0) {
 			stats.maxHealth=stats.health;
 		}
 		Transform temp= transform.FindChild ("HealthBar");
 		if (temp)
 			healthBar = temp.gameObject;
+
+		WeaponPrefab = Resources.Load ("Weapons/Weapon")as GameObject;
 	}
 
 	protected abstract void Attack_State();
@@ -71,27 +80,69 @@ public abstract class E_Base : MonoBehaviour {
 
 	protected abstract void Idle_State();
 
-	// Update is called once per frame
-	virtual protected void Update () {
-		if(healthBar)
-			healthBar.transform.localScale = new Vector3 ((float)((float)stats.health / (float) 	stats.maxHealth), 1, 1);
-		if (dead) {
-			if(!anim)
-				Destroy (gameObject);
-			if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime>=0)
+	protected virtual void OnDeath()
+	{
+		if(!DroppedWeapon)
+		{
+			DroppedWeapon=true;
+			int t=Random.Range(0,100);
+			if(t<10)
 			{
-				DeadTimer-=Time.deltaTime;
-				if(DeadTimer<=0)
+				GameObject temp=Instantiate(WeaponPrefab,transform.position,Quaternion.identity)as GameObject;
+				weaponInfo t2=temp.GetComponent<Weapon>().info;
+				//if(t2)
 				{
-					Color tempColor=spriteR.color;
-					tempColor.a-=1.0f*Time.deltaTime;
-					spriteR.color=tempColor;
-					if(spriteR.color.a<=0)
+					int level=GameObject.FindGameObjectWithTag("Character").GetComponent<C_Base>().stats.Level;
+					t2.damage=level+Random.Range(0,5)-2;
+					t2.spriteName="weapon"+Random.Range(0,8).ToString();
+					int a=Random.Range(0,2);
+					if(t2.damage<=0)
 					{
-						Destroy(gameObject);
+						t2.damage=1;
+					}
+					if(a==0)
+					{
+						t2.wtype=WeaponTypes.ATTACK;
+					}
+					else
+					{
+						t2.wtype=WeaponTypes.DEFENCE;
 					}
 				}
 			}
+		}
+		if(!anim)
+			Destroy (gameObject);
+		if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime>=0)
+		{
+			DeadTimer-=Time.deltaTime;
+			if(DeadTimer<=0)
+			{
+				foreach(SpriteRenderer s in spriteR)
+				{
+					Color tempColor=s.color;
+					tempColor.a-=1.0f*Time.deltaTime;
+					s.color=tempColor;
+					if(s.color.a<=0)
+					{
+						Destroy(gameObject);
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	// Update is called once per frame
+	virtual protected void Update () {
+		if (healthBar) {
+			float nx=(float)((float)stats.health / (float)stats.maxHealth);
+			if(nx<0)
+				nx=0;
+			healthBar.transform.localScale = new Vector3 (nx, 1, 1);
+		}
+		if (dead) {
+			OnDeath();
 		} else {
 			invincTimeLeft -= Time.deltaTime;
 			currentHealth = stats.health;
@@ -124,16 +175,15 @@ public abstract class E_Base : MonoBehaviour {
 				anim.SetBool("Flinch",false);
 	}
 	
-	virtual public void ApplyDamage(float attack)
+	virtual public void ApplyDamage(float attack,C_Base c)
 	{
 		if (invincTimeLeft > 0)
 			return;
 		invincTimeLeft = invincTime;
 		//apply armor application
-		stats.health -= (int)attack;
-		Debug.Log ("Damaged\n");
-		Debug.Log (attack);
+		stats.health -= Mathf.CeilToInt(attack);
 		if (stats.health <= 0) {
+			c.stats.AddExp(10);
 			if(anim)
 			{
 				anim.SetTrigger("Death");

@@ -13,6 +13,7 @@ public class C_Input: MonoBehaviour {
 	public GameObject weaponSprite;
 	public int refX,refY;
 	Animator anim;
+	int weaponType;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +21,7 @@ public class C_Input: MonoBehaviour {
 		clickRadius = 0.1f;
 		//inventory = inventoryGO.GetComponent<Inventory> ();
 		anim = GetComponent<Animator> ();
+		weaponType = 1;
 	}
 	
 	// Update is called once per frame
@@ -150,34 +152,50 @@ public class C_Input: MonoBehaviour {
 			}
 			else{
 				Vector2 point=Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				Collider2D target=Physics2D.OverlapCircle(point,clickRadius,Interactables);
-				if(target)
+				if((point-(Vector2)transform.position).sqrMagnitude>1)
 				{
-					if(target.gameObject.layer==LayerMask.NameToLayer("Pickable"))
+					MoveMe();
+				}
+				else
+				{
+					Collider2D target=Physics2D.OverlapCircle(point,clickRadius,Interactables);
+					if(target)
 					{
-						Weapon temp=target.GetComponent<Weapon>();
-						inventory.PickItem(temp);
-						//target.GetComponent<Weapon>()=gameObject.GetComponent<C_Base>().myWeap;
+						if(target.gameObject.layer==LayerMask.NameToLayer("Pickable"))
+						{
+							Weapon temp=target.GetComponent<Weapon>();
+							//inventory.PickItem(temp);
+							baseScript.swapWeapon(ref temp.info);
+							//target.GetComponent<Weapon>()=gameObject.GetComponent<C_Base>().myWeap;
+						}
 					}
 				}
 			}
-		}
-		//if(Input.GetMouseButtonDown(1))
-		if(Input.GetKeyDown(KeyCode.Q))
-		{
-			baseScript.Attack(1,1,Input.mousePosition);
 		}
 		//keyboard stuff
 		if(Input.GetKeyDown(KeyCode.I))
 		{
 
 		}
+		//if(Input.GetMouseButtonDown(1))
+		if(Input.GetKeyDown(KeyCode.Q))
+		{
+			baseScript.Attack(1,weaponType,Input.mousePosition);
+		}
 		if (Input.GetKeyDown (KeyCode.W)) {
-			baseScript.Attack(2,1,Input.mousePosition);
+			baseScript.Attack(2,weaponType,Input.mousePosition);
 		}
 		if (Input.GetKeyDown (KeyCode.E)) {
-			baseScript.Attack(3,1,Input.mousePosition);
+			baseScript.Attack(3,weaponType,Input.mousePosition);
 		}
+		if (Input.GetKeyDown (KeyCode.R)) {
+			baseScript.Attack(4,weaponType,Input.mousePosition);
+		}
+		if(Input.GetKeyDown(KeyCode.Escape))
+		{
+			Application.LoadLevel("MainMenu");
+		}
+		/*
 		if(Input.GetKeyDown(KeyCode.A))
 		{
 			baseScript.Attack(1,2,Input.mousePosition);
@@ -185,6 +203,13 @@ public class C_Input: MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.S))
 	    {
 			baseScript.Attack(2,2,Input.mousePosition);
+		}
+		*/
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			if(weaponType==0)
+				weaponType=1;
+			else
+				weaponType=0;
 		}
 	}
 	void MoveMe()

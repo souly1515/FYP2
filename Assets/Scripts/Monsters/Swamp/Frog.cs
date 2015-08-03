@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Frog:  E_Base {
 	protected BoxCollider2D hitBox;
@@ -28,6 +29,7 @@ public class Frog:  E_Base {
 	public bool left = true;//which direction its facing
 	public bool up = false;//which direction its facing
 	DamageOnContact jumpDamage;
+	public Slider healthThing;
 	public enum InternalAttackState
 	{
 		IDLE,
@@ -41,6 +43,7 @@ public class Frog:  E_Base {
 
 	override protected void Start ()
 	{
+		healthThing = GameObject.Find ("BossHealth").GetComponent<Slider> ();
 		base.Start ();
 		anim = gameObject.GetComponent<Animator> ();
 		hitBox = gameObject.GetComponent<BoxCollider2D> ();
@@ -61,26 +64,21 @@ public class Frog:  E_Base {
 
 	public override void KnockBack (float amount, Vector2 Dir, float stunDuration)
 	{
-		if (dead)
-			return;
-		knockBackEffect = Dir * amount;
-		InitialKnockBack = amount;
 	}
 
 	protected override void Update ()
 	{
+		healthThing.value = (float)stats.health / (float)stats.maxHealth;
 		timeLeft -= Time.deltaTime;
 		timeLeft2 -= Time.deltaTime;
 		base.Update ();
-		if (stunned) {
-			HeadAnim.enabled=true;
-		}
+		//if (stunned) {
+			//HeadAnim.enabled=true;
+		//}
 	}
 	protected override void stunHandle ()
 	{
-		states=E_States.ATTACK;
-		if(anim)
-			anim.SetBool("Flinch",false);
+		//states=E_States.ATTACK;
 	}
 	
 	protected override void Attack_State()

@@ -10,6 +10,8 @@ GameObject:
   - 4: {fileID: 430722}
   - 95: {fileID: 9517878}
   - 114: {fileID: 11496832}
+  - 61: {fileID: 6129404}
+  - 50: {fileID: 5070422}
   m_Layer: 8
   m_Name: Birdy
   m_TagString: Untagged
@@ -43,6 +45,7 @@ GameObject:
   - 4: {fileID: 401762}
   - 212: {fileID: 21281668}
   - 60: {fileID: 6033174}
+  - 114: {fileID: 11427778}
   m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
@@ -60,6 +63,7 @@ GameObject:
   - 4: {fileID: 489026}
   - 212: {fileID: 21278354}
   - 60: {fileID: 6092750}
+  - 114: {fileID: 11476458}
   m_Layer: 8
   m_Name: HeadB
   m_TagString: Untagged
@@ -92,7 +96,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 444328}
   - 212: {fileID: 21290972}
-  - 61: {fileID: 6176106}
   m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
@@ -135,7 +138,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.51999998, y: -1.97000003, z: 0}
+  m_LocalPosition: {x: 6.97356129, y: 8.96842194, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 486754}
@@ -206,6 +209,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 430722}
   m_RootOrder: 5
+--- !u!50 &5070422
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113932}
+  m_Mass: 1000
+  m_LinearDrag: 15
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_FixedAngle: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!60 &6033174
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -240,19 +258,19 @@ PolygonCollider2D:
       - {x: -.752213001, y: .548313498}
       - {x: -.921094894, y: -.098408699}
       - {x: .133760452, y: -.359816551}
---- !u!61 &6176106
+--- !u!61 &6129404
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 174478}
+  m_GameObject: {fileID: 113932}
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: .229812384, y: .0154861212}
+  m_Offset: {x: .0514912605, y: -.103094578}
   serializedVersion: 2
-  m_Size: {x: 1.03158569, y: .969027758}
+  m_Size: {x: 1.28802109, y: 1.29026783}
 --- !u!95 &9517878
 Animator:
   serializedVersion: 3
@@ -270,6 +288,32 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11427778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a190e6f4e06b74f90993688a7f0dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitOnce: 0
+  damage: 10
+--- !u!114 &11476458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a190e6f4e06b74f90993688a7f0dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitOnce: 0
+  damage: 10
 --- !u!114 &11496832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -281,9 +325,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c912e61b33b972b40b23ab8afa335f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  states: 1
+  states: 0
   stats:
-    health: 5
+    health: 20
     maxHealth: 5
     defense: 0
     attack: 0
@@ -305,6 +349,7 @@ MonoBehaviour:
   dead: 0
   DeadTimer: 2
   healthBar: {fileID: 0}
+  WeaponPrefab: {fileID: 0}
   RestTime: 2
   PreAttackTime: 1
   avgMoveDist: 1.5

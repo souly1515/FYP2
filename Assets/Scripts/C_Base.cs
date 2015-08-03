@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class C_Stats
 {
+	[SerializeField]
+	public float HPregenRate=1f;
+	[SerializeField]
+	public float MPregenRate=2f;
 
 	[SerializeField]
 	private int level=1;
@@ -12,7 +17,7 @@ public class C_Stats
 		get{
 			return level;
 		}
-		private set
+		set
 		{
 			level=value;
 		}
@@ -24,43 +29,43 @@ public class C_Stats
 		{
 			return exp;
 		}
-		private set
+		set
 		{
 			exp=value;
 		}
 	}
 	[SerializeField]
-	private int str;
-	public int Str{
+	private float str;
+	public float Str{
 		get
 		{
 			return str;
 		}
-		private set
+		set
 		{
 			str=value;
 		}
 	}//strength
 	
 	[SerializeField]
-	private int dex;
-	public int Dex{
+	private float dex;
+	public float Dex{
 		get{
 			return dex;
 		}
-		private set
+		set
 		{
 			dex=value;
 		}
 	}//dexterity
 	
 	[SerializeField]
-	private int intelligence;
-	public int Int{
+	private float intelligence;
+	public float Int{
 		get{
 			return intelligence;
 		}
-		private set
+		set
 		{
 			intelligence=value;
 		}
@@ -68,12 +73,12 @@ public class C_Stats
 
 	
 	[SerializeField]
-	private int end;
-	public int End {
+	private float end;
+	public float End {
 		get{
 			return end;
 		}
-		private set
+		set
 		{
 			end=value;
 		}
@@ -202,9 +207,30 @@ public class C_Stats
 		Exp = exp;
 		CalcLevel ();
 	}
+	public void AddExp(int exp)
+	{
+		Exp += exp;
+		CalcLevel ();
+	}
 
 	void CalcLevel()
 	{
+		int tempExp = Exp;
+		int tempLevel = 1;
+		while(tempExp>((float)tempLevel+(float)(Mathf.Pow(((float)tempLevel*0.5f),1.5f)*40f+100f)))
+		{
+			tempExp-=Mathf.FloorToInt((float)tempLevel+(float)(Mathf.Pow(((float)tempLevel*0.5f),1.5f)*40f+100f));
+			tempLevel++;
+		}
+		while (tempLevel > level) {
+			str+=0.1f;
+			Dex+=2;
+			end+=5;
+			level++;
+		}
+		RecalStats();
+		level = tempLevel;
+
 		//set exp to current level
 	}
 
@@ -214,15 +240,6 @@ public class C_Stats
 		return 0;
 	}
 
-	void AddExp(int amount)
-	{
-		Exp += amount;
-		int expthing = expToLevel ();
-		while (Exp > expthing) {
-			Exp-=expthing;
-			Level++;
-		}
-	}
 
 	void AddStatPoints()//adds stat points based on current level
 	{
@@ -232,7 +249,7 @@ public class C_Stats
 		statPoints += 5 + bonus;
 	}
 
-	public int GetPointsNeeded(int num)
+	public int GetPointsNeeded(float num)
 	{
 		return Mathf.FloorToInt (Mathf.Pow (num / 8, 1.3f)); 
 	}
@@ -240,7 +257,7 @@ public class C_Stats
 	{
 		float percentageHealth = Health / MaxHealth;
 		float percentageMana = Mana / MaxMana;
-		MaxHealth = baseHealth + (0.5f * Str)+(3.0f*End)+Level*2.2f;
+		MaxHealth = baseHealth + (0.5f * Str)+(30.0f*End)+Level*2.2f;
 		Health = (MaxHealth * percentageHealth);
 		MaxMana = baseMana + 4 * Int+Level*1;
 		Mana = (MaxMana * percentageMana);
@@ -285,7 +302,7 @@ public class C_Base: MonoBehaviour {
 	public Vector3 lastDir;
 	public string SkillPath="Skills/";
 	public int weaponType;
-	public float  InvincTime=0.5f;
+	public float  InvincTime=1.5f;
 	public float InvincTimeLeft;
 	GameObject skillGO=null;
 	Skills skillScript=null;
@@ -293,6 +310,13 @@ public class C_Base: MonoBehaviour {
 	float deathTimeLeft;
 	public float deathTime=3.0f;
 	public weaponInfo equippedWeapon;
+	float AttackCoolOff;
+	SpriteRenderer rend;
+	SpriteRenderer[] handrend;
+	Anim_controller animControl;
+	UnityEngine.UI.Slider health;
+	UnityEngine.UI.Slider mana;
+
 
 	//debug
 	//end of debug
@@ -309,17 +333,68 @@ public class C_Base: MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		int temp=PlayerPrefs.GetInt("PlayerHealth");
-		if (temp == 0)
-			stats.Health = 300;
-		else
+		int GotSave = PlayerPrefs.GetInt ("GotSave");
+		if(GotSave==1)
+		{
+			float temp=PlayerPrefs.GetFloat("PlayerHealth");
+			//if (temp == 0)
 			stats.Health = temp;
+			temp=PlayerPrefs.GetFloat("PlayerMana");
+			stats.Mana=temp;
+			temp=PlayerPrefs.GetFloat("PlayerExp");
+			stats.SetExp(Mathf.FloorToInt(temp));
+			/*
+			temp=PlayerPrefs.GetFloat("PlayerStr");
+			stats.Str=Mathf.FloorToInt(temp);
+			temp=PlayerPrefs.GetFloat("PlayerDex");
+			stats.Dex=Mathf.FloorToInt(temp);
+			temp=PlayerPrefs.GetFloat("PlayerEnd");
+			stats.End=Mathf.FloorToInt(temp);
+			temp=PlayerPrefs.GetFloat("PlayerInt");
+			stats.Int=Mathf.FloorToInt(temp);
+			*/
+			temp=PlayerPrefs.GetFloat("PlayerWeaponDamage");
+			equippedWeapon.damage=temp;
+			string t2=PlayerPrefs.GetString("PlayerWeapon");
+			equippedWeapon.spriteName=t2;
+			temp=PlayerPrefs.GetInt("PlayerWeaponType");
+			if(temp==1)
+				equippedWeapon.wtype=WeaponTypes.ATTACK;
+			else
+				equippedWeapon.wtype=WeaponTypes.DEFENCE;
+
+
+			/*
+			PlayerPrefs.SetFloat("PlayerHealth",temp.stats.Health);
+			PlayerPrefs.SetFloat ("PlayerMana",temp.stats.Mana);
+			PlayerPrefs.SetFloat ("PlayerStr",temp.stats.Str);
+			PlayerPrefs.SetFloat ("PlayerDex",temp.stats.Dex);
+			PlayerPrefs.SetFloat("PlayerEnd",temp.stats.End);
+			PlayerPrefs.SetFloat("PlayerInt",temp.stats.Int);
+			PlayerPrefs.SetFloat ("PlayerExp",temp.stats.Exp);
+			PlayerPrefs.SetInt("GotSave",1);
+
+			PlayerPrefs.SetFloat ("PlayerWeaponDamage",temp.equippedWeapon.damage);
+			PlayerPrefs.SetString ("PlayerWeapon",temp.equippedWeapon.spriteName);
+			if(temp.equippedWeapon.wtype==WeaponTypes.ATTACK)
+				PlayerPrefs.SetInt("PlayerWeaponType",1);
+			else
+				PlayerPrefs.SetInt("PlayerWeaponType",2);
+			*/
+		}
 		rb = GetComponent<Rigidbody2D> ();
 		anim = GetComponent<Animator> ();
 		//bool left = false;
 		direction = new Vector3 ();
 		stats.InitStats ();
 		stats.RecalStats ();
+		rend = GetComponent<SpriteRenderer> ();
+		handrend = GetComponentsInChildren<SpriteRenderer> ();
+		animControl = GetComponent<Anim_controller> ();
+		GameObject g = GameObject.Find ("Health");
+		health = g.GetComponent<UnityEngine.UI.Slider> ();
+		g = GameObject.Find ("Mana");
+		mana = g.GetComponent<UnityEngine.UI.Slider> ();
 	}
 
 	public void Damage(int damage)
@@ -328,6 +403,9 @@ public class C_Base: MonoBehaviour {
 			return;
 		InvincTimeLeft = InvincTime;
 		stats.Health -= damage;
+		rend.color = new Color (1.0f, 0.0f, 0.0f);
+		foreach (SpriteRenderer s in handrend)
+			s.color = new Color (1.0f, 0, 0);
 		if (stats.Health <= 0) {
 			dead=true;
 			PlayerPrefs.SetInt("PlayerHealth",0);
@@ -342,12 +420,15 @@ public class C_Base: MonoBehaviour {
 		bool returnvalue = true;
 		moveSpdModded = stats.moveSpd;
 		speedMod = 1.0f;
-		foreach (buffs buff in buffList)
+		List<buffs> removed = new List<buffs> ();
+		for(int i=0;i<buffList.Count;i++)
 		{
+			buffs buff=buffList[i];
 			buff.duration-=Time.deltaTime;
 			if(buff.duration<=0)
 			{
 				//int stackNum;
+				i--;
 				buffs.stackDic[buff.buffName]--;
 				buffList.Remove(buff);
 			}
@@ -399,10 +480,11 @@ public class C_Base: MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (dead) {
-			if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime>=0)
+			GetComponent<CircleCollider2D>().enabled=false;
+			if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime>=1)
 			{
 				if(deathTimeLeft<=0)
-					Application.LoadLevel("Level_1");
+					Application.LoadLevel("MainMenu");
 				else
 					deathTimeLeft-=Time.deltaTime;
 			}
@@ -410,27 +492,53 @@ public class C_Base: MonoBehaviour {
 		
 		}
 		InvincTimeLeft -= Time.deltaTime;
+		stats.Health += stats.HPregenRate * Time.deltaTime;
+		stats.Mana += stats.MPregenRate * Time.deltaTime;
+		if (stats.Health > stats.MaxHealth)
+			stats.Health = stats.MaxHealth;
+		if (stats.Mana > stats.MaxMana)
+			stats.Mana = stats.MaxMana;
 		//basic mechanics: movement with mouse
 		if (!ProcBuffs())//basically stunned
 			return;
+		health.value = stats.Health / stats.MaxHealth;
+		mana.value = stats.Mana / stats.MaxMana;
+
+		//basic mechanics: camera movement with character
+		Vector3 temp = transform.position;
+		temp.z = -10;
+		//Camera.main.transform.position = Vector3.Lerp (Camera.main.transform.position, temp, cameraSpd);
+		
+		float xDif = temp.x - Camera.main.transform.position.x;
+		
+		if (Mathf.Abs (xDif) < 4f) {
+			xDif = 0;
+		} else if (xDif > 0) {
+			xDif -= 4f;
+		} else {
+			xDif += 4f;
+		}
+		
+		float yDif = temp.y - Camera.main.transform.position.y;
+		
+		yDif-=1.5f;
+		
+		if (Mathf.Abs (yDif) < 1.5f) {
+			yDif = 0;
+		} else if (yDif > 0) {
+			yDif -= 1.5f;
+		} else {
+			yDif += 1.5f;
+		}
+		Camera.main.transform.position += new Vector3 (xDif, yDif, 0);
+
+
 		if (inAttackAnimation) {
-			if (skillScript != null) {
-				if (!skillScript.SkillOver) {
-					rb.velocity = new Vector2 (0, 0);
-					nextPos = transform.position;
-					inAttackAnimation = true;
-				} else
-				{
-					anim.SetTrigger("EndAttack");
+				rb.velocity = new Vector2 (0, 0);
+				nextPos = transform.position;
+				AttackCoolOff-=Time.deltaTime;
+				if(AttackCoolOff<=0)
 					inAttackAnimation = false;
-					skillGO.transform.SetParent(null);
-				}
-			}
-			else
-			{
-				anim.SetTrigger("EndAttack");
-				inAttackAnimation=false;
-			}
 		}
 		else if (moving) {
 			direction=(Vector3)(nextPos)-transform.position;
@@ -455,33 +563,6 @@ public class C_Base: MonoBehaviour {
 				anim.SetBool("Moving",true);
 			}
 
-			//basic mechanics: camera movement with character
-			Vector3 temp = transform.position;
-			temp.z = -10;
-			//Camera.main.transform.position = Vector3.Lerp (Camera.main.transform.position, temp, cameraSpd);
-
-			float xDif = temp.x - Camera.main.transform.position.x;
-
-			if (Mathf.Abs (xDif) < 4f) {
-				xDif = 0;
-			} else if (xDif > 0) {
-				xDif -= 4f;
-			} else {
-				xDif += 4f;
-			}
-
-			float yDif = temp.y - Camera.main.transform.position.y;
-
-			yDif-=1.5f;
-
-			if (Mathf.Abs (yDif) < 1.5f) {
-				yDif = 0;
-			} else if (yDif > 0) {
-				yDif -= 1.5f;
-			} else {
-				yDif += 1.5f;
-			}
-			Camera.main.transform.position += new Vector3 (xDif, yDif, 0);
 			//end of basic mechanics: camera movement with character
 
 			//end of basic mechanics: movement with mouse
@@ -520,23 +601,70 @@ public class C_Base: MonoBehaviour {
 		}*/
 	}
 
+	public void LateUpdate()
+	{
+		if (InvincTimeLeft <= 0) {
+			rend.color = new Color (1, 1, 1);
+			foreach (SpriteRenderer s in handrend)
+				s.color = new Color (1, 1, 1);
+		} else {
+			rend.color = new Color (1.0f, 0.4f, 0.0f);
+			foreach (SpriteRenderer s in handrend)
+				s.color = new Color (1.0f, 0.4f, 0);
+		}
+
+	}
+		
+	public void swapWeapon(ref weaponInfo weapon)
+	{
+		weaponInfo temp;
+		temp = equippedWeapon;
+		equippedWeapon = weapon;
+		weapon = temp;
+		animControl.sheetName = equippedWeapon.spriteName;
+		if (equippedWeapon.wtype == WeaponTypes.ATTACK)
+			animControl.Fire = true;
+		else
+			animControl.Fire = false;
+
+	}
 
 	public void Attack(int type,int weaponType,Vector2 mousePos)
 	{
 		if (!inAttackAnimation) {
+			inAttackAnimation=true;
 			direction = -Camera.main.WorldToScreenPoint (transform.position) + (Vector3)mousePos;
 			direction.Normalize ();
-			switch(weaponType)
+			if(direction.x>0)
 			{
-			case 1:
-				Attack_Fire(type, direction);
-				break;
-			case 2:
+				anim.SetBool("Left",false);
+			}
+			else
+				anim.SetBool("Left",true);
+			if(direction.y>0)
+				anim.SetBool("Forward",false);
+			else
+				anim.SetBool("Forward",true);
+			if(weaponType!=2)
+			{
+				switch(equippedWeapon.wtype)
+				{
+				case WeaponTypes.ATTACK:
+					Attack_Fire(type, direction);
+
+					break;
+				case WeaponTypes.DEFENCE:
+					Attack_Nature(type,direction);
+
+					break;
+				}
+			}
+			else
+			{
 				DefaultAttack(type,direction);
-				break;
 			}
 			//remove once proper skills are implemented
-			inAttackAnimation = true;
+			//inAttackAnimation = true;
 
 			//find a way to change the sprite at run time;
 			Vector2 Dir = (Vector2)(direction);
@@ -547,9 +675,6 @@ public class C_Base: MonoBehaviour {
 	void DefaultAttack(int type,Vector3 AttackDir)
 	{
 		direction = AttackDir;
-		anim.SetTrigger ("attack");
-		anim.SetInteger ("AtkType", type);
-		inAttackAnimation = true;
 		GameObject skillObj = null;
 		skillObj = transform.FindChild ("Skill_Default").gameObject;
 		Animator s_Anim = skillObj.GetComponent<Animator> ();
@@ -572,70 +697,134 @@ public class C_Base: MonoBehaviour {
 		direction = AttackDir;
 		anim.SetTrigger("attack");
 		anim.SetInteger ("AtkType", 1);
-		inAttackAnimation = true;
 		GameObject go=null;
 		GameObject skillObj = null;
+		go=Resources.Load(SkillPath+"Earth_"+type.ToString())as GameObject;
 		switch (type) {
 		case 1:
 		{
+			//direct.z = direction.y/ direction.x * 180 / 3.142f;
+			skillsInfo temp=new skillsInfo();
+			//temp.damage=4;
+			temp.damage=4f*stats.Str+2f*equippedWeapon.damage;
+			temp.castTime=0.4f;
+			temp.type=0;
+			temp.knockback=5.0f;
+			temp.ConstantDam=true;
+			temp.skillName=SkillPath+"Earth_"+type.ToString();
+			skillObj=Instantiate (go, transform.position,Quaternion.identity) as GameObject;
+			Vector3 scale=skillObj.transform.localScale;
+			if(AttackDir.x<0)
+			{
+				scale.x=-scale.x;
+			}
+			if(AttackDir.y>0)
+			{
+				scale.y=-scale.y;
+			}
+			skillObj.transform.localScale=scale;
+			Skills skill=skillObj.GetComponent<Skills>();
+			
+			skill.SetInfo(temp);
+			skill.Dir = direction;
+			AttackCoolOff=0.2f;
+			skill.character=gameObject;
+			//skill.ApplyDamage=true;
 		}
 			break;
 		case 2:
 		{
+			if(stats.Mana<5)
+				return;
+			stats.Mana-=5;
+			//direct.z = direction.y/ direction.x * 180 / 3.142f;
+			skillsInfo temp=new skillsInfo();
+			//temp.damage=4;
+			temp.damage=4*stats.Str+2*equippedWeapon.damage;
+			temp.castTime=0.4f;
+			temp.type=0;
+			temp.knockback=5.0f;
+			temp.ConstantDam=true;
+			temp.skillName=SkillPath+"Earth_"+type.ToString();
+			Vector3 t=Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			t.z=0;
+			skillObj=Instantiate (go,t,Quaternion.identity) as GameObject;
+			if(AttackDir.x<0)
+			{
+				Vector3 scale=skillObj.transform.localScale;
+				scale.x=-scale.x;
+				skillObj.transform.localScale=scale;
+			}
+			Skills skill=skillObj.GetComponent<Skills>();
 			
+			skill.SetInfo(temp);
+			skill.Dir = direction;
+			AttackCoolOff=0.8f;
+			skill.character=gameObject;
+			//skill.ApplyDamage=true;
 		}
 			break;
 		case 3:
 		{
+			if(stats.Mana<7)
+				return;
+			stats.Mana-=7;
+			//direct.z = direction.y/ direction.x * 180 / 3.142f;
+			skillObj=Instantiate (go, transform.position+direction*1,Quaternion.identity) as GameObject;
+			Skills skill=skillObj.GetComponent<Skills>();
+			
+			skillsInfo temp=new skillsInfo();
+			//temp.damage=2;
+			temp.damage=2*stats.Str+equippedWeapon.damage*1.2f;
+			temp.castTime=0.1f;
+			temp.type=1;
+			temp.pierceNumber=3;
+			temp.knockback=0.2f;
+			temp.ConstantDam=false;
+			temp.skillName=SkillPath+"Earth_"+type.ToString();
+			skill.SetInfo(temp);
+			skill.Dir = direction;
+			AttackCoolOff=0.8f;
+			skill.character=gameObject;
 		}
 			break;
 		case 4:
+		{
 			
+			if(stats.Mana<6)
+				return;
+			stats.Mana-=6;
+			//direct.z = direction.y/ direction.x * 180 / 3.142f;
+			skillObj=Instantiate (go, transform.position,Quaternion.identity) as GameObject;
+			Skills skill=skillObj.GetComponent<Skills>();
+			
+			skillsInfo temp=new skillsInfo();
+			//temp.damage=1;
+			temp.damage=1*stats.Str+0.8f*equippedWeapon.damage;
+			temp.castTime=2.0f;
+			temp.type=2;
+			temp.knockback=1.0f;
+			temp.ConstantDam=true;
+			temp.velocity=direction;
+			temp.skillName=SkillPath+"Fire_"+type.ToString();
+			skill.SetInfo(temp);
+			skill.Dir = direction;
+			AttackCoolOff=0.5f;
+			skill.character=gameObject;
+		}
 			break;
 		}
+		anim.SetTrigger ("attack");
+		anim.SetInteger ("AtkType", type);
 		skillGO = skillObj;
 		skillScript = skillGO.GetComponent<Skills> ();
 		//skillObj.transform.SetParent (transform);
 	}
 
-	
-	void Attack_Water(int type,Vector3 AttackDir)
-	{
-		direction = AttackDir;
-		anim.SetTrigger("attack");
-		anim.SetInteger ("AtkType", 1);
-		inAttackAnimation = true;
-		GameObject go=null;
-		GameObject skillObj = null;
-		switch (type) {
-		case 1:
-		{
-		}
-			break;
-		case 2:
-		{
-			
-		}
-			break;
-		case 3:
-		{
-		}
-			break;
-		case 4:
-			
-			break;
-		}
-		skillGO = skillObj;
-		skillScript = skillGO.GetComponent<Skills> ();
-		//skillObj.transform.SetParent (transform);
-	}
 
 	void Attack_Fire(int type,Vector3 AttackDir)
 	{
 		direction = AttackDir;
-		anim.SetTrigger("attack");
-		anim.SetInteger ("AtkType", 1);
-		inAttackAnimation = true;
 		GameObject go=null;
 		GameObject skillObj = null;
 		if(type!=1)
@@ -648,7 +837,7 @@ public class C_Base: MonoBehaviour {
 			//temp.damage=4;
 			temp.damage=4*stats.Str+2*equippedWeapon.damage;
 			temp.castTime=0.4f;
-			temp.isProjectile=false;
+			temp.type=0;
 			temp.knockback=5.0f;
 			temp.ConstantDam=false;
 			if(AttackDir.y<0)
@@ -672,11 +861,16 @@ public class C_Base: MonoBehaviour {
 
 			skill.SetInfo(temp);
 			skill.Dir = direction;
+			AttackCoolOff=0.2f;
+			skill.character=gameObject;
 		}
 			break;
 		case 2:
 		{
-
+			
+			if(stats.Mana<3)
+				return;
+			stats.Mana-=3;
 			//direct.z = direction.y/ direction.x * 180 / 3.142f;
 			skillObj=Instantiate (go, transform.position,Quaternion.identity) as GameObject;
 			Skills skill=skillObj.GetComponent<Skills>();
@@ -689,38 +883,77 @@ public class C_Base: MonoBehaviour {
 			//temp.damage=1;
 			temp.damage=1*stats.Str+0.8f*equippedWeapon.damage;
 			temp.castTime=0.5f;
-			temp.isProjectile=false;
+			temp.type=0;
 			temp.knockback=1.0f;
 			temp.ConstantDam=true;
 			temp.skillName=SkillPath+"Fire_"+type.ToString();
 			skill.SetInfo(temp);
 			skill.Dir = direction;
+			AttackCoolOff=0.8f;
+			skill.character=gameObject;
 
 		}
 			break;
 		case 3:
 		{
+			if(stats.Mana<1)
+				return;
+			stats.Mana-=1;
 			//direct.z = direction.y/ direction.x * 180 / 3.142f;
-			skillObj=Instantiate (go, transform.position+direction*1,Quaternion.identity) as GameObject;
+			skillObj=Instantiate (go, transform.position,Quaternion.identity) as GameObject;
 			Skills skill=skillObj.GetComponent<Skills>();
 			
 			skillsInfo temp=new skillsInfo();
-			//temp.damage=2;
-			temp.damage=2*stats.Str+equippedWeapon.damage*1.2f;
-			temp.castTime=0.1f;
-			temp.isProjectile=true;
-			temp.pierceNumber=3;
-			temp.knockback=0.2f;
+			//temp.damage=1;
+			temp.damage=1*stats.Str+0.8f*equippedWeapon.damage;
+			temp.castTime=2.0f;
+			temp.type=2;
+			temp.knockback=1.0f;
 			temp.ConstantDam=false;
+			temp.velocity=direction;
 			temp.skillName=SkillPath+"Fire_"+type.ToString();
 			skill.SetInfo(temp);
 			skill.Dir = direction;
+			skill.ApplyDamage=true;
+			skill.deathOnDamage=true;
+			skill.singleFrameDamage=false;
+			AttackCoolOff=0.1f;
+			skill.character=gameObject;
 		}
 			break;
 		case 4:
-
+		{
+			if(stats.Mana<8)
+				return;
+			stats.Mana-=8;
+			//direct.z = direction.y/ direction.x * 180 / 3.142f;
+			skillsInfo temp=new skillsInfo();
+			//temp.damage=4;
+			temp.damage=4*stats.Str+2*equippedWeapon.damage;
+			temp.castTime=0.4f;
+			temp.type=0;
+			temp.knockback=5.0f;
+			temp.ConstantDam=true;
+			temp.skillName=SkillPath+"Fire_"+type.ToString();
+			skillObj=Instantiate (go, transform.position,Quaternion.identity) as GameObject;
+			if(AttackDir.x<0)
+			{
+				Vector3 scale=skillObj.transform.localScale;
+				scale.x=-scale.x;
+				skillObj.transform.localScale=scale;
+			}
+			Skills skill=skillObj.GetComponent<Skills>();
+			
+			skill.SetInfo(temp);
+			skill.Dir = direction;
+			AttackCoolOff=0.6f;
+			skill.character=gameObject;
+			//skill.ApplyDamage=true;
+		}
 			break;
 		}
+		anim.SetTrigger("attack");
+		anim.SetInteger ("AtkType", 1);
 		skillGO = skillObj;
 		skillScript = skillGO.GetComponent<Skills> ();
 		//skillObj.transform.SetParent (transform);

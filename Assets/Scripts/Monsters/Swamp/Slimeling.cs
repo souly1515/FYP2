@@ -6,12 +6,12 @@ public class Slimeling :E_Base {
 	float lerpProgress;
 	bool initialised=false;
 	Vector3 originalVel;
-
-
 	// Use this for initialization
 	protected override void Start ()
 	{
 		base.stats.health = 1;
+		timeLeft = 4.0f;
+		spriteR.AddRange( GetComponents<SpriteRenderer> ());
 	}
 
 
@@ -38,6 +38,21 @@ public class Slimeling :E_Base {
 		if (velocity.sqrMagnitude < 0.1)
 			velocity = Vector3.zero;
 		transform.position += velocity * Time.deltaTime;
+		timeLeft -= Time.deltaTime;
+		if (timeLeft <= 0) {
+			dead=true;
+			foreach(SpriteRenderer s in spriteR)
+			{
+				Color tempColor=s.color;
+				tempColor.a-=1.0f*Time.deltaTime;
+				s.color=tempColor;
+				if(s.color.a<=0)
+				{
+					Destroy(gameObject);
+					break;
+				}
+			}
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col)

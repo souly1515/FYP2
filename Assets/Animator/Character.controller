@@ -13,43 +13,37 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: AtkType
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Forward
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Left
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Moving
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Death
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: EndAttack
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -139,10 +133,7 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: EndAttack
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 110707494}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -390,10 +381,7 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: EndAttack
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 110707494}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -459,10 +447,7 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: EndAttack
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 110707494}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -505,10 +490,7 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: EndAttack
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 110707494}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -1439,10 +1421,7 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: EndAttack
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 110707494}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -1681,10 +1660,7 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: EndAttack
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 110707494}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -1704,10 +1680,7 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: EndAttack
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 110707494}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -2140,10 +2113,7 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: EndAttack
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 110707494}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -2307,10 +2277,7 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: EndAttack
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 110707494}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -2491,10 +2458,7 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: EndAttack
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 110707494}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -2641,10 +2605,7 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: EndAttack
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 110707494}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -2800,10 +2761,7 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: EndAttack
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 110707494}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -2956,7 +2914,7 @@ AnimatorState:
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: 932a161a679a2c941a8d9722b4a34a7d, type: 2}
-  m_Tag: 
+  m_Tag: Attack
 --- !u!1102 &110214500
 AnimatorState:
   serializedVersion: 5
@@ -3027,7 +2985,7 @@ AnimatorState:
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: 8cd6381038b0a07439789ed77769ddff, type: 2}
-  m_Tag: 
+  m_Tag: Attack
 --- !u!1102 &110227444
 AnimatorState:
   serializedVersion: 5
@@ -3083,7 +3041,7 @@ AnimatorState:
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: abc0442db3c5a1941a079347b15d608b, type: 2}
-  m_Tag: 
+  m_Tag: Attack
 --- !u!1102 &110238752
 AnimatorState:
   serializedVersion: 5
@@ -3101,7 +3059,7 @@ AnimatorState:
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: d673ac4293878ee43bb02035431cf852, type: 2}
-  m_Tag: 
+  m_Tag: Attack
 --- !u!1102 &110240392
 AnimatorState:
   serializedVersion: 5
@@ -3140,7 +3098,7 @@ AnimatorState:
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: 1507f5f1a4d8d0148834e40a32c35389, type: 2}
-  m_Tag: 
+  m_Tag: Attack
 --- !u!1102 &110243950
 AnimatorState:
   serializedVersion: 5
@@ -3196,7 +3154,7 @@ AnimatorState:
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: c56f8962201736c4da59cbdd213e4061, type: 2}
-  m_Tag: 
+  m_Tag: Attack
 --- !u!1102 &110248914
 AnimatorState:
   serializedVersion: 5
@@ -3231,7 +3189,7 @@ AnimatorState:
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: eeca6d50fd6859d4cb6049b8278a1912, type: 2}
-  m_Tag: 
+  m_Tag: Attack
 --- !u!1102 &110258678
 AnimatorState:
   serializedVersion: 5
@@ -3266,7 +3224,7 @@ AnimatorState:
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: 5441b7ba318a00243958295ab453e322, type: 2}
-  m_Tag: 
+  m_Tag: Attack
 --- !u!1102 &110262066
 AnimatorState:
   serializedVersion: 5
@@ -3284,7 +3242,7 @@ AnimatorState:
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: 679cf971e3c779b40a29780a8c430e23, type: 2}
-  m_Tag: 
+  m_Tag: Attack
 --- !u!1102 &110264036
 AnimatorState:
   serializedVersion: 5
@@ -3365,7 +3323,7 @@ AnimatorState:
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: 45759ec70358be843aab8e5c764c295b, type: 2}
-  m_Tag: 
+  m_Tag: Attack
 --- !u!1102 &110281728
 AnimatorState:
   serializedVersion: 5
@@ -3383,7 +3341,7 @@ AnimatorState:
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: d1a080a32100f96479cd536669425e4d, type: 2}
-  m_Tag: 
+  m_Tag: Attack
 --- !u!1102 &110282078
 AnimatorState:
   serializedVersion: 5
@@ -3422,7 +3380,7 @@ AnimatorState:
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: 233d4f41fb1517e47a06798930fe4ea4, type: 2}
-  m_Tag: 
+  m_Tag: Attack
 --- !u!1102 &110284282
 AnimatorState:
   serializedVersion: 5
@@ -3478,7 +3436,7 @@ AnimatorState:
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: e56a2c1036f4d2e4b85a05a0360563b8, type: 2}
-  m_Tag: 
+  m_Tag: Attack
 --- !u!1102 &110289466
 AnimatorState:
   serializedVersion: 5
@@ -3672,7 +3630,7 @@ AnimatorStateMachine:
     m_Position: {x: 624, y: 84, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: 110707494}
-    m_Position: {x: 216, y: 156, z: 0}
+    m_Position: {x: 216, y: 180, z: 0}
   m_AnyStateTransitions:
   - {fileID: 110123530}
   - {fileID: 110154794}
@@ -3690,16 +3648,16 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions:
     data:
-      first: {fileID: 110707494}
-      second:
-      - {fileID: 110942944}
+      first: {fileID: 110773670}
+      second: []
     data:
       first: {fileID: 110763872}
       second:
       - {fileID: 110972388}
     data:
-      first: {fileID: 110773670}
-      second: []
+      first: {fileID: 110707494}
+      second:
+      - {fileID: 110942944}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 372, y: -192, z: 0}
   m_EntryPosition: {x: -156, y: 12, z: 0}

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Lion : E_Base {
 	public enum InternalAttackStates{
@@ -35,6 +36,7 @@ public class Lion : E_Base {
 	List<GameObject> spikeList;
 	List<GameObject> SpiritList;
 	Lion_Roar roarScript;
+	public Slider healthThing=null;
 	//float avgSpikeDist=0.5f;
 
 
@@ -60,7 +62,13 @@ public class Lion : E_Base {
 
 	protected override void Update ()
 	{
+		healthThing.value = (float)stats.health / (float)stats.maxHealth;
 		base.Update ();
+	}
+
+	protected override void OnDeath ()
+	{
+		//dont do anything here
 	}
 
 	void LateUpdate()
@@ -358,10 +366,10 @@ public class Lion : E_Base {
 		}
 	}
 
-	public override void ApplyDamage (float attack)
+	public override void ApplyDamage (float attack,C_Base c)
 	{
 		if (!Invul) {
-			base.ApplyDamage (attack);
+			base.ApplyDamage (attack,c);
 		}
 	}
 	public override void KnockBack (float amount, Vector2 Dir, float stunDuration)

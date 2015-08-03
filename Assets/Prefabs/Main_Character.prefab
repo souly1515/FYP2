@@ -164,14 +164,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextPos: {x: 0, y: 0}
   stats:
-    Str: 0
-    Dex: 0
-    Int: 0
-    End: 0
-    Wil: 0
-    moveSpd: 0
-    Health: 0
-  moveSpd: 4
+    HPregenRate: 1
+    MPregenRate: 2
+    level: 1
+    exp: 0
+    str: 0
+    dex: 0
+    intelligence: 0
+    end: 0
+    movespd: 0
+    health: 1
+    maxHealth: 1
+    mana: 1
+    maxMana: 1
+    statpoints: 0
   moveSpdModded: 0
   speedMod: 1
   moving: 0
@@ -180,9 +186,18 @@ MonoBehaviour:
   lastDir: {x: 0, y: 0, z: 0}
   SkillPath: Skills/
   weaponType: 1
-  InvincTime: .699999988
+  InvincTime: 1.5
   InvincTimeLeft: 0
   dead: 0
+  deathTime: 3
+  equippedWeapon:
+    damage: 1
+    wtype: 1
+    spriteName: weapon0
+    inventorySizeX: 0
+    inventorySizeY: 0
+    inventoryX: 0
+    inventoryY: 0
 --- !u!114 &11492924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -196,12 +211,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Interactables:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 4128
   clickRadius: 0
   inventoryGO: {fileID: 0}
   inventory: {fileID: 0}
   holdingItem: 0
-  holdingWeapon: {fileID: 0}
+  holdingWeapon:
+    damage: 0
+    wtype: 0
+    spriteName: 
+    inventorySizeX: 0
+    inventorySizeY: 0
+    inventoryX: 0
+    inventoryY: 0
+  weaponSprite: {fileID: 0}
   refX: 0
   refY: 0
 --- !u!212 &21206816

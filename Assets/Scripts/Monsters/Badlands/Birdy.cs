@@ -271,8 +271,8 @@ public class Birdy : E_Base {
 					//do the random direction thing for the move
 					break;
 				default:
-					//attackStates=InternalAttackState.PRE_ATTACK;
-					//timeLeft=PreAttackTime;
+					attackStates=InternalAttackState.PRE_ATTACK;
+					timeLeft=PreAttackTime;
 					//set timer for the attack;
 					break;
 				}
@@ -280,7 +280,16 @@ public class Birdy : E_Base {
 			break;
 		}
 	}
+	
+	public override void ApplyDamage (float attack, C_Base c)
+	{
+		base.ApplyDamage (attack, c);
+		if (stats.health <= 0) {
+			attackColB.enabled=false;
+			attackColF.enabled=false;
+		}
 
+	}
 	protected override void Idle_State ()
 	{
 
