@@ -85,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 196030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.55999994, y: -.779999971, z: 0}
+  m_LocalPosition: {x: -.720000029, y: 3.94000006, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 462986}
@@ -94,6 +94,7 @@ Transform:
   m_RootOrder: 0
 --- !u!50 &5066218
 Rigidbody2D:
+  serializedVersion: 2
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -102,11 +103,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 0
-  m_FixedAngle: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!58 &5881362
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -151,6 +152,7 @@ MonoBehaviour:
   sheetName: Weapon_test
   weaponGO: {fileID: 136562}
   lastSheetName: 
+  Fire: 0
 --- !u!114 &11490856
 MonoBehaviour:
   m_ObjectHideFlags: 1
